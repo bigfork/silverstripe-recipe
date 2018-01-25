@@ -45,5 +45,7 @@
   },
   "scripts": {
     "post-create-project-cmd": "Bigfork\\Installer\\Install::postCreateProject"
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
