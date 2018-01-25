@@ -24,6 +24,7 @@
       "app/css",
       "app/images",
       "themes/default/css",
+      "themes/default/images",
       "themes/default/js"
     ],
 		"project-files": [
