@@ -1,7 +1,6 @@
 <?php
 
 use SilverStripe\CMS\Controllers\ContentController;
-use SilverStripe\Core\Config\Config;
 use SilverStripe\View\Requirements;
 
 class PageController extends ContentController
@@ -10,8 +9,7 @@ class PageController extends ContentController
     {
         parent::init();
 
-        $themeDir = 'themes/' . Config::inst()->get('SSViewer', 'theme');
         Requirements::set_force_js_to_bottom(true);
-        Requirements::javascript($themeDir . '/js/app.min.js');
+        Requirements::themedJavascript('js/app.min.js');
     }
 }
