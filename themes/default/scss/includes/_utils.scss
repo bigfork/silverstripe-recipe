@@ -1,0 +1,50 @@
+/* Utility Classes
+---------------------------------------------------------------------------------- */
+
+/* Occasionally handly class for forcing stuff to hide
+---------------------------------------------------------------------------------- */
+.h,
+%h {
+	// scss-lint:disable ImportantRule
+	display: none !important;
+}
+
+/* Visually hide things, but leave them accessible to screenreaders
+---------------------------------------------------------------------------------- */
+.h-hide-visually,
+%h-hide-visually {
+	position: absolute;
+	overflow: hidden;
+	width: 1px; height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	clip: rect(0 0 0 0);
+}
+
+/* Clearfix - Assign class to element to self clear children
+---------------------------------------------------------------------------------- */
+.group,
+%group {
+	zoom: 1; // IE 6/7
+
+	&:before,
+	&:after {
+		display: table;
+		content: '';
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+/* Utility class for replacing text with a background-image
+---------------------------------------------------------------------------------- */
+.replace,
+%replace {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-indent: 150%;
+}

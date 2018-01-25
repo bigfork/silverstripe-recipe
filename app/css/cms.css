@@ -1,0 +1,22 @@
+/* CMS tweaks
+-------------------------------------------------------------------------------- */
+
+#Form_AddForm_PageType .disabled {
+	display: none !important;
+}
+
+#Menu-ReportAdmin {
+	display: none !important;
+}
+
+.icon.icon-16 {
+	background-size: 16px auto;
+}
+
+.checkboxleft {
+	padding-left: 0 !important;
+}
+
+.checkboxleft label {
+	font-weight: bold !important;
+}

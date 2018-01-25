@@ -1,0 +1,20 @@
+/* Component: breadcrumbs
+---------------------------------------------------------------------------------- */
+
+.breadcrumbs {
+	font-size: 140%;
+
+	a {
+		color: $color__black;
+
+		&:link,
+		&:visited {
+			text-decoration: none;
+		}
+
+		&:active,
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

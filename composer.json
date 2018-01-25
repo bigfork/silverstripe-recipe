@@ -1,0 +1,49 @@
+{
+	"name": "bigfork/silverstripe-recipe",
+	"type": "silverstripe-recipe",
+	"description": "Bigfork’s SilverStripe CMS recipe",
+	"homepage": "https://www.bigfork.co.uk",
+	"license": "BSD-3-Clause",
+	"require": {
+		"php": ">=7.0.0",
+		"silverstripe/recipe-plugin": "^1",
+		"silverstripe/cms": "4.x-dev",
+		"silverstripe/framework": "4.x-dev",
+		"bigfork/htmleditorsrcset": "^2",
+		"feejin/silverstripe-securitytemplates": "^2",
+		"heyday/silverstripe-responsive-images": "^2",
+		"kinglozzer/bfgoogleanalytics": "^2",
+		"kinglozzer/metatitle": "^2",
+		"silverstripe/googlesitemaps": "~1.8.0",
+		"symbiote/silverstripe-gridfieldextensions": "^3"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^5"
+	},
+	"extra": {
+    "expose": [
+      "app/css",
+      "app/images"
+    ],
+		"project-files": [
+      "./.editorconfig",
+      "./.env.example",
+      "./.gitignore",
+      "app/*",
+      "phpunit.xml.dist"
+		],
+    "public-files": [
+      "assets/*",
+      "apple-touch-icon.png",
+      "robots.txt"
+    ]
+	},
+  "autoload": {
+    "psr-4": {
+      "Bigfork\\": "util/Bigfork"
+    }
+  },
+  "scripts": {
+    "post-create-project-cmd": "Bigfork\\Installer\\Install::postCreateProject"
+  }
+}

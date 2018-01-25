@@ -1,0 +1,12 @@
+---
+Name: app
+---
+SilverStripe\View\SSViewer:
+  themes:
+  - '$public'
+  - 'default'
+  - '$default'
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_css:
+    - app/css/cms.css
+  help_link: 'http://silverstripe.bigfork.co.uk/v3/'

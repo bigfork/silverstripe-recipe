@@ -1,0 +1,17 @@
+@import 'includes/reset';
+@import 'includes/normalize';
+@import 'includes/variables';
+@import 'includes/typography';
+@import 'includes/mixins';
+@import 'includes/utils';
+@import 'susy/sass/susy';
+
+/* Layout
+---------------------------------------------------------------------------------- */
+
+* {
+	box-sizing: border-box;
+}
+
+// Many styles
+@import 'components/*';

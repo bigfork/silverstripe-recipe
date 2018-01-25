@@ -1,0 +1,10 @@
+/* Layout: footer
+---------------------------------------------------------------------------------- */
+
+footer {
+	background: $color__black;
+
+	@include respond(960px) {
+		background: $color__white;
+	}
+}

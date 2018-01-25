@@ -1,0 +1,205 @@
+/* Styles for HtmlEditorFields
+---------------------------------------------------------------------------------- */
+
+@import 'mixins';
+
+/* Set base font size / family
+---------------------------------------------------------------------------------- */
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-family: $font__body;
+}
+
+/* Typography
+---------------------------------------------------------------------------------- */
+/* The following is used by both style.scss (front-end) and editor.scss (CMS)
+---------------------------------------------------------------------------------- */
+.typography {
+	font-size: 1.3rem;
+	line-height: 1.5;
+
+	p {
+		margin-bottom: 1em;
+	}
+
+	strong {
+		font-weight: bold;
+	}
+
+	em {
+		font-style: italic;
+	}
+
+	h1,
+	.h1 {
+		color: $color__black;
+		font-size: 200%;
+		font-family: $font__head;
+	}
+
+	h2,
+	.h2 {
+		color: $color__black;
+		font-size: 150%;
+		font-family: $font__head;
+	}
+
+	h3,
+	.h3 {
+		color: $color__black;
+		font-size: 120%;
+		font-family: $font__head;
+	}
+
+	ul {
+		margin: 0 0 1em; padding: 0 0 0 1.5em;
+		list-style-type: disc;
+	}
+
+	ol {
+		margin: 0 0 1em; padding: 0 0 0 1.5em;
+		list-style-type: decimal;
+	}
+
+	blockquote {
+		margin: 0 0 1em;
+		font-style: italic;
+
+		p {
+			margin: 0;
+		}
+
+		cite {
+			display: block;
+			font-weight: bold;
+			font-style: normal;
+		}
+	}
+
+	sup,
+	sub {
+		position: relative;
+		top: -0.4em;
+		font-size: 80%;
+		vertical-align: baseline;
+	}
+
+	sub {
+		top: 0.4em;
+	}
+
+	a {
+		color: $color__black;
+
+		&:link,
+		&:visited {
+			text-decoration: underline;
+		}
+
+		&:hover,
+		&:active {
+			text-decoration: none;
+		}
+	}
+
+/* TinyMCE alignment
+---------------------------------------------------------------------------------- */
+
+	.left {
+		text-align: left;
+	}
+
+	.center {
+		text-align: center;
+	}
+
+	.right {
+		text-align: right;
+	}
+
+/* Images
+---------------------------------------------------------------------------------- */
+
+	img {
+		// scss-lint:disable SelectorFormat
+		max-width: 100%; height: auto;
+		vertical-align: middle;
+
+		&.left,
+		&.right,
+		&.leftAlone,
+		&.center {
+			display: block;
+			float: none;
+			margin: 0 auto 1em;
+		}
+	}
+
+/* Image captions
+---------------------------------------------------------------------------------- */
+
+	.captionImage {
+		max-width: 100%;
+		margin-bottom: 1em;
+
+		img {
+			margin-bottom: 0;
+		}
+
+		p {
+			margin: 0.25em 0;
+			font-style: italic;
+		}
+	}
+}
+
+@include respond(480px) {
+	.typography {
+		img {
+			&.left,
+			&.right,
+			&.leftAlone {
+				display: inline-block;
+			}
+
+			&.left {
+				float: left;
+				margin: 0 1em 0 0;
+			}
+
+			&.right {
+				float: right;
+				margin: 0 0 0 1em;
+			}
+
+			&.leftAlone {
+				float: left;
+				margin: 0 100% 0 0;
+			}
+		}
+
+		.captionImage {
+			&.left {
+				float: left;
+				margin: 0 1em 1em 0;
+			}
+
+			&.right {
+				float: right;
+				margin: 0 0 1em 1em;
+			}
+
+			&.center {
+				margin: 0 auto 1em;
+			}
+
+			img {
+				float: none;
+				margin: 0;
+			}
+		}
+	}
+}

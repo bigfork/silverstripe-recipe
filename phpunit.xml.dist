@@ -1,0 +1,11 @@
+<phpunit bootstrap="vendor/silverstripe/cms/tests/bootstrap.php" colors="true">
+    <testsuite name="Default">
+        <directory>mysite/tests</directory>
+    </testsuite>
+
+    <groups>
+        <exclude>
+            <group>sanitychecks</group>
+        </exclude>
+    </groups>
+</phpunit>
