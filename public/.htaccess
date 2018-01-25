@@ -40,21 +40,6 @@ Options -Indexes
     </IfModule>
 </FilesMatch>
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Specific config files
-
-<Files ~ "(composer|package|codekit-config)\.json|Gruntfile.js|composer\.lock">
-    Order deny,allow
-    Deny from all
-</Files>
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Specific folders
-
-<IfModule mod_alias.c>
-    RedirectMatch 403 /(silverstripe-cache|vendor|util)(/|$)
-</IfModule>
-
 # ------------------------------------------------------------------------------
 # | Headers/proxies                                                            |
 # ------------------------------------------------------------------------------
