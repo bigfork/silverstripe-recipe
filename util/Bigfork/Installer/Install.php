@@ -60,7 +60,7 @@ class Install
     {
         $base = self::getBasepath();
 
-        $envPath = $base . '.env';
+        $envPath = $base . '/.env';
         $templatePath = $base . '/.env.example';
         if (file_exists($templatePath) && !file_exists($envPath)) {
             $env = file_get_contents($templatePath);
