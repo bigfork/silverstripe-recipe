@@ -17,6 +17,7 @@ task('silverstripe:create_dotenv', function () {
     $dbUser = ask('Please enter the database username');
     $dbPass = str_replace("'", "\\'", askHiddenResponse('Please enter the database password'));
     $dbName = ask('Please enter the database name', get('application'));
+    $dbPrefix = Context::get()->getHost()->getConfig()->get('stage') === 'stage' ? '_stage_' : '';
     $type = Context::get()->getHost()->getConfig()->get('stage') === 'stage' ? 'test' : 'live';
 
     $contents = <<<ENV
@@ -25,6 +26,7 @@ SS_DATABASE_USERNAME='{$dbUser}'
 SS_DATABASE_PASSWORD='{$dbPass}'
 SS_DATABASE_SERVER='{$dbServer}'
 SS_DATABASE_NAME='{$dbName}'
+SS_DATABASE_PREFIX='{$dbPrefix}'
 SS_ENVIRONMENT_TYPE='{$type}'
 ENV;
 
