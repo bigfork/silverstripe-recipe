@@ -12,3 +12,6 @@ SilverStripe\View\SSViewer:
   - '$public'
   - 'default'
   - '$default'
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - Bigfork\Extensions\SiteConfigExtension
