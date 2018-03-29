@@ -1,7 +1,7 @@
 <?php
 
+use App\Control\PageController as NamespacedPageController;
 use App\Model\Page as NamespacedPage;
-use App\Model\Page as NamespacedPageController;
 
 class Page extends NamespacedPage
 {

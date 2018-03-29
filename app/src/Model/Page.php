@@ -5,6 +5,7 @@ namespace App\Model;
 use App\Control\PageController;
 use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Security\Permission;
@@ -38,7 +39,7 @@ class Page extends SiteTree
      * Returns the controller class name for this page type. If a matching subclass of
      * PageController exists, use that. Otherwise default to the base namespaced controller.
      *
-     * This is required as SiteTree::getControllerName() doesn't traverse sidewarys across
+     * This is required as SiteTree::getControllerName() doesn't traverse sideways across
      * namespaces (i.e from \Model to \Control) when looking for a controller.
      *
      * @return string

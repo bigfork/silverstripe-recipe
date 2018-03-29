@@ -31,7 +31,7 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
     private static $menu_icon = 'app/images/site-settings.png';
 
     private static $required_permission_codes = ['EDIT_SITE_SETTINGS'];
-    
+
     public function providePermissions()
     {
         return [
