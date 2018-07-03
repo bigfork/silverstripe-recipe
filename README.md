@@ -72,25 +72,25 @@ dep deploy stage --tag=1.0.1
 dep silverstripe:upload_assets
 
 # Upload database
-dep silverstripe:upload_db
+dep silverstripe:upload_database
 
 # Download assets
 dep silverstripe:download_assets
 
 # Download database
-dep silverstripe:download_db
+dep silverstripe:download_database
 
 # Upload assets to staging
 dep silverstripe:upload_assets stage
 
 # Upload database to staging
-dep silverstripe:upload_db stage
+dep silverstripe:upload_database stage
 
 # Download assets from staging
 dep silverstripe:download_assets stage
 
 # Download database from staging
-dep silverstripe:download_db stage
+dep silverstripe:download_database stage
 ```
 
 #### Manual dev/build
