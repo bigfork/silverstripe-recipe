@@ -6,7 +6,7 @@
 	"license": "BSD-3-Clause",
   "require": {
     "bigfork/htmleditorsrcset": "^2",
-    "feejin/silverstripe-securitytemplates": "^2",
+    "feejin/silverstripe-securitytemplates": "^3",
     "heyday/silverstripe-responsive-images": "^2",
     "kinglozzer/bfgoogleanalytics": "^2",
     "kinglozzer/metatitle": "^2",
