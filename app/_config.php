@@ -8,6 +8,7 @@ i18n::set_locale('en_GB');
 
 // TinyMCE Config
 $config = TinyMCEConfig::get('cms');
+$config->disablePlugins(['importcss']);
 $config->enablePlugins(['anchor']);
 $config->setButtonsForLine(1, 'formatselect styleselect | bullist numlist | bold italic subscript superscript |
     sslink unlink anchor ssmedia');

@@ -1,22 +1,19 @@
 <?php
 
-namespace Bigfork\Admin;
+namespace App\Control;
+
 use SilverStripe\Admin\LeftAndMain;
-use SilverStripe\Security\PermissionProvider;
-use SilverStripe\Forms\HeaderField;
-use SilverStripe\Forms\TextField;
-use SilverStripe\Forms\TextareaField;
-use SilverStripe\Forms\FormAction;
-use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Forms\EmailField;
 use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\HTMLEditor\HtmlEditorField;
-use SilverStripe\Forms\TabSet;
-use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\Form;
-use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Forms\FormAction;
+use SilverStripe\Forms\HTMLEditor\HtmlEditorField;
+use SilverStripe\Forms\Tab;
+use SilverStripe\Forms\TabSet;
 use SilverStripe\ORM\ValidationException;
-
+use SilverStripe\Security\PermissionProvider;
+use SilverStripe\SiteConfig\SiteConfig;
 
 class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
 {
@@ -32,9 +29,6 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
 
     private static $required_permission_codes = ['EDIT_SITE_SETTINGS'];
 
-    /**
-     * {@inheritdoc}
-     */
     public function providePermissions()
     {
         return [
@@ -45,17 +39,17 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getEditForm($id = null, $fields = null)
     {
         $config = SiteConfig::current_site_config();
         $fields = FieldList::create(
-            TabSet::create("SiteSettings",
-                TabSet::create("Root",
-                    Tab::create("Main",
-                        EmailField::create('EmailAddress')
+            TabSet::create(
+                'SiteSettings',
+                TabSet::create(
+                    'Root',
+                    Tab::create(
+                        'Main',
+                        EmailField::create('EmailAddress', 'Email address')
                     )
                 )
             )
@@ -83,8 +77,9 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
     /**
      * @param array $data
      * @param Form $form
-     * @param SS_HTTPRequest $request
-     * @return SS_HTTPResponse
+     * @param HTTPRequest $request
+     * @return \SilverStripe\Control\HTTPResponse
+     * @throws \SilverStripe\Control\HTTPResponse_Exception
      */
     public function saveSettings(array $data, Form $form, HTTPRequest $request)
     {

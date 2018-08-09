@@ -1,6 +1,6 @@
 <?php
 
-namespace Bigfork\Extensions;
+namespace App\Extensions;
 
 use SilverStripe\Core\Extension;
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Control;
+
 use SilverStripe\CMS\Controllers\ContentController;
 use SilverStripe\View\Requirements;
 

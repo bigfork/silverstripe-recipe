@@ -16,15 +16,15 @@
 	(function(H){H.className=H.className.replace(/\\bnojs\\b/,'')})(document.documentElement)
 	</script>
 </head>
-<body class="{$ClassName.LowerCase}">
+<body class="{$ClassName.ShortName.LowerCase}">
 
 <div class="viewport">
 
-	<% include Header %>
+	<% include App\Includes\Header %>
 
 	{$Layout}
 
-	<% include Footer %>
+	<% include App\Includes\Footer %>
 
 </div>
 
