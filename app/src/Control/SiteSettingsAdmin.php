@@ -8,12 +8,9 @@ use SilverStripe\Forms\EmailField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
 use SilverStripe\Forms\FormAction;
-use SilverStripe\Forms\HeaderField;
 use SilverStripe\Forms\HTMLEditor\HtmlEditorField;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\TabSet;
-use SilverStripe\Forms\TextareaField;
-use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\ValidationException;
 use SilverStripe\Security\PermissionProvider;
 use SilverStripe\SiteConfig\SiteConfig;
@@ -46,10 +43,13 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
     {
         $config = SiteConfig::current_site_config();
         $fields = FieldList::create(
-            TabSet::create("SiteSettings",
-                TabSet::create("Root",
-                    Tab::create("Main",
-                        EmailField::create('EmailAddress')
+            TabSet::create(
+                'SiteSettings',
+                TabSet::create(
+                    'Root',
+                    Tab::create(
+                        'Main',
+                        EmailField::create('EmailAddress', 'Email address')
                     )
                 )
             )
@@ -78,7 +78,8 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
      * @param array $data
      * @param Form $form
      * @param HTTPRequest $request
-     * @return SilverStripe\Control\HTTPResponse
+     * @return \SilverStripe\Control\HTTPResponse
+     * @throws \SilverStripe\Control\HTTPResponse_Exception
      */
     public function saveSettings(array $data, Form $form, HTTPRequest $request)
     {

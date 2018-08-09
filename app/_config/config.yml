@@ -1,17 +1,19 @@
 ---
 Name: app
 ---
-SilverStripe\Admin\LeftAndMain:
-  extra_requirements_css:
-    - app/css/cms.css
-  help_link: 'http://silverstripe.bigfork.co.uk/v3/'
 SilverStripe\Core\Manifest\ModuleManifest:
   project: app
 SilverStripe\View\SSViewer:
   themes:
-  - '$public'
-  - 'default'
-  - '$default'
+    - '$public'
+    - 'default'
+    - '$default'
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_css:
+    - app/css/cms.css
+  help_link: 'http://silverstripe.bigfork.co.uk/v3/'
+SilverStripe\Control\Email\Email:
+  admin_email: ''
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
     - App\Extensions\SiteConfigExtension

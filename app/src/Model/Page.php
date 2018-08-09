@@ -12,6 +12,8 @@ use SilverStripe\Security\Permission;
 
 class Page extends SiteTree
 {
+    private static $table_name = 'Page';
+
     public function getCMSFields()
     {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
@@ -50,7 +52,7 @@ class Page extends SiteTree
         $ancestry = ClassInfo::ancestry($current);
         $controller = null;
         while ($class = array_pop($ancestry)) {
-            if ($class == self::class) {
+            if ($class === self::class) {
                 break;
             }
             if (class_exists($candidate = sprintf('%sController', $class))) {
