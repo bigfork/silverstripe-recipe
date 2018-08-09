@@ -70,8 +70,7 @@ class Install
                 $env
             );
 
-            file_put_contents($templatePath, $env);
-            rename($templatePath, $envPath);
+            file_put_contents($envPath, $env);
         }
     }
 
