@@ -32,6 +32,7 @@
 		]
 	},
 	"autoload": {
+        "files": ["app/src/bootstrap.php"],
 		"psr-4": {
 			"App\\": "app/src",
 			"Bigfork\\": "util/Bigfork"
