@@ -31,7 +31,7 @@ set('repository', function() {
 // Number of releases to keep
 set('keep_releases', 5);
 
-// [Optional] Allocate tty for git clone. Default value is false.
+// [Optional] Allocate tty for git clone. Default value is false
 set('git_tty', true);
 
 // Shared files/dirs between deploys
