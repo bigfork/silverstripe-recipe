@@ -15,9 +15,9 @@
 		"silverstripe/cms": "^4",
 		"silverstripe/errorpage": "^1",
 		"silverstripe/framework": "^4",
-		"silverstripe/googlesitemaps": "^1",
 		"silverstripe/recipe-plugin": "^1",
-		"symbiote/silverstripe-gridfieldextensions": "^3"
+		"symbiote/silverstripe-gridfieldextensions": "^3",
+		"wilr/silverstripe-googlesitemaps": "^2"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^5"
