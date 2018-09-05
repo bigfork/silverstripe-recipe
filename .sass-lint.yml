@@ -27,7 +27,7 @@ rules:
     - include: true
   force-attribute-nesting: 1
   force-element-nesting: 1
-  force-pseudo-nesting: 1
+  force-pseudo-nesting: 0
   function-name-format: 0
   id-name-format: 0
   indentation: 0
@@ -56,7 +56,8 @@ rules:
   placeholder-name-format: 0
   property-sort-order:
     - 1
-    - ignore-custom-properties: true
+    -
+      ignore-custom-properties: true
       order:
         - position
         - top
@@ -64,7 +65,19 @@ rules:
         - bottom
         - left
         - z-index
+        - order
+        - flex
+        - flex-grow
+        - flex-shrink
+        - flex-basis
+        - align-self
         - display
+        - flex-direction
+        - flex-wrap
+        - flex-flow
+        - justify-content
+        - align-items
+        - align-content
         - visibility
         - overflow
         - overflow-x
@@ -120,11 +133,13 @@ rules:
         - content
         - color
         - background
+        - background-attachment
+        - background-clip
+        - background-origin
         - background-color
         - background-image
-        - background-repeat
-        - background-attachment
         - background-position
+        - background-repeat
         - background-size
         - opacity
         - font
@@ -149,9 +164,10 @@ rules:
         - text-transform
         - text-shadow
         - animation
+        - box-shadow
+        - clip-path
         - transform
         - transition
-        - box-shadow
   quotes:
     - 1
     - style: single
