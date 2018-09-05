@@ -5,7 +5,6 @@ const handle = require('./handlers');
 const plumber = require('gulp-plumber');
 const watch = require('gulp-watch');
 const browsersync = require('browser-sync').create();
-const scsslint = require('gulp-scss-lint');
 const sass = require('gulp-sass');
 const autoprefix = require('gulp-autoprefixer');
 const postcss = require('gulp-postcss');
@@ -24,9 +23,6 @@ const glob = require('glob');
 const tinypng = require('gulp-tinypng-compress');
 
 const opt = {
-	scsslint: {
-		src: ['scss/**/!(_reset|_normalize)*.scss']
-	},
 	css: {
 		imports: {
 			includePaths: ['node_modules']
@@ -47,17 +43,8 @@ const opt = {
 	}
 };
 
-// lint css
-gulp.task('scss-lint', function() {
-	return gulp.src(opt.scsslint.src)
-		.pipe(scsslint({
-			'config': '.scss-lint.yml',
-			'customReport': handle.lintReporter
-		}));
-});
-
 // compile scss into css
-gulp.task('css', ['scss-lint'], function() {
+gulp.task('css', function() {
 	const mediaQueryPacker = mqpacker({
 		sort: sortCSSmq
 	});
