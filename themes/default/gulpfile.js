@@ -15,7 +15,6 @@ const cssglob = require('gulp-css-globbing');
 const cssnano = require('gulp-cssnano');
 const jshint  = require('gulp-jshint');
 const uglify = require('gulp-uglify');
-const babelify = require('babelify');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
@@ -75,17 +74,15 @@ gulp.task('css', function() {
 
 // lint and uglify javascript
 gulp.task('js', function() {
-	const babelifyTransform = babelify.configure({
-		presets: ['env']
-	});
-
 	glob(opt.js.src, function(err, files) {
 		files.map(function(entry) {
 			return browserify({
 				entries: entry,
-				debug: true,
-				transform: [babelifyTransform]
-			}).bundle()
+				debug: true
+			}).transform('babelify', {
+				presets: ['@babel/preset-env']
+			})
+				.bundle()
 				.on('error', handle.genericReporter)
 				.pipe(plumber({errorHandler: handle.genericReporter}))
 				.pipe(source(path.basename(entry).replace(/\.js$/, '.min.js')))
