@@ -41,7 +41,7 @@
 
     // Store attributes on element
     for (let attr in attributes) {
-      if(!attributes.hasOwnProperty(attr)) {
+      if (!attributes.hasOwnProperty(attr)) {
         continue;
       }
 
