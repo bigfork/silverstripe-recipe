@@ -13,7 +13,6 @@ const mqpacker = require('css-mqpacker');
 const sortCSSmq = require('sort-css-media-queries');
 const cssglob = require('gulp-css-globbing');
 const cssnano = require('gulp-cssnano');
-const jshint  = require('gulp-jshint');
 const uglify = require('gulp-uglify');
 const browserify = require('browserify');
 const buffer = require('vinyl-buffer');
@@ -85,9 +84,6 @@ gulp.task('js', function() {
 			}).bundle();
 		}))
 		.pipe(buffer())
-		.pipe(jshint({
-			esnext: true
-		}))
 		.pipe(uglify())
 		.pipe(handle.notify('JS compiled - <%= file.relative %>'))
 		.pipe(handle.pipeLog('compiled'))
