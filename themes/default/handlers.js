@@ -53,7 +53,7 @@ const showNotification = (message, error) => {
   }
 
   return notify(opts);
-}
+};
 
 exports.notify = showNotification;
 
@@ -100,7 +100,7 @@ exports.lintReporter = (file, stream) => {
   }
 };
 
-exports.sassReporter = (error) => {
+exports.sassReporter = function (error) {
   const message = colors.cyan(path.basename(error.file)) + ':' + colors.red(error.lineNumber) + ' ' + error.message;
 
   gutil.beep();
@@ -109,7 +109,7 @@ exports.sassReporter = (error) => {
   this.emit('end');
 };
 
-exports.genericReporter = (error) => {
+exports.genericReporter = function (error) {
   gutil.beep();
 
   log(error.message, {type: 'bad', space: false});
