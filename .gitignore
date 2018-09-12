@@ -8,6 +8,7 @@ _resampled
 /.env
 /.site
 /.idea/
+/.vscode/
 /public/.well-known/
 /public/resources/
 /silverstripe-cache/
