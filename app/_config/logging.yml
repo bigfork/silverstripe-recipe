@@ -5,3 +5,26 @@ SilverStripe\Core\Injector\Injector:
   Psr\Log\LoggerInterface:
     calls:
       ErrorLogHandler: [ pushHandler, [ '%$Monolog\Handler\ErrorLogHandler' ] ]
+---
+Name: app-logging-sentry
+Only:
+  envvarset: 'SENTRY_DSN'
+---
+SilverStripe\Core\Injector\Injector:
+  Psr\Log\LoggerInterface:
+    calls:
+      SentryHandler: [ pushHandler, [ '%$App\Logging\SentryHandler' ] ]
+  App\Logging\SentryHandler:
+    class: 'Monolog\Handler\RavenHandler'
+    constructor:
+      - '%$App\Logging\RavenClient'
+    calls:
+      setFormatter: [ setFormatter, [ '%$App\Logging\SentryLineFormatter' ] ]
+  App\Logging\RavenClient:
+    class: 'Raven_Client'
+    constructor:
+      - '`SENTRY_DSN`'
+  App\Logging\SentryLineFormatter:
+    class: 'Monolog\Formatter\LineFormatter'
+    constructor:
+      - "%message% %context% %extra%\n"

@@ -17,6 +17,7 @@ task('silverstripe:create_dotenv', function () {
     $dbUser = ask('Please enter the database username');
     $dbPass = str_replace("'", "\\'", askHiddenResponse('Please enter the database password'));
     $dbName = ask('Please enter the database name', get('application'));
+    $sentryDSN = ask('Please enter the Sentry DSN (if applicable)');
     $dbPrefix = Context::get()->getHost()->getConfig()->get('stage') === 'stage' ? '_stage_' : '';
     $type = Context::get()->getHost()->getConfig()->get('stage') === 'stage' ? 'test' : 'live';
 
@@ -29,6 +30,10 @@ SS_DATABASE_NAME='{$dbName}'
 SS_DATABASE_PREFIX='{$dbPrefix}'
 SS_ENVIRONMENT_TYPE='{$type}'
 ENV;
+
+    if ($sentryDSN) {
+        $contents .= "\nSENTRY_DSN='{$sentryDSN}'";
+    }
 
     $command = <<<BASH
 cat >{$envPath} <<EOL
