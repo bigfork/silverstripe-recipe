@@ -1,0 +1,7 @@
+---
+Name: app-logging
+---
+SilverStripe\Core\Injector\Injector:
+  Psr\Log\LoggerInterface:
+    calls:
+      ErrorLogHandler: [ pushHandler, [ '%$Monolog\Handler\ErrorLogHandler' ] ]
