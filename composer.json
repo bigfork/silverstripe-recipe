@@ -10,6 +10,7 @@
 		"heyday/silverstripe-responsive-images": "^2",
 		"kinglozzer/bfgoogleanalytics": "^2",
 		"kinglozzer/metatitle": "^2",
+		"sentry/sentry": "^1",
 		"silverstripe/assets": "^1",
 		"silverstripe/config": "^1",
 		"silverstripe/cms": "^4",

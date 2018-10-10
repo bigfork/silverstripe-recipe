@@ -42,6 +42,7 @@ class Install
         $config = [
             'sql-host' => $io->ask('Please specify the database host: '),
             'sql-name' => $io->ask('Please specify the database name: '),
+            'sentry-dsn' => $io->ask('Please enter the Sentry DSN (if applicable): '),
         ];
 
         self::applyConfiguration($config);
@@ -69,6 +70,10 @@ class Install
                 [$config['sql-host'], $config['sql-name']],
                 $env
             );
+
+            if (isset($config['sentry-dsn']) && $config['sentry-dsn']) {
+                $env .= "\nSENTRY_DSN='{$config['sentry-dsn']}'\n";
+            }
 
             file_put_contents($envPath, $env);
         }
