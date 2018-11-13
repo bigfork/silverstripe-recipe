@@ -1,47 +1,75 @@
 /**
  * GA link handler
  */
-(function(d) {
-	if (!window.ga) {
-		return;
-	}
+(() => {
+  if (!window.ga) {
+    return;
+  }
 
-	// regex
-	var extensions = ['pdf', 'docx?', 'xlsx?', 'pp(t|s)x?', 'csv', 'rtf'];
+  const anchors = document.querySelectorAll('a');
+  const extensions = ['pdf', 'docx?', 'xlsx?', 'pp(t|s)x?', 'csv', 'rtf'];
+  const extensionsRegex = new RegExp('.(' + extensions.join('|') + ')$', 'i');
+  const emailRegex = new RegExp('^mailto:', 'i');
 
-	$('a').each(function() {
-		if ($(this).data('track')) return false;
+  [].forEach.call(anchors, (el) => {
+    const href = el.getAttribute('href');
 
-		var self = this, pathname = this.pathname || '';
+    // If tracking has been set up manually, bail out
+    if (el.getAttribute('data-track')) {
+      return;
+    }
 
-		// only track external links or links with approved extensions
-		if( ! (pathname.match(new RegExp('\.(' + extensions.join('|') + ')$', 'i'))) && this.host === window.location.host) return;
+    // Ignore "internal" links, unless they either match the file extension list above or are email addresses
+    if (el.host === window.location.host && !el.pathname.match(extensionsRegex) && !href.match(emailRegex)) {
+      return;
+    }
 
-		// action is destination file or url, value is current page url
-		$.each({'event': 'Link Clicked', 'action': (pathname.replace(/(.*\/)+/,'') || this.innerHTML), 'value': window.location.pathname}, function(attr, val) {
-			$(self).attr('data-track', 'link').attr('data-' + attr, val);
-		}); 
-	});
+    // Store event parameters in data attributes for later use
+    const attributes = {
+      'data-track': 'link',
+      'data-category': 'Link Clicked',
+      'data-action': (el.pathname.replace(/(.*\/)+/, '') || el.innerHTML),
+      'data-label': window.location.pathname
+    };
 
-	// track email links separately
-	$('a[href^=mailto]').each(function(){ 
- 
-		var $self = $(this),
-			trk = $self.attr('data-track'); 
+    // Adjust event parameters for email links
+    if (href.match(emailRegex)) {
+      const address = href.replace(emailRegex, '').trim();
+      attributes['data-category'] = 'Email Link';
+      attributes['data-action'] = address;
+    }
 
-		// override default link click behaviour unless a custom data-track value was assigned
-		if ( ! trk || trk == 'link') {
-			var address = $self.attr('href');
-			address = address.replace(/mailto:/, '');
-			$.trim(address);
+    // Store attributes on element
+    for (let attr in attributes) {
+      if (!attributes.hasOwnProperty(attr)) {
+        continue;
+      }
 
-			$self.attr('data-event', 'Email Link');
-			$self.attr('data-action', address);
-		}
-	});
+      el.setAttribute(attr, attributes[attr]);
+    }
+  });
 
-	$(d).on('click', 'a[data-track]', function() {
-		var $this = $(this);
-		ga('send', 'event', $this.data('event'), $this.data('action'), $this.data('value'), 1);
-	});
-})(document);
+  // Add event handler to push GA event on click
+  [].forEach.call(anchors, (el) => {
+    if (!el.getAttribute('data-track')) {
+      return;
+    }
+
+    el.addEventListener('click', (event) => {
+      const anchor = event.target;
+      const parameters = {
+        eventCategory: anchor.getAttribute('data-category'),
+        eventAction: anchor.getAttribute('data-action'),
+        eventLabel: anchor.getAttribute('data-label'),
+        eventValue: 1
+      };
+
+      // Add transport beacon if this isn't an email link
+      if (parameters.eventCategory !== 'Email Link') {
+        parameters.transport = 'beacon';
+      }
+
+      ga('send', 'event', parameters);
+    });
+  });
+})();

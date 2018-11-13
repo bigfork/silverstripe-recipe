@@ -13,11 +13,11 @@ trim_trailing_whitespace = true
 [*.md]
 trim_trailing_whitespace = false
 
-[*.{css,scss,ss,html,js,json}]
+[*.{css,scss,ss,html}]
 indent_size = 4
 indent_style = tab
 
-[*.{yml,json}]
+[*.{js,json,yml}]
 indent_size = 2
 indent_style = space
 
