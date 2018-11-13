@@ -11,6 +11,7 @@
 	{$MetaTags(false)}
 
 	<% require themedCSS('style') %>
+	<% include App\Includes\OpenGraph %>
 
 	<script type="text/javascript">
 	(function(H){H.className=H.className.replace(/\\bnojs\\b/,'')})(document.documentElement)
