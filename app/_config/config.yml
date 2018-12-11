@@ -14,6 +14,10 @@ SilverStripe\Admin\LeftAndMain:
   help_link: 'http://silverstripe.bigfork.co.uk/v3/'
 SilverStripe\Control\Email\Email:
   admin_email: ''
+SilverStripe\Core\Injector\Injector:
+  Intervention\Image\ImageManager:
+    constructor:
+      - { driver: imagick }
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
     - App\Extensions\SiteConfigExtension
