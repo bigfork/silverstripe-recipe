@@ -47,22 +47,22 @@ dep deploy --include-assets --include-db
 
 You’ll also be asked (the first time you deploy to a given stage) to provide database credentials used to populate `.env`.
 
-#### Deploying to staging
+#### Deploying to production
 
-Much the same as deploying to live, just provide a third argument (either `stage` or `prod`):
+Much the same as deploying to staging, just provide a third argument to select the stage (either `staging` or `production`):
 
 ```
-dep deploy stage --include-assets --include-db
+dep deploy production --include-assets --include-db
 ```
 
 #### Deploy a branch/tag
 
 ```
-# Deploy the dev branch
+# Deploy the dev branch to staging
 dep deploy --branch=dev
 
-# Deploy tag 1.0.1
-dep deploy stage --tag=1.0.1
+# Deploy tag 1.0.1 to production
+dep deploy production --tag=1.0.1
 ```
 
 #### Uploading/downloading database & assets manually
@@ -80,25 +80,25 @@ dep silverstripe:download_assets
 # Download database
 dep silverstripe:download_database
 
-# Upload assets to staging
-dep silverstripe:upload_assets stage
+# Upload assets to production
+dep silverstripe:upload_assets production
 
-# Upload database to staging
-dep silverstripe:upload_database stage
+# Upload database to production
+dep silverstripe:upload_database production
 
-# Download assets from staging
-dep silverstripe:download_assets stage
+# Download assets from production
+dep silverstripe:download_assets production
 
-# Download database from staging
-dep silverstripe:download_database stage
+# Download database from production
+dep silverstripe:download_database production
 ```
 
 #### Manual dev/build
 
 ```
-# dev/build on production
+# dev/build on staging
 dep silverstripe:dev_build
 
-# dev/build on staging
-dep silverstripe:dev_build stage
+# dev/build on production
+dep silverstripe:dev_build production
 ```
