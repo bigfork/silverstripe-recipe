@@ -51,7 +51,7 @@ set('writable_dirs', [
 set('allow_anonymous_stats', false);
 
 // Hosts
-set('default_stage', 'stage');
+set('default_stage', 'staging');
 
 host('stickyfork')
     ->stage('production')
@@ -65,7 +65,7 @@ host('stickyfork')
     });
 
 host('stickyfork-stage')
-    ->stage('stage')
+    ->stage('staging')
     ->hostname('stickyfork')
     ->roles('app')
     ->set('deploy_path', function() {
