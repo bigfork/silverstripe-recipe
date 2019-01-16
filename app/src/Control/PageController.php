@@ -7,7 +7,7 @@ use SilverStripe\View\Requirements;
 
 class PageController extends ContentController
 {
-    public function init()
+    protected function init()
     {
         parent::init();
 
