@@ -33,7 +33,7 @@
     };
 
     // Adjust event parameters for email links
-    if (href.match(emailRegex)) {
+    if (href && href.match(emailRegex)) {
       const address = href.replace(emailRegex, '').trim();
       attributes['data-category'] = 'Email Link';
       attributes['data-action'] = address;
