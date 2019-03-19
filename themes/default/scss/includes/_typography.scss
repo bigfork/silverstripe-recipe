@@ -108,15 +108,18 @@ body {
 /* TinyMCE alignment
 ---------------------------------------------------------------------------------- */
 
-	.left {
+	.left,
+	.text-left {
 		text-align: left;
 	}
 
-	.center {
+	.center,
+	.text-center {
 		text-align: center;
 	}
 
-	.right {
+	.right,
+	.text-right {
 		text-align: right;
 	}
 
