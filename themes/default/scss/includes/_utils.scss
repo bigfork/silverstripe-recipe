@@ -20,6 +20,8 @@
 	padding: 0;
 	border: 0;
 	clip: rect(0 0 0 0);
+	clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+	white-space: nowrap;
 }
 
 /* Clearfix - Assign class to element to self clear children
