@@ -40,7 +40,8 @@ set('shared_files', [
     'debug.log'
 ]);
 set('shared_dirs', [
-    'public/assets'
+    'public/assets',
+    'public/.well-known'
 ]);
 
 // Writable dirs by web server
