@@ -85,6 +85,7 @@ Options -Indexes
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_METHOD} =GET
     RewriteCond %{REQUEST_URI} !^/admin/
+    RewriteCond %{REQUEST_URI} !^/sitemap\.xml
     RewriteRule ^(.*)([^/])$ $1$2/ [R=301,NE,L]
 
     # SilverStripe rewrites - includes optional maintenance rule for the above
