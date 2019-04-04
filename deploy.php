@@ -54,27 +54,33 @@ set('allow_anonymous_stats', false);
 // Hosts
 set('default_stage', 'staging');
 
-host('stickyfork')
-    ->stage('production')
-    ->hostname('stickyfork')
-    ->roles('app')
-    ->set('deploy_path', function() {
-        if (defined('DEP_DEPLOY_PATH')) {
-            return DEP_DEPLOY_PATH;
-        }
-        return '/var/www/vhosts/live/{{application}}';
-    });
+// Production aliases
+foreach (['production', 'prod', 'live'] as $alias) {
+    host($alias)
+        ->stage('live')
+        ->hostname('stickyfork')
+        ->roles('app')
+        ->set('deploy_path', function () {
+            if (defined('DEP_DEPLOY_PATH')) {
+                return DEP_DEPLOY_PATH;
+            }
+            return '/var/www/vhosts/live/{{application}}';
+        });
+}
 
-host('stickyfork-stage')
-    ->stage('staging')
-    ->hostname('stickyfork')
-    ->roles('app')
-    ->set('deploy_path', function() {
-        if (defined('DEP_DEPLOY_STAGE_PATH')) {
-            return DEP_DEPLOY_STAGE_PATH;
-        }
-        return '/var/www/vhosts/stage/{{application}}';
-    });
+// Staging aliases
+foreach (['staging', 'stage', 'test'] as $alias) {
+    host($alias)
+        ->stage('staging')
+        ->hostname('stickyfork')
+        ->roles('app')
+        ->set('deploy_path', function () {
+            if (defined('DEP_DEPLOY_STAGE_PATH')) {
+                return DEP_DEPLOY_STAGE_PATH;
+            }
+            return '/var/www/vhosts/stage/{{application}}';
+        });
+}
 
 desc('Deploy your project');
 option('include-assets', null, InputOption::VALUE_NONE, 'Overwrite assets from local assets directory');
