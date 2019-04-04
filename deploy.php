@@ -57,7 +57,7 @@ set('default_stage', 'staging');
 // Production aliases
 foreach (['production', 'prod', 'live'] as $alias) {
     host($alias)
-        ->stage('live')
+        ->stage($alias)
         ->hostname('stickyfork')
         ->roles('app')
         ->set('deploy_path', function () {
@@ -71,7 +71,7 @@ foreach (['production', 'prod', 'live'] as $alias) {
 // Staging aliases
 foreach (['staging', 'stage', 'test'] as $alias) {
     host($alias)
-        ->stage('staging')
+        ->stage($alias)
         ->hostname('stickyfork')
         ->roles('app')
         ->set('deploy_path', function () {
