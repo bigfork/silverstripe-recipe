@@ -18,8 +18,9 @@ task('silverstripe:create_dotenv', function () {
     $dbPass = str_replace("'", "\\'", askHiddenResponse('Please enter the database password'));
     $dbName = ask('Please enter the database name', get('application'));
     $sentryDSN = ask('Please enter the Sentry DSN (if applicable)');
-    $dbPrefix = Context::get()->getHost()->getConfig()->get('stage') === 'staging' ? '_stage_' : '';
-    $type = Context::get()->getHost()->getConfig()->get('stage') === 'staging' ? 'test' : 'live';
+    $stage = Context::get()->getHost()->getConfig()->get('stage');
+    $dbPrefix = in_array($stage, ['test', 'stage', 'staging']) ? '_stage_' : '';
+    $type = in_array($stage, ['test', 'stage', 'staging']) ? 'test' : 'live';
 
     $contents = <<<ENV
 SS_DATABASE_CLASS='MySQLPDODatabase'
