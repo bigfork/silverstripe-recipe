@@ -5,10 +5,10 @@
 	"homepage": "https://www.bigfork.co.uk",
 	"license": "BSD-3-Clause",
 	"require": {
+		"bigfork/google-analytics": "^1",
 		"bigfork/htmleditorsrcset": "^2",
 		"feejin/silverstripe-securitytemplates": "^3",
 		"heyday/silverstripe-responsive-images": "^2",
-		"kinglozzer/bfgoogleanalytics": "^2",
 		"kinglozzer/metatitle": "^2",
 		"sentry/sentry": "^1",
 		"silverstripe/assets": "^1",
