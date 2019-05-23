@@ -57,17 +57,12 @@
 
     el.addEventListener('click', (event) => {
       const anchor = event.target;
-      const parameters = {
-        eventCategory: anchor.getAttribute('data-category'),
-        eventAction: anchor.getAttribute('data-action'),
-        eventLabel: anchor.getAttribute('data-label'),
-        eventValue: 1
-      };
 
-      // Add transport beacon if this isn't an email link
-      if (parameters.eventCategory !== 'Email Link') {
-        parameters.transport = 'beacon';
-      }
+      gtag('event', anchor.getAttribute('data-action'), {
+        'event_category': anchor.getAttribute('data-category'),
+        'event_label': anchor.getAttribute('data-label'),
+        'value': 1
+      });
 
       ga('send', 'event', parameters);
     });
