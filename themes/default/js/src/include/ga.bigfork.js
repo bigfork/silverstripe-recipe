@@ -63,8 +63,6 @@
         'event_label': anchor.getAttribute('data-label'),
         'value': 1
       });
-
-      ga('send', 'event', parameters);
     });
   });
 })();
