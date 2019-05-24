@@ -12,6 +12,6 @@ class PageController extends ContentController
         parent::init();
 
         Requirements::set_force_js_to_bottom(true);
-        Requirements::themedJavascript('js/app.min.js');
+        Requirements::themedJavascript('dist/js/app.js');
     }
 }

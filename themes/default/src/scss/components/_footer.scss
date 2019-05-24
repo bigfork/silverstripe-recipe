@@ -1,10 +1,12 @@
 /* Layout: footer
 ---------------------------------------------------------------------------------- */
 
-footer {
+.footer {
 	background: $color__black;
+}
 
-	@include respond(960px) {
+@include respond(960px) {
+	.footer {
 		background: $color__white;
 	}
 }

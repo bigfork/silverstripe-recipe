@@ -1,11 +1,13 @@
 /* Layout: header
 ---------------------------------------------------------------------------------- */
 
-header {
+.header {
 	color: $color__white;
 	background: $color__black;
+}
 
-	@include retina {
-		// Retina rules here
+@include respond(960px) {
+	.header {
+		background: $color__white;
 	}
 }
