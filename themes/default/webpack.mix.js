@@ -6,6 +6,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
 const imageminSvgo = require('imagemin-svgo');
 const path = require('path');
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 
 // Options for existing plugins
 mix.options({
@@ -30,6 +31,16 @@ mix.webpackConfig({
   module: {
     rules: [{ test: /\.scss$/, loader: 'import-glob-loader' }]
   }
+});
+
+// SVG sprite generation
+mix.webpackConfig({
+  plugins: [
+    new SVGSpritemapPlugin('src/images/icons/**/*.svg', {
+      output: { filename: 'dist/images/icons.svg' },
+      sprite: { prefix: 'icon-' }
+    })
+  ]
 });
 
 // Configure browsersync
@@ -64,12 +75,20 @@ mix.webpackConfig({
     new CopyWebpackPlugin([{
       from: 'src/images',
       to: 'dist/images',
-      ignore: ['*.DS_Store']
+      ignore: ['*.DS_Store', 'icons/.gitkeep', 'icons/**/*.svg']
     }]),
     new ImageminPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i,
+      test: (path) => {
+        // Don't re-compress sprite
+        if (path === 'dist/images/icons.svg') {
+          return false;
+        }
+
+        const regex = new RegExp(/\.(jpe?g|png|gif|svg)$/i);
+        return regex.test(path);
+      },
       plugins: [
-        imageminMozjpeg({ quality: 80, }),
+        imageminMozjpeg({ quality: 80 }),
         imageminPngquant(),
         imageminSvgo({ plugins: [{ removeViewBox: false }] })
       ]
