@@ -15,6 +15,7 @@ mix.options({
     reduceIdents: { keyframes: false },
     zindex: false
   },
+  postCss: [require('css-mqpacker')],
   processCssUrls: false
 });
 
