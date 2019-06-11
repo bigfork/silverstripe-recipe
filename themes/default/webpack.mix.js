@@ -1,6 +1,7 @@
 const mix = require('laravel-mix');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CSSMQPacker = require('css-mqpacker');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
@@ -15,7 +16,9 @@ mix.options({
     reduceIdents: { keyframes: false },
     zindex: false
   },
-  postCss: [require('css-mqpacker')],
+  postCss: [
+    CSSMQPacker({ sort: true })
+  ],
   processCssUrls: false
 });
 
