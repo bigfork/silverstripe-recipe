@@ -37,6 +37,23 @@ mix.webpackConfig({
   }
 });
 
+// Update babel loader to ensure code imported from node_modules is transpiled
+// See https://github.com/JeffreyWay/laravel-mix/issues/1906#issuecomment-455241790
+mix.webpackConfig({
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /(bower_components)/,
+        use: [{
+          loader: 'babel-loader',
+          options: Config.babel()
+        }]
+      }
+    ]
+  }
+});
+
 // SVG sprite generation
 mix.webpackConfig({
   plugins: [
