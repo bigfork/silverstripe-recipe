@@ -27,9 +27,7 @@
 		"expose": [
 			"app/css",
 			"app/images",
-			"themes/default/css",
-			"themes/default/images",
-			"themes/default/js"
+			"themes/default/dist"
 		]
 	},
 	"autoload": {

@@ -9,7 +9,7 @@
 	<% base_tag %>
 	{$MetaTags(false)}
 
-	<% require themedCSS('style') %>
+	<% require themedCSS('dist/css/style') %>
 	<% include App\Includes\OpenGraph %>
 
 	<script type="text/javascript">
