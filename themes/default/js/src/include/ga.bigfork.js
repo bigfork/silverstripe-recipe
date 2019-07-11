@@ -55,12 +55,10 @@
       return;
     }
 
-    el.addEventListener('click', (event) => {
-      const anchor = event.target;
-
-      gtag('event', anchor.getAttribute('data-action'), {
-        'event_category': anchor.getAttribute('data-category'),
-        'event_label': anchor.getAttribute('data-label'),
+    el.addEventListener('click', () => {
+      gtag('event', el.getAttribute('data-action'), {
+        'event_category': el.getAttribute('data-category'),
+        'event_label': el.getAttribute('data-label'),
         'value': 1
       });
     });
