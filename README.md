@@ -42,7 +42,9 @@ It’s as easy as `dep deploy`.
 On the first deploy, you’ll probably want to include the database and assets:
 
 ```
-dep deploy --include-assets --include-db
+dep deploy
+dep silverstripe:upload_assets
+dep silverstripe:upload_database
 ```
 
 You’ll also be asked (the first time you deploy to a given stage) to provide database credentials used to populate `.env`.
@@ -52,7 +54,7 @@ You’ll also be asked (the first time you deploy to a given stage) to provide d
 Much the same as deploying to staging, just provide a third argument to select the stage (either `staging` or `production`):
 
 ```
-dep deploy production --include-assets --include-db
+dep deploy production
 ```
 
 #### Deploy a branch/tag
