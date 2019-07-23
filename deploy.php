@@ -83,8 +83,6 @@ foreach (['staging', 'stage', 'test'] as $alias) {
 }
 
 desc('Deploy your project');
-option('include-assets', null, InputOption::VALUE_NONE, 'Overwrite assets from local assets directory');
-option('include-db', null, InputOption::VALUE_NONE, 'Overwrite database from local database');
 task('deploy', function () {
     invoke('deploy:info');
     invoke('deploy:prepare');
@@ -97,12 +95,6 @@ task('deploy', function () {
     invoke('deploy:writable');
     invoke('deploy:vendors');
     invoke('silverstripe:vendor_expose');
-    if (input()->getOption('include-assets')) {
-        invoke('silverstripe:upload_assets');
-    }
-    if (input()->getOption('include-db')) {
-        invoke('silverstripe:upload_database');
-    }
     invoke('silverstripe:dev_build');
     invoke('deploy:clear_paths');
     invoke('deploy:symlink');
