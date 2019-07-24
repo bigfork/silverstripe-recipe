@@ -7,6 +7,7 @@
 	"require": {
 		"bigfork/google-analytics": "^1",
 		"bigfork/htmleditorsrcset": "^2",
+		"bigfork/silverstripe-fail-whale": "^0",
 		"feejin/silverstripe-securitytemplates": "^3",
 		"heyday/silverstripe-responsive-images": "^2",
 		"kinglozzer/metatitle": "^2",
@@ -14,7 +15,6 @@
 		"silverstripe/assets": "^1",
 		"silverstripe/config": "^1",
 		"silverstripe/cms": "^4",
-		"silverstripe/errorpage": "^1",
 		"silverstripe/framework": "^4",
 		"silverstripe/recipe-plugin": "^1",
 		"symbiote/silverstripe-gridfieldextensions": "^3",
