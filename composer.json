@@ -13,6 +13,7 @@
 		"kinglozzer/metatitle": "^2",
 		"sentry/sentry": "^1",
 		"silverstripe/assets": "^1",
+		"silverstripe/asset-admin": "^1",
 		"silverstripe/config": "^1",
 		"silverstripe/cms": "^4",
 		"silverstripe/framework": "^4",
