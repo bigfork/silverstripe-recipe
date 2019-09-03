@@ -134,6 +134,7 @@ body {
 		&.left,
 		&.right,
 		&.leftAlone,
+		&.rightAlone,
 		&.center {
 			display: block;
 			float: none;
@@ -164,7 +165,8 @@ body {
 		img {
 			&.left,
 			&.right,
-			&.leftAlone {
+			&.leftAlone,
+			&.rightAlone {
 				display: inline-block;
 			}
 
@@ -180,7 +182,12 @@ body {
 
 			&.leftAlone {
 				float: left;
-				margin: 0 100% 0 0;
+				margin: 0 100% 1em 0;
+			}
+
+			&.rightAlone {
+				float: right;
+				margin: 0 0 1em 100%;
 			}
 		}
 
