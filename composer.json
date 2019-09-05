@@ -27,7 +27,6 @@
 	"extra": {
 		"expose": [
 			"app/css",
-			"app/images",
 			"themes/default/dist"
 		]
 	},

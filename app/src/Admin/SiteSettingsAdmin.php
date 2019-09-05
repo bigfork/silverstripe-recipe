@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Control;
+namespace App\Admin;
 
 use SilverStripe\Admin\LeftAndMain;
 use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Control\HTTPResponse;
+use SilverStripe\Control\HTTPResponse_Exception;
 use SilverStripe\Forms\EmailField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
 use SilverStripe\Forms\FormAction;
-use SilverStripe\Forms\HTMLEditor\HtmlEditorField;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\TabSet;
+use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\ValidationException;
+use SilverStripe\ORM\ValidationResult;
 use SilverStripe\Security\PermissionProvider;
 use SilverStripe\SiteConfig\SiteConfig;
 
@@ -25,7 +28,7 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
 
     private static $menu_priority = -0.5;
 
-    private static $menu_icon = 'app/images/site-settings.png';
+    private static $menu_icon_class = 'font-icon-monitor';
 
     private static $required_permission_codes = ['EDIT_SITE_SETTINGS'];
 
@@ -44,13 +47,11 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
         $config = SiteConfig::current_site_config();
         $fields = FieldList::create(
             TabSet::create(
-                'SiteSettings',
-                TabSet::create(
-                    'Root',
-                    Tab::create(
-                        'Main',
-                        EmailField::create('EmailAddress', 'Email address')
-                    )
+                'Root',
+                Tab::create(
+                    'Main',
+                    EmailField::create('EmailAddress', 'Email address'),
+                    TextField::create('Telephone', 'Telephone number')
                 )
             )
         );
@@ -62,12 +63,36 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
                 ->setAttribute('data-icon', 'accept')
         );
 
-        $form = Form::create($this, 'EditForm', $fields, $actions)
-            ->setHTMLID('Form_EditForm')
-            ->addExtraClass('cms-content center cms-edit-form')
-            ->setAttribute('data-pjax-fragment', 'CurrentForm')
-            ->loadDataFrom($config)
-            ->setTemplate($this->getTemplatesWithSuffix('_EditForm'));
+        $form = Form::create(
+            $this,
+            'EditForm',
+            $fields,
+            $actions
+        )->setHTMLID('Form_EditForm');
+
+        $negotiator = $this->getResponseNegotiator();
+        $form->setValidationResponseCallback(function (ValidationResult $errors) use ($negotiator, $form) {
+            $request = $this->getRequest();
+            if ($request->isAjax() && $negotiator) {
+                $result = $form->forTemplate();
+                return $negotiator->respond($request, [
+                    'CurrentForm' => function () use ($result) {
+                        return $result;
+                    }
+                ]);
+            }
+            return null;
+        });
+
+        $form->addExtraClass('cms-edit-form');
+        $form->setTemplate($this->getTemplatesWithSuffix('_EditForm'));
+        $form->addExtraClass('flexbox-area-grow fill-height cms-content cms-edit-form');
+        $form->setAttribute('data-pjax-fragment', 'CurrentForm');
+        $form->loadDataFrom($config);
+
+        if ($form->Fields()->hasTabSet()) {
+            $form->Fields()->findOrMakeTab('Root')->setTemplate('SilverStripe\\Forms\\CMSTabSet');
+        }
 
         $this->extend('updateEditForm', $form);
 
@@ -78,8 +103,8 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
      * @param array $data
      * @param Form $form
      * @param HTTPRequest $request
-     * @return \SilverStripe\Control\HTTPResponse
-     * @throws \SilverStripe\Control\HTTPResponse_Exception
+     * @return HTTPResponse
+     * @throws HTTPResponse_Exception
      */
     public function saveSettings(array $data, Form $form, HTTPRequest $request)
     {
@@ -88,8 +113,8 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
 
         try {
             $config->write();
-        } catch(ValidationException $ex) {
-            $form->sessionMessage($ex->getResult()->message(), 'bad');
+        } catch (ValidationException $ex) {
+            $form->setSessionValidationResult($ex->getResult());
             return $this->getResponseNegotiator()->respond($this->request);
         }
 
