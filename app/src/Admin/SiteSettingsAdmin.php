@@ -113,11 +113,10 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
         $form->saveInto($config);
 
         try {
+            $config->write();
             if ($config->hasExtension(RecursivePublishable::class)) {
                 /** @var RecursivePublishable $config */
                 $config->publishRecursive();
-            } else {
-                $config->write();
             }
         } catch (ValidationException $ex) {
             $form->setSessionValidationResult($ex->getResult());
