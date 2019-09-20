@@ -83,11 +83,15 @@ task('silverstripe:upload_assets', function () {
     $local = sys_get_temp_dir() . '/' . $filename;
 
     // Dump assets from local copy and upload
-    runLocally("sspak save --assets . $local");
+    runLocally("sspak save --assets . $local", [
+        'timeout' => 1800
+    ]);
     upload($local, "{{deploy_path}}/dumps/");
 
     // Deploy assets
-    run("cd {{release_path}} && sspak load --assets {{deploy_path}}/dumps/{$filename}");
+    run("cd {{release_path}} && sspak load --assets {{deploy_path}}/dumps/{$filename}", [
+        'timeout' => 1800
+    ]);
 
     // Tidy up
     runLocally("rm $local");
@@ -120,11 +124,15 @@ task('silverstripe:download_assets', function () {
     $local = sys_get_temp_dir() . '/' . $filename;
 
     // Dump assets from remote copy and download
-    run("cd {{release_path}} && sspak save --assets . {{deploy_path}}/dumps/{$filename}");
+    run("cd {{release_path}} && sspak save --assets . {{deploy_path}}/dumps/{$filename}", [
+        'timeout' => 1800
+    ]);
     download("{{deploy_path}}/dumps/{$filename}", $local);
 
     // Import assets
-    runLocally("sspak load --assets {$local}");
+    runLocally("sspak load --assets {$local}", [
+        'timeout' => 1800
+    ]);
 
     // Tidy up
     runLocally("rm $local");
