@@ -1,0 +1,9 @@
+---
+Name: app-filesytem
+---
+SilverStripe\Assets\Flysystem\AssetAdapter:
+  file_permissions:
+    file:
+      private: 0660
+    dir:
+      private: 0770
