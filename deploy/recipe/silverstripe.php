@@ -23,7 +23,7 @@ task('silverstripe:create_dotenv', function () {
     $type = in_array($stage, ['test', 'stage', 'staging']) ? 'test' : 'live';
 
     $contents = <<<ENV
-SS_DATABASE_CLASS='MySQLPDODatabase'
+SS_DATABASE_CLASS='MySQLDatabase'
 SS_DATABASE_USERNAME='{$dbUser}'
 SS_DATABASE_PASSWORD='{$dbPass}'
 SS_DATABASE_SERVER='{$dbServer}'
