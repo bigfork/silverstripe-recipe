@@ -22,7 +22,7 @@ chmod +x /usr/local/bin/dep
 Or on a per-project basis with Composer:
 
 ```bash
-composer require deployer/deployer
+composer --dev require deployer/deployer
 ```
 
 In order to upload/download assets and databases, you’ll also need to install `sspak`:
