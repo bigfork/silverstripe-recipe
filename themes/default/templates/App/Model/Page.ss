@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{$ContentLocale}" class="nojs">
 <head>
-	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link href="//www.google-analytics.com" rel="dns-prefetch" />
 
