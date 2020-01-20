@@ -9,6 +9,7 @@ _resampled
 /.site
 /.idea/
 /.vscode/
+/public/assets/
 /public/.well-known/
 /public/resources/
 /public/_resources/
