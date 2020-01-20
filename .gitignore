@@ -11,5 +11,6 @@ _resampled
 /.vscode/
 /public/.well-known/
 /public/resources/
+/public/_resources/
 /silverstripe-cache/
 /vendor/
