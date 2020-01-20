@@ -28,7 +28,8 @@
 		"expose": [
 			"app/css",
 			"themes/default/dist"
-		]
+		],
+        "resources-dir": "_resources"
 	},
 	"autoload": {
         "files": ["app/src/bootstrap.php"],
