@@ -2,7 +2,7 @@
  * GA link handler
  */
 (() => {
-  if (!window.ga) {
+  if (!window.gtag) {
     return;
   }
 
