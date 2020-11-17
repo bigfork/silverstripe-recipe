@@ -1,0 +1,7 @@
+---
+Name: app-login-forms
+Before: '#login-forms'
+---
+SilverStripe\LoginForms\EnablerExtension:
+  login_themes:
+    - 'login-forms'
