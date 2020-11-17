@@ -8,6 +8,7 @@
 		"bigfork/google-analytics": "^1",
 		"bigfork/htmleditorsrcset": "^2",
 		"bigfork/silverstripe-fail-whale": "^0",
+		"bigfork/silverstripe-simpleseo": "^2",
 		"feejin/silverstripe-securitytemplates": "^3",
 		"heyday/silverstripe-responsive-images": "^2",
 		"kinglozzer/metatitle": "^2",
