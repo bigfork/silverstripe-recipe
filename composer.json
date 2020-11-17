@@ -11,6 +11,7 @@
 		"bigfork/silverstripe-simpleseo": "^2",
 		"feejin/silverstripe-securitytemplates": "^3",
 		"heyday/silverstripe-responsive-images": "^2",
+		"jonom/focuspoint": "^3",
 		"kinglozzer/metatitle": "^2",
 		"sentry/sentry": "^1",
 		"silverstripe/assets": "^1",
