@@ -1,7 +1,6 @@
 const mix = require('laravel-mix');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CSSMQPacker = require('css-mqpacker');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
@@ -17,7 +16,8 @@ mix.options({
     zindex: false
   },
   postCss: [
-    CSSMQPacker({ sort: true })
+    // todo
+    //CSSMQPacker({ sort: true })
   ],
   processCssUrls: false
 });
@@ -93,11 +93,17 @@ mix.webpackConfig({
 // Setup task to copy + compress images
 mix.webpackConfig({
   plugins: [
-    new CopyWebpackPlugin([{
-      from: 'src/images',
-      to: 'dist/images',
-      ignore: ['*.DS_Store', 'icons/.gitkeep', 'icons/**/*.svg']
-    }]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'src/images',
+          to: 'dist/images',
+          globOptions: {
+            ignore: ['*.DS_Store', 'icons/.gitkeep', 'icons/**/*.svg']
+          }
+        }
+      ]
+    }),
     new ImageminPlugin({
       test: (path) => {
         // Don't re-compress sprite
