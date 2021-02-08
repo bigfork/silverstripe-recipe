@@ -1,0 +1,38 @@
+/* Component: alert styles
+---------------------------------------------------------------------------------- */
+
+.alert {
+	margin: 1rem 0 !important;
+	padding: 0.5em 1em;
+	border: solid 1px;
+	font-weight: bold;
+	font-size: 1.7rem;
+	line-height: 1.3;
+}
+
+.alert--good {
+	border-color: mix($color__black, $color__form-good, 40%);
+	color: $color__white;
+	background-color: $color__form-good;
+}
+
+.alert--bad,
+.alert--required,
+.alert--validation {
+	border-color: mix($color__black, $color__form-bad, 40%);
+	color: $color__white;
+	background-color: $color__form-bad;
+}
+
+.alert--warning {
+	border-color: mix($color__black, $color__form-warning, 40%);
+	color: $color__black;
+	background-color: $color__form-warning;
+}
+
+.alert--info,
+.alert--notice {
+	border-color: mix($color__black, $color__form-info, 40%);
+	color: $color__white;
+	background-color: $color__form-info;
+}
