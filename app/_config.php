@@ -14,5 +14,12 @@ $config->setButtonsForLine(1, 'formatselect styleselect | bullist numlist | bold
     sslink unlink anchor ssmedia ssembed');
 $config->setButtonsForLine(2, 'table | pastetext undo redo | code');
 $config->setOptions([
-    'block_formats' => 'Paragraph=p;Heading 2=h2;Heading 3=h3'
+    'block_formats' => 'Paragraph=p;Heading 2=h2;Heading 3=h3',
+    'table_advtab' => false,
+    'table_appearance_options' => false,
+    'table_cell_advtab' => false,
+    'table_default_styles' => [
+        'width' => '100%'
+    ],
+    'table_row_advtab' => false
 ]);
