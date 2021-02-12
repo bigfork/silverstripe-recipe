@@ -28,7 +28,7 @@
     const attributes = {
       'data-track': 'link',
       'data-category': 'Link Clicked',
-      'data-action': (el.pathname.replace(/(.*\/)+/, '') || el.innerHTML),
+      'data-action': href,
       'data-label': window.location.pathname
     };
 
