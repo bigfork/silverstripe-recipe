@@ -28,7 +28,7 @@
     const attributes = {
       'data-track': 'link',
       'data-category': 'Link Clicked',
-      'data-action': href,
+      'data-action': href || el.innerHTML,
       'data-label': window.location.pathname
     };
 
