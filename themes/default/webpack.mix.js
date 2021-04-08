@@ -16,8 +16,7 @@ mix.options({
     zindex: false
   },
   postCss: [
-    // todo
-    //CSSMQPacker({ sort: true })
+    require('postcss-sort-media-queries')
   ],
   processCssUrls: false
 });
