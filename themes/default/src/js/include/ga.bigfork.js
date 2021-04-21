@@ -2,10 +2,6 @@
  * GA link handler
  */
 (() => {
-  if (!window.gtag) {
-    return;
-  }
-
   const anchors = document.querySelectorAll('a');
   const extensions = ['pdf', 'docx?', 'xlsx?', 'pp(t|s)x?', 'csv', 'rtf'];
   const extensionsRegex = new RegExp('.(' + extensions.join('|') + ')$', 'i');
@@ -56,11 +52,13 @@
     }
 
     el.addEventListener('click', () => {
-      gtag('event', el.getAttribute('data-action'), {
-        'event_category': el.getAttribute('data-category'),
-        'event_label': el.getAttribute('data-label'),
-        'value': 1
-      });
+      if (window.gtag) {
+        gtag('event', el.getAttribute('data-action'), {
+          'event_category': el.getAttribute('data-category'),
+          'event_label': el.getAttribute('data-label'),
+          'value': 1
+        });
+      }
     });
   });
 })();
