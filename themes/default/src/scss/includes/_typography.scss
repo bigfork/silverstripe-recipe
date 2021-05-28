@@ -33,6 +33,14 @@ body {
 		font-style: italic;
 	}
 
+	hr {
+		height: 0;
+		margin: 2em 0;
+		border: 0;
+		border-top: solid 1px $color__black;
+		outline: none;
+	}
+
 	h1,
 	.h1 {
 		color: $color__black;
