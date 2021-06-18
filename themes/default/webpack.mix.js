@@ -15,10 +15,6 @@ mix.options({
     reduceIdents: { keyframes: false },
     zindex: false
   },
-  postCss: [
-    // todo
-    //CSSMQPacker({ sort: true })
-  ],
   processCssUrls: false
 });
 
@@ -99,7 +95,7 @@ mix.webpackConfig({
           from: 'src/images',
           to: 'dist/images',
           globOptions: {
-            ignore: ['*.DS_Store', 'icons/.gitkeep', 'icons/**/*.svg']
+            ignore: ['*.DS_Store', '**/icons/.gitkeep', '**/icons/**/*.svg']
           }
         }
       ]
