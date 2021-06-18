@@ -18,7 +18,7 @@ body {
 /* The following is used by both style.scss (front-end) and editor.scss (CMS)
 ---------------------------------------------------------------------------------- */
 .typography {
-	font-size: 1.3rem;
+	font-size: 1.6rem;
 	line-height: 1.5;
 
 	p {
@@ -121,6 +121,26 @@ body {
 	.right,
 	.text-right {
 		text-align: right;
+	}
+
+/* Tables
+---------------------------------------------------------------------------------- */
+
+	table {
+		margin-bottom: 1em;
+		border-collapse: collapse;
+		font-size: 1.5rem;
+
+		th,
+		td {
+			padding: 0.5em 0.75em;
+			border: solid 1px $color__black--alt;
+			text-align: left;
+		}
+
+		th {
+			font-weight: bold;
+		}
 	}
 
 /* Images

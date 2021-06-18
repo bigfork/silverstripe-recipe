@@ -5,3 +5,9 @@
 #Form_AddForm_PageType .disabled {
 	display: none !important;
 }
+
+/* Hide admin sections that clients never use */
+#Menu-SilverStripe-CampaignAdmin-CampaignAdmin,
+#Menu-SilverStripe-Reports-ReportAdmin {
+	display: none !important;
+}

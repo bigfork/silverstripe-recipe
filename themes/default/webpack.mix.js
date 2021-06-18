@@ -15,6 +15,9 @@ mix.options({
     reduceIdents: { keyframes: false },
     zindex: false
   },
+  postCss: [
+    require('postcss-sort-media-queries')
+  ],
   processCssUrls: false
 });
 
