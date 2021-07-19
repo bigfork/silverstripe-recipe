@@ -24,7 +24,7 @@
     "import-glob-loader": "^1.1.0",
     "laravel-mix": "^6.0.25",
     "node-sass-glob-importer": "^5.3.2",
-    "postcss": "^8.3.5",
+    "postcss": "^7.0.36",
     "sass": "^1.35.2",
     "sass-loader": "^7.3.1",
     "style-loader": "^0.23.1",
