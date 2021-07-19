@@ -21,6 +21,9 @@ SilverStripe\Core\Injector\Injector:
   Intervention\Image\ImageManager:
     constructor:
       - { driver: imagick }
+App\Model\Page:
+  extensions:
+    - App\Extensions\Pages\PageExtension
 SilverStripe\ORM\FieldType\DBString:
   extensions:
     - App\Extensions\ORM\DBStringExtension
