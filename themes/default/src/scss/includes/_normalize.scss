@@ -1,103 +1,285 @@
-/* normalize.css v2.0.1 | MIT License | git.io/normalize
-   Modified to remove duplications when using Meyer reset
+/*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
+
+/*
+Document
+========
 */
 
-// Edited to remove clashes with reset and stripped most
-// typography stuff as we override that in _typography.less
-// ------------------------------------------------------------------------------------------
+/**
+Use a better box model (opinionated).
+*/
 
-audio,
-canvas,
-video {
-    display: inline-block;
+*,
+::before,
+::after {
+	box-sizing: border-box;
 }
 
-// Prevents modern browsers from displaying `audio` without controls.
-// Remove excess height in iOS 5 devices.
-
-audio:not([controls]) {
-    display: none;
-    height: 0;
-}
-
-// Addresses styling for `hidden` attribute not present in IE 8/9.
-
-[hidden] {
-    display: none;
-}
-
-// 2. Prevents iOS text size adjust after orientation change, without disabling user zoom.
+/**
+1. Correct the line height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size (opinionated).
+*/
 
 html {
-    -webkit-text-size-adjust: 100%; // 1
-    -ms-text-size-adjust: 100%; // 1
+	line-height: 1.15; /* 1 */
+	-webkit-text-size-adjust: 100%; /* 2 */
+	-moz-tab-size: 4; /* 3 */
+	tab-size: 4; /* 3 */
 }
 
-// Addresses `outline` inconsistency between Chrome and other browsers.
+/*
+Sections
+========
+*/
 
-a:focus {
-    outline: thin dotted;
+/**
+1. Remove the margin in all browsers.
+2. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+*/
+
+body {
+	margin: 0; /* 1 */
+	font-family:
+		system-ui,
+		-apple-system, /* Firefox supports this but not yet `system-ui` */
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji'; /* 2 */
 }
 
-// Improves readability when focused and also mouse hovered in all browsers.
+/*
+Grouping content
+================
+*/
 
-a:active,
-a:hover {
-    outline: 0;
+/**
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+*/
+
+hr {
+	height: 0; /* 1 */
+	color: inherit; /* 2 */
 }
 
-// Corrects overflow displayed oddly in IE 9.
+/*
+Text-level semantics
+====================
+*/
 
-svg:not(:root) {
-    overflow: hidden;
+/**
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr[title] {
+	text-decoration: underline dotted;
 }
 
-// 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` and `video` controls.
-// 2. Corrects inability to style clickable `input` types in iOS.
-// 3. Improves usability and consistency of cursor style between image-type `input` and others.
+/**
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+	font-weight: bolder;
+}
+
+/**
+1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+2. Correct the odd 'em' font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+	font-family:
+		ui-monospace,
+		SFMono-Regular,
+		Consolas,
+		'Liberation Mono',
+		Menlo,
+		monospace; /* 1 */
+	font-size: 1em; /* 2 */
+}
+
+/**
+Add the correct font size in all browsers.
+*/
+
+small {
+	font-size: 80%;
+}
+
+/**
+Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+sup {
+	top: -0.5em;
+}
+
+/*
+Tabular data
+============
+*/
+
+/**
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+*/
+
+table {
+	text-indent: 0; /* 1 */
+	border-color: inherit; /* 2 */
+}
+
+/*
+Forms
+=====
+*/
+
+/**
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+*/
 
 button,
-html input[type="button"], // 1
-input[type="reset"],
-input[type="submit"] {
-    -webkit-appearance: button; // 2
-    cursor: pointer; // 3
-}
-
-// Reset default cursor for disabled elements.
-
-button[disabled],
-input[disabled] {
-    cursor: default;
-}
-
-// 1. Removes excess padding in IE 8/9.
-
-input[type="checkbox"],
-input[type="radio"] {
-    padding: 0; // 1
-}
-
-
-// Removes inner padding and search cancel button in Safari 5 and Chrome on OS X.
-
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
-}
-
-// Removes inner padding and border in Firefox 4+.
-
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-}
-
-// Removes default vertical scrollbar in IE 8/9.
-// Improves readability and alignment in all browsers.
-
+input,
+optgroup,
+select,
 textarea {
-    overflow: auto; // 1
-    vertical-align: top; // 2
+	font-family: inherit; /* 1 */
+	font-size: 100%; /* 1 */
+	line-height: 1.15; /* 1 */
+	margin: 0; /* 2 */
+}
+
+/**
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+	text-transform: none;
+}
+
+/**
+Correct the inability to style clickable types in iOS and Safari.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+	-webkit-appearance: button;
+}
+
+/**
+Remove the inner border and padding in Firefox.
+*/
+
+::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+
+/**
+Restore the focus styles unset by the previous rule.
+*/
+
+:-moz-focusring {
+	outline: 1px dotted ButtonText;
+}
+
+/**
+Remove the additional ':invalid' styles in Firefox.
+See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737
+*/
+
+:-moz-ui-invalid {
+	box-shadow: none;
+}
+
+/**
+Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
+*/
+
+legend {
+	padding: 0;
+}
+
+/**
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+	vertical-align: baseline;
+}
+
+/**
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+	height: auto;
+}
+
+/**
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+	-webkit-appearance: textfield; /* 1 */
+	outline-offset: -2px; /* 2 */
+}
+
+/**
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+/**
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to 'inherit' in Safari.
+*/
+
+::-webkit-file-upload-button {
+	-webkit-appearance: button; /* 1 */
+	font: inherit; /* 2 */
+}
+
+/*
+Interactive
+===========
+*/
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+	display: list-item;
 }
