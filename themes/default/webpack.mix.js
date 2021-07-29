@@ -69,7 +69,10 @@ const sitepath = path.join(__dirname, '/../../');
 const parent = path.basename(path.join(sitepath, '../'));
 if (parent === 'Devsites') {
   mix.browserSync({
-    files: ['dist/**/*'],
+    files: [
+      'dist/**/*',
+      'templates/**/*',
+    ],
     proxy: `${path.basename(sitepath)}.test`
   });
 }
