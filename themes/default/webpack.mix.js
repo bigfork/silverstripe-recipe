@@ -119,3 +119,10 @@ mix.webpackConfig({
     })
   ]
 });
+
+// Stop mix from generating a license file called app.js.LICENSE.txt
+mix.options({
+  terser: {
+    extractComments: false,
+  }
+});
