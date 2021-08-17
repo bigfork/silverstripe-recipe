@@ -9,6 +9,7 @@
 		"bigfork/silverstripe-fail-whale": "^0",
 		"bigfork/silverstripe-googletagmanager": "^2.0",
 		"bigfork/silverstripe-simpleseo": "^2",
+		"firebrandhq/silverstripe-phonelink": "^2.0",
 		"heyday/silverstripe-responsive-images": "^2",
 		"jonom/focuspoint": "^3",
 		"kinglozzer/metatitle": "^2",
