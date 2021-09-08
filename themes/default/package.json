@@ -33,6 +33,9 @@
     "webpack": "^5.47.1",
     "webpack-dev-server": "^3.11.2"
   },
+  "dependencies": {
+    "sanitize.css": "^12.0.1"
+  },
   "browserslist": [
     "last 1 version",
     "ie 10",
