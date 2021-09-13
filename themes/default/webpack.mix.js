@@ -73,6 +73,10 @@ if (parent === 'Devsites') {
       'dist/**/*',
       'templates/**/*',
     ],
+    ignore: [
+      'dist/images/.gitkeep',
+      'dist/webfonts/.gitkeep'
+    ],
     proxy: `${path.basename(sitepath)}.test`
   });
 }
