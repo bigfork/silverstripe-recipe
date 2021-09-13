@@ -3,6 +3,11 @@
 @import '~sanitize.css/forms.css';
 @import '~sanitize.css/reduce-motion.css';
 
+/* Don't mess with cursor */
+html {
+	cursor: auto;
+}
+
 /* Remove default margin/padding */
 body,
 h1,
