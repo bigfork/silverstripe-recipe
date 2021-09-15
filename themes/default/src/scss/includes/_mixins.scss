@@ -1,6 +1,8 @@
 /* Mixins
 ---------------------------------------------------------------------------------- */
 
+@use 'sass:math';
+
 /* Media queries
 ---------------------------------------------------------------------------------- */
 @mixin respond($width, $minMax: 'min') {
@@ -63,5 +65,5 @@
 /* Strip 'px', 'rem' etc units from a number
 ---------------------------------------------------------------------------------- */
 @function strip-units($number) {
-	@return $number / ($number * 0 + 1);
+	@return math.div($number, $number * 0 + 1);
 }
