@@ -18,7 +18,7 @@
     "css-mqpacker": "^7.0.0",
     "imagemin": "^6.1.0",
     "imagemin-mozjpeg": "^8.0.0",
-    "imagemin-pngquant": "^7.0.0",
+    "imagemin-pngquant": "^9.0.0",
     "imagemin-svgo": "^7.1.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "import-glob-loader": "^1.1.0",
