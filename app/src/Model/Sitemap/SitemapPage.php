@@ -3,12 +3,6 @@
 namespace App\Model\Sitemap;
 
 use App\Model\Page;
-use SilverStripe\CMS\Model\SiteTree;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\FieldType\DBHTMLText;
-use SilverStripe\View\ArrayData;
-use SilverStripe\View\SSViewer;
 use SilverStripe\View\TemplateGlobalProvider;
 
 class SitemapPage extends Page implements TemplateGlobalProvider
