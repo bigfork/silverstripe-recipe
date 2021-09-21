@@ -8,6 +8,7 @@ use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Permission;
 
 class Page extends SiteTree
@@ -69,5 +70,10 @@ class Page extends SiteTree
             return $controller;
         }
         return PageController::class;
+    }
+
+    public static function get_one_cached()
+    {
+        return DataObject::get_one(static::class);
     }
 }
