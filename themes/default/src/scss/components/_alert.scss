@@ -17,6 +17,7 @@
 }
 
 .alert--bad,
+.alert--error,
 .alert--required,
 .alert--validation {
 	border-color: mix($color__black, $color__form-bad, 40%);
