@@ -90,7 +90,7 @@ class Install
         if (file_exists($themePath . '/package.json')) {
             $current = __DIR__;
             chdir($themePath);
-            echo shell_exec('npm install');
+            echo shell_exec('nvm use && npm install');
             chdir($current);
         }
     }
