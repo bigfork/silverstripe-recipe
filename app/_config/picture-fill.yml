@@ -1,0 +1,17 @@
+---
+After: 'silverstripe-responsive-images/*'
+---
+FocusPointImage:
+  flush_on_change: true
+Heyday\ResponsiveImages\ResponsiveImageExtension:
+  sets:
+#    ======================
+#    Example configuration
+#    ======================
+#    HeroSet:
+#      method: FocusFill
+#      css_classes: responsive-image
+#      arguments:
+#        "(min-width: 200px) and (-webkit-min-device-pixel-ratio: 1.5), (min-width: 200px) and (min--moz-device-pixel-ratio: 1.5), (min-width: 200px) and (-o-min-device-pixel-ratio: 1.5), (min-width: 200px) and (min-device-pixel-ratio: 1.5), (min-width: 200px) and (min-resolution: 144dpi), (min-width: 200px) and (min-resolution: 1.5dppx)": [ xxx, xxx ]
+#        "(min-width: 200px)": [ xxx, xxx ]
+#      default_arguments: [ xxx, xxx ]
