@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{$ContentLocale}" class="nojs">
+<html lang="{$ContentLocale}">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link href="//www.google-analytics.com" rel="dns-prefetch" />
@@ -10,10 +10,6 @@
 
 	<% require themedCSS('dist/css/style') %>
 	<% include App\Includes\OpenGraph %>
-
-	<script type="text/javascript">
-	(function(H){H.className=H.className.replace(/\\bnojs\\b/,'')})(document.documentElement)
-	</script>
 </head>
 <body class="{$ClassName.ShortName.LowerCase}">
 
