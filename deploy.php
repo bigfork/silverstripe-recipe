@@ -2,8 +2,6 @@
 
 namespace Deployer;
 
-use Symfony\Component\Console\Input\InputOption;
-
 require 'recipe/common.php';
 require 'deploy/recipe/silverstripe.php';
 

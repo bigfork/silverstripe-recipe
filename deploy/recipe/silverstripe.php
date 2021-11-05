@@ -3,7 +3,6 @@
 namespace Deployer;
 
 use Deployer\Task\Context;
-use RuntimeException;
 
 // Tasks
 desc('Populate .env file');
@@ -57,7 +56,13 @@ task('silverstripe:create_cache_dir', function () {
 
 desc('Run dev/build');
 task('silverstripe:dev_build', function () {
-    run("{{release_path}}/vendor/bin/sake dev/build flush");
+    // If we have permission to run commands as the http_user, do so, otherwise run as the current user
+    $httpUser = get('http_user') ?: 'www-data';
+    if (test("[ `sudo -u {$httpUser} whoami` ]")) {
+        run("sudo -u {$httpUser} {{release_path}}/vendor/bin/sake dev/build flush");
+    } else {
+        run("{{release_path}}/vendor/bin/sake dev/build flush");
+    }
 });
 
 desc('Create directory for sspak dumps');
@@ -69,7 +74,7 @@ desc('Upload assets');
 task('silverstripe:upload_assets', function () {
     upload('public/assets/', '{{deploy_path}}/shared/public/assets', [
         'options' => [
-            "--exclude={'error-*.html','.htaccess','.DS_Store'}",
+            "--exclude={'error-*.html','_tinymce','.htaccess','.DS_Store','._*'}",
             "--delete"
         ]
     ]);
@@ -87,7 +92,7 @@ desc('Download assets');
 task('silverstripe:download_assets', function () {
     download('{{deploy_path}}/shared/public/assets/', 'public/assets', [
         'options' => [
-            "--exclude={'error-*.html','.htaccess'}",
+            "--exclude={'error-*.html','_tinymce','.htaccess','.DS_Store','._*'}",
             "--delete"
         ]
     ]);
