@@ -9,5 +9,5 @@
 // The live deploy path - optional, defaults to /var/www/vhosts/live/{{application}} (see DEP_APPLICATION above)
 // define('DEP_DEPLOY_PATH', '/var/www/vhosts/live/sitename');
 
-// The stage deploy path - optional, detauls to /var/www/vhosts/stage/{{application}} (see DEP_APPLICATION above)
+// The stage deploy path - optional, defaults to /var/www/vhosts/stage/{{application}} (see DEP_APPLICATION above)
 // define('DEP_DEPLOY_STAGE_PATH', '/var/www/vhosts/stage/client1');
