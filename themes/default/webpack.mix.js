@@ -33,7 +33,7 @@ mix
 // Glob loading for SASS ("@import dir/**/*.scss")
 mix.webpackConfig({
   module: {
-    rules: [{ test: /\.scss$/, loader: 'import-glob-loader' }]
+    rules: [{ test: /\.scss$/, loader: 'glob-import-loader' }]
   }
 });
 
