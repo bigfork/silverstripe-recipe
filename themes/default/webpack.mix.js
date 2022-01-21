@@ -59,7 +59,12 @@ mix.webpackConfig({
   plugins: [
     new SVGSpritemapPlugin('src/images/icons/**/*.svg', {
       output: { filename: 'dist/images/icons.svg' },
-      sprite: { prefix: 'icon-' }
+      sprite: {
+        prefix: 'icon-',
+        generate: {
+          title: false,
+        }
+      }
     })
   ]
 });
