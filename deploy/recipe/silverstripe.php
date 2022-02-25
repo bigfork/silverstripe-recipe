@@ -72,6 +72,12 @@ task('silverstripe:create_dump_dir', function () {
 
 desc('Upload assets');
 task('silverstripe:upload_assets', function () {
+    $stage = Context::get()->getHost()->getConfig()->get('stage') === 'production' ? 'live' : 'staging';
+    if (!askConfirmation("Are you sure you want to overwrite the {$stage} assets?")) {
+        echo "🐔\n";
+        exit;
+    }
+
     upload('public/assets/', '{{deploy_path}}/shared/public/assets', [
         'options' => [
             "--exclude={'error-*.html','_tinymce','.htaccess','.DS_Store','._*'}",
@@ -83,6 +89,12 @@ after('silverstripe:upload_assets', 'deploy:writable');
 
 desc('Upload database');
 task('silverstripe:upload_database', function () {
+    $stage = Context::get()->getHost()->getConfig()->get('stage') === 'production' ? 'live' : 'staging';
+    if (!askConfirmation("Are you sure you want to overwrite the {$stage} database?")) {
+        echo "🐔\n";
+        exit;
+    }
+
     if (!testLocally('[ -f .env ]')) {
         writeln("<error>Unable to find .env file in local environment.</error>");
         exit;
