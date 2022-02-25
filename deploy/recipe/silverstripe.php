@@ -3,7 +3,6 @@
 namespace Deployer;
 
 use Deployer\Task\Context;
-use RuntimeException;
 
 // Tasks
 desc('Populate .env file');
@@ -16,11 +15,11 @@ task('silverstripe:create_dotenv', function () {
     $dbServer = ask('Please enter the database server', 'localhost');
     $dbUser = ask('Please enter the database username');
     $dbPass = str_replace("'", "\\'", askHiddenResponse('Please enter the database password'));
-    $dbName = ask('Please enter the database name', get('application'));
+    $dbName = ask('Please enter the database name');
     $sentryDSN = ask('Please enter the Sentry DSN (if applicable)');
     $stage = Context::get()->getHost()->getConfig()->get('stage');
-    $dbPrefix = in_array($stage, ['test', 'stage', 'staging']) ? '_stage_' : '';
-    $type = in_array($stage, ['test', 'stage', 'staging']) ? 'test' : 'live';
+    $dbPrefix = $stage === 'production' ? '' : '_stage_';
+    $type = $stage === 'production' ? 'live' : 'test';
 
     $contents = <<<ENV
 SS_DATABASE_CLASS='MySQLDatabase'
@@ -57,19 +56,13 @@ task('silverstripe:create_cache_dir', function () {
 
 desc('Run dev/build');
 task('silverstripe:dev_build', function () {
-    $httpUser = get('http_user', false);
-    if ($httpUser === false) {
-        // Detect http user in process list.
-        $httpUser = run("ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d ' ' -f1");
-        if (empty($httpUser)) {
-            throw new RuntimeException(
-                "Can't detect http user name.\n" .
-                "Please setup `http_user` config parameter."
-            );
-        }
+    // If we have permission to run commands as the http_user, do so, otherwise run as the current user
+    $httpUser = get('http_user') ?: 'www-data';
+    if (test("[ `sudo -u {$httpUser} whoami` ]")) {
+        run("sudo -u {$httpUser} {{release_path}}/vendor/bin/sake dev/build flush");
+    } else {
+        run("{{release_path}}/vendor/bin/sake dev/build flush");
     }
-
-    run("sudo -u {$httpUser} {{release_path}}/vendor/bin/sake dev/build flush");
 });
 
 desc('Create directory for sspak dumps');
@@ -79,81 +72,141 @@ task('silverstripe:create_dump_dir', function () {
 
 desc('Upload assets');
 task('silverstripe:upload_assets', function () {
-    $filename = get('application') . '-assets-' . date('Y-m-d-H-i-s') . '.sspak';
-    $local = sys_get_temp_dir() . '/' . $filename;
+    $stage = Context::get()->getHost()->getConfig()->get('stage') === 'production' ? 'live' : 'staging';
+    if (!askConfirmation("Are you sure you want to overwrite the {$stage} assets?")) {
+        echo "🐔\n";
+        exit;
+    }
 
-    // Dump assets from local copy and upload
-    runLocally("sspak save --assets . $local", [
-        'timeout' => 1800
+    upload('public/assets/', '{{deploy_path}}/shared/public/assets', [
+        'options' => [
+            "--exclude={'error-*.html','_tinymce','.htaccess','.DS_Store','._*'}",
+            "--delete"
+        ]
     ]);
-    upload($local, "{{deploy_path}}/dumps/");
-
-    // Deploy assets
-    run("cd {{release_path}} && sspak load --assets {{deploy_path}}/dumps/{$filename}", [
-        'timeout' => 1800
-    ]);
-
-    // Tidy up
-    runLocally("rm $local");
-    run("rm {{deploy_path}}/dumps/{$filename}");
 });
-before('silverstripe:upload_assets', 'silverstripe:create_dump_dir');
 after('silverstripe:upload_assets', 'deploy:writable');
 
 desc('Upload database');
 task('silverstripe:upload_database', function () {
-    $filename = get('application') . '-db-' . date('Y-m-d-H-i-s') . '.sspak';
-    $local = sys_get_temp_dir() . '/' . $filename;
+    $stage = Context::get()->getHost()->getConfig()->get('stage') === 'production' ? 'live' : 'staging';
+    if (!askConfirmation("Are you sure you want to overwrite the {$stage} database?")) {
+        echo "🐔\n";
+        exit;
+    }
 
-    // Dump database from local copy and upload
-    runLocally("sspak save --db . $local");
-    upload($local, "{{deploy_path}}/dumps/");
+    invoke('silverstripe:create_dump_dir');
 
-    // Deploy database
-    run("cd {{release_path}} && sspak load --db {{deploy_path}}/dumps/{$filename}");
+    if (!testLocally('[ -f .env ]')) {
+        writeln("<error>Unable to find .env file in local environment.</error>");
+        exit;
+    } elseif (!test('[ -f {{deploy_path}}/shared/.env ]')) {
+        writeln("<error>Unable to find .env file on remote server.</error>");
+        exit;
+    }
+
+    $filename = 'db-' . date('Y-m-d-H-i-s') . '.gz';
+    $localPath = sys_get_temp_dir() . '/' . $filename;
+
+    // Export database
+    runLocally(getExportDatabaseCommand('.env', $localPath));
+
+    // Upload database
+    upload($localPath, "{{deploy_path}}/dumps/");
+
+    // Import database
+    run(getImportDatabaseCommand('{{deploy_path}}/shared/.env', "{{deploy_path}}/dumps/{$filename}"));
 
     // Tidy up
-    runLocally("rm $local");
+    runLocally("rm {$localPath}");
     run("rm {{deploy_path}}/dumps/{$filename}");
 });
-before('silverstripe:upload_database', 'silverstripe:create_dump_dir');
 
 desc('Download assets');
 task('silverstripe:download_assets', function () {
-    $filename = get('application') . '-assets-' . date('Y-m-d-H-i-s') . '.sspak';
-    $local = sys_get_temp_dir() . '/' . $filename;
-
-    // Dump assets from remote copy and download
-    run("cd {{release_path}} && sspak save --assets . {{deploy_path}}/dumps/{$filename}", [
-        'timeout' => 1800
+    download('{{deploy_path}}/shared/public/assets/', 'public/assets', [
+        'options' => [
+            "--exclude={'error-*.html','_tinymce','.htaccess','.DS_Store','._*'}",
+            "--delete"
+        ]
     ]);
-    download("{{deploy_path}}/dumps/{$filename}", $local);
-
-    // Import assets
-    runLocally("sspak load --assets {$local}", [
-        'timeout' => 1800
-    ]);
-
-    // Tidy up
-    runLocally("rm $local");
-    run("rm {{deploy_path}}/dumps/{$filename}");
 });
-before('silverstripe:download_assets', 'silverstripe:create_dump_dir');
 
 desc('Download database');
 task('silverstripe:download_database', function () {
-    $filename = get('application') . '-db-' . date('Y-m-d-H-i-s') . '.sspak';
-    $local = sys_get_temp_dir() . '/' . $filename;
+    invoke('silverstripe:create_dump_dir');
 
-    // Dump database from remote copy and download
-    run("cd {{release_path}} && sspak save --db . {{deploy_path}}/dumps/{$filename}");
-    download("{{deploy_path}}/dumps/{$filename}", $local);
+    if (!testLocally('[ -f .env ]')) {
+        writeln("<error>Unable to find .env file in local environment.</error>");
+        exit;
+    } elseif (!test('[ -f {{deploy_path}}/shared/.env ]')) {
+        writeln("<error>Unable to find .env file on remote server.</error>");
+        exit;
+    }
+
+    $filename = 'db-' . date('Y-m-d-H-i-s') . '.gz';
+    $localPath = sys_get_temp_dir() . '/' . $filename;
+
+    // Export database
+    run(getExportDatabaseCommand('{{deploy_path}}/shared/.env', "{{deploy_path}}/dumps/{$filename}"));
+
+    // Download database
+    download("{{deploy_path}}/dumps/{$filename}", $localPath);
 
     // Import database
-    runLocally("sspak load --db {$local}");
+    runLocally(getImportDatabaseCommand('.env', $localPath));
 
     // Tidy up
-    runLocally("rm $local");
+    runLocally("rm {$localPath}");
     run("rm {{deploy_path}}/dumps/{$filename}");
 });
-before('silverstripe:download_database', 'silverstripe:create_dump_dir');
+
+set('mysql_default_charset', 'utf8');
+set(
+    'mysqldump_args',
+    implode(' ', [
+        '--no-tablespaces',
+        '--skip-opt',
+        '--add-drop-table',
+        '--extended-insert',
+        '--create-options',
+        '--quick',
+        '--set-charset',
+        '--default-character-set={{mysql_default_charset}}'
+    ])
+);
+
+set(
+    'mysql_args',
+    implode(' ', [
+        '--default-character-set={{mysql_default_charset}}'
+    ])
+);
+
+function getExportDatabaseCommand($envPath, $destination) {
+    $usernameArg = '--user=$SS_DATABASE_USERNAME';
+    $passwordArg = '--password=$SS_DATABASE_PASSWORD';
+    $hostArg = '--host=$SS_DATABASE_SERVER';
+    $databaseArg = '$SS_DATABASE_PREFIX$SS_DATABASE_NAME';
+
+    $loadEnvCmd = "export $(grep -v '^#' {$envPath} | xargs)";
+
+    $exportDbCmd = "mysqldump {{mysqldump_args}} {$usernameArg} {$passwordArg} {$hostArg} {$databaseArg} | gzip > {$destination}";
+    return "{$loadEnvCmd} && {$exportDbCmd}";
+}
+
+function getImportDatabaseCommand($envPath, $source) {
+    $usernameArg = '--user=$SS_DATABASE_USERNAME';
+    $passwordArg = '--password=$SS_DATABASE_PASSWORD';
+    $hostArg = '--host=$SS_DATABASE_SERVER';
+    $databaseArg = '$SS_DATABASE_PREFIX$SS_DATABASE_NAME';
+
+    $loadEnvCmd = "export $(grep -v '^#' {$envPath} | xargs)";
+
+    $createDbArg = "--execute='create database if not exists `'{$databaseArg}'`;'";
+    $createDbCmd = "mysql {{mysql_args}} {$usernameArg} {$passwordArg} {$hostArg} {$createDbArg}";
+
+    $importDbCmd = "gunzip < {$source} | mysql {{mysql_args}} {$usernameArg} {$passwordArg} {$hostArg} {$databaseArg}";
+
+    return "{$loadEnvCmd} && {$createDbCmd} && {$importDbCmd}";
+}
