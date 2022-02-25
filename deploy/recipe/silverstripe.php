@@ -95,6 +95,8 @@ task('silverstripe:upload_database', function () {
         exit;
     }
 
+    invoke('silverstripe:create_dump_dir');
+
     if (!testLocally('[ -f .env ]')) {
         writeln("<error>Unable to find .env file in local environment.</error>");
         exit;
@@ -119,7 +121,6 @@ task('silverstripe:upload_database', function () {
     runLocally("rm {$localPath}");
     run("rm {{deploy_path}}/dumps/{$filename}");
 });
-before('silverstripe:upload_database', 'silverstripe:create_dump_dir');
 
 desc('Download assets');
 task('silverstripe:download_assets', function () {
@@ -133,6 +134,8 @@ task('silverstripe:download_assets', function () {
 
 desc('Download database');
 task('silverstripe:download_database', function () {
+    invoke('silverstripe:create_dump_dir');
+
     if (!testLocally('[ -f .env ]')) {
         writeln("<error>Unable to find .env file in local environment.</error>");
         exit;
@@ -157,7 +160,6 @@ task('silverstripe:download_database', function () {
     runLocally("rm {$localPath}");
     run("rm {{deploy_path}}/dumps/{$filename}");
 });
-before('silverstripe:download_database', 'silverstripe:create_dump_dir');
 
 set('mysql_default_charset', 'utf8');
 set(
