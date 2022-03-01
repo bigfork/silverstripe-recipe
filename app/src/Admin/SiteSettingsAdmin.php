@@ -37,8 +37,12 @@ class SiteSettingsAdmin extends LeftAndMain implements PermissionProvider
     {
         return [
             'EDIT_SITE_SETTINGS' => [
-                'name' => _t('CMSMain.ACCESS', "Access to '{title}' section", ['title' => 'Site Settings']),
-                'category' => _t('Permission.CMS_ACCESS_CATEGORY', 'CMS Access')
+                'name' => _t(
+                    'SilverStripe\\CMS\\Controllers\\CMSMain.ACCESS',
+                    "Access to '{title}' section",
+                    ['title' => 'Site Settings']
+                ),
+                'category' => _t('SilverStripe\\Security\\Permission.CMS_ACCESS_CATEGORY', 'CMS Access')
             ]
         ];
     }
