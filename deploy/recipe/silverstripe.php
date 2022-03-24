@@ -14,7 +14,7 @@ task('silverstripe:create_dotenv', function () {
 
     $dbServer = ask('Please enter the database server', 'localhost');
     $dbName = ask('Please enter the database name');
-    $dbUser = ask('Please enter the database username');
+    $dbUser = ask('Please enter the database username', !empty($dbName) ? $dbName : null);
     $dbPass = str_replace("'", "\\'", askHiddenResponse('Please enter the database password'));
     $sentryDSN = ask('Please enter the Sentry DSN (if applicable)');
     $stage = Context::get()->getHost()->getConfig()->get('stage');
