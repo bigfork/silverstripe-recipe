@@ -40,7 +40,7 @@ class Install
     {
         $io = $event->getIO();
         $config = [
-            'sql-host' => $io->ask('Please specify the database host: '),
+            'sql-host' => $io->ask('Please specify the database host: ', 'localhost'),
             'sql-name' => $io->ask('Please specify the database name: '),
             'sentry-dsn' => $io->ask('Please enter the Sentry DSN (if applicable): '),
         ];
