@@ -12,7 +12,7 @@
 		"bigfork/silverstripe-simpleseo": "^2",
 		"firebrandhq/silverstripe-phonelink": "^2.0",
 		"heyday/silverstripe-responsive-images": "^2",
-		"jonom/focuspoint": "^3",
+		"jonom/focuspoint": "^4",
 		"kinglozzer/metatitle": "^2",
 		"silverstripe/asset-admin": "^1",
 		"silverstripe/assets": "^1",
