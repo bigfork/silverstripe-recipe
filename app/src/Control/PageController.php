@@ -2,10 +2,10 @@
 
 namespace App\Control;
 
-use SilverStripe\CMS\Controllers\ContentController;
+use PageController as SilverStripePageController;
 use SilverStripe\View\Requirements;
 
-class PageController extends ContentController
+class PageController extends SilverStripePageController
 {
     protected function init()
     {

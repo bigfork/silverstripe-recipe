@@ -1,15 +1,13 @@
 <?php
 
-use App\Control\PageController as NamespacedPageController;
-use App\Model\Page as NamespacedPage;
+use SilverStripe\CMS\Controllers\ContentController;
+use SilverStripe\CMS\Model\SiteTree;
 
-class Page extends NamespacedPage
+class Page extends SiteTree
 {
-    private static $hide_ancestor = NamespacedPage::class;
-
     private static $table_name = 'SilverStripe_Page';
 }
 
-class PageController extends NamespacedPageController
+class PageController extends ContentController
 {
 }
