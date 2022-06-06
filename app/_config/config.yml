@@ -24,6 +24,9 @@ SilverStripe\Core\Injector\Injector:
 App\Model\Page:
   extensions:
     - App\Extensions\Pages\PageExtension
+SilverStripe\Blog\Model\BlogPost:
+  extensions:
+    - App\Extensions\Blog\BlogPostExtension
 SilverStripe\ORM\FieldType\DBString:
   extensions:
     - App\Extensions\ORM\DBStringExtension

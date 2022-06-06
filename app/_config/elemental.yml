@@ -1,0 +1,10 @@
+---
+Name: app-elemental
+---
+App\Model\Page:
+  extensions:
+    - DNADesign\Elemental\Extensions\ElementalPageExtension
+DNADesign\Elemental\Controllers\ElementController:
+  include_default_styles: false
+DNADesign\Elemental\Models\BaseElement:
+  inline_editable: false

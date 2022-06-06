@@ -1,0 +1,11 @@
+---
+Name: app-grouped-cms-menus
+---
+SilverStripe\Admin\LeftAndMain:
+  menu_groups:
+    Site settings:
+      icon: 'cog'
+      children:
+        - SilverStripe-VersionedAdmin-ArchiveAdmin
+        - SilverStripe-RedirectedURLs-Admin-RedirectedURLAdmin
+        - SilverStripe-SiteConfig-SiteConfigLeftAndMain

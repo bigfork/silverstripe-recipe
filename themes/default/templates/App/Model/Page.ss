@@ -7,11 +7,14 @@
 	<title><% if $MetaTitle %>{$MetaTitle.XML}<% else %>{$Title.XML} | {$SiteConfig.Title}<% end_if %></title>
 	<% base_tag %>
 	{$MetaTags(false)}
+	{$SiteConfig.StartOfHead.RAW}
 
 	<% require themedCSS('dist/css/style') %>
 	<% include App\Includes\OpenGraph %>
+	{$SiteConfig.EndOfHead.RAW}
 </head>
 <body class="{$ClassName.ShortName.LowerCase}">
+{$SiteConfig.StartOfBody.RAW}
 
 <div class="viewport">
 
@@ -23,5 +26,6 @@
 
 </div>
 
+{$SiteConfig.EndOfBody.RAW}
 </body>
 </html>
