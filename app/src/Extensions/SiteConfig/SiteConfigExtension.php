@@ -6,8 +6,8 @@ use SilverStripe\Core\Extension;
 use SilverStripe\Forms\EmailField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\TextField;
-use SwiftDevLabs\CodeEditorField\Forms\CodeEditorField;
 
 class SiteConfigExtension extends Extension
 {
@@ -40,11 +40,11 @@ class SiteConfigExtension extends Extension
             'Root.HeadAndFooterScripts',
             [
                 HeaderField::create('HeadHeader', 'Head'),
-                CodeEditorField::create('StartOfHead', 'Start of head'),
-                CodeEditorField::create('EndOfHead', 'End of head'),
+                TextareaField::create('StartOfHead', 'Start of head'),
+                TextareaField::create('EndOfHead', 'End of head'),
                 HeaderField::create('BodyHeader', 'Body'),
-                CodeEditorField::create('StartOfBody', 'Start of body'),
-                CodeEditorField::create('EndOfBody', 'End of body'),
+                TextareaField::create('StartOfBody', 'Start of body'),
+                TextareaField::create('EndOfBody', 'End of body'),
             ]
         );
     }

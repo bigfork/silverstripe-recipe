@@ -7,13 +7,11 @@
 	"require": {
 		"bigfork/htmleditorsrcset": "^2",
 		"bigfork/silverstripe-fail-whale": "^0",
-		"bigfork/silverstripe-googletagmanager": "^2.0",
 		"bigfork/silverstripe-sentry-handler": "^1",
 		"bigfork/silverstripe-simpleseo": "^2",
 		"dnadesign/silverstripe-elemental": "^4",
 		"firebrandhq/silverstripe-phonelink": "^2.0",
 		"heyday/silverstripe-responsive-images": "^2",
-		"jinjie/codeeditorfield": "^0",
 		"jonom/focuspoint": "^4",
 		"kinglozzer/metatitle": "^2",
 		"silverstripe/asset-admin": "^1",
