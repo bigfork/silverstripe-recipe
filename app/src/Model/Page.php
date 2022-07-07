@@ -5,9 +5,11 @@ namespace App\Model;
 use App\Control\PageController;
 use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Control\Controller;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Permission;
 
@@ -75,5 +77,26 @@ class Page extends SiteTree
     public static function get_one_cached()
     {
         return DataObject::get_one(static::class);
+    }
+
+    public function getBreadcrumbItems($maxDepth = 20, $stopAtPageType = false, $showHidden = false): ArrayList
+    {
+        $items = parent::getBreadcrumbItems($maxDepth, $stopAtPageType, $showHidden);
+        $homeSlug = RootURLController::config()->get('default_homepage_link');
+
+        if ($this->URLSegment !== $homeSlug) {
+            $home = Page::get()->filter('URLSegment', $homeSlug)->first();
+
+            if ($home) {
+                $items->unshift($home);
+            }
+        }
+
+        if (Controller::has_curr()) {
+            $controller = Controller::curr();
+            $controller->invokeWithExtensions('updateBreadcrumbItems', $items);
+        }
+
+        return $items;
     }
 }
