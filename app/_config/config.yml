@@ -11,7 +11,6 @@ SilverStripe\View\SSViewer:
 SilverStripe\Admin\LeftAndMain:
   extra_requirements_css:
     - app/css/cms.css
-  help_link: 'http://silverstripe.bigfork.co.uk/v3/'
 SilverStripe\Forms\HTMLEditor\TinyMCEConfig:
   editor_css:
     - 'themes/default/dist/css/editor.css'

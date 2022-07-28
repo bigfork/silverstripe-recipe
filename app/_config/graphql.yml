@@ -1,0 +1,9 @@
+---
+Name: app-graphql
+---
+SilverStripe\GraphQL\Schema\Schema:
+  schemas:
+    admin:
+      config:
+        typeMapping:
+          App\Model\Page: AppPage
