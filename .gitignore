@@ -6,14 +6,12 @@ _resampled
 *.map
 /*.log
 /.env
-/.site
 /.graphql-generated/
 /.idea/
 /.vscode/
 /public/assets/
 /public/.well-known/
 /public/_graphql/
-/public/resources/
 /public/_resources/
 /silverstripe-cache/
 /vendor/
