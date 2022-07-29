@@ -22,7 +22,7 @@
 				"position": {$Pos},
 				"name": "{$Title}"<% if $AbsoluteLink %>,<% end_if %>
 				<% if $AbsoluteLink %>"item": "{$AbsoluteLink}"<% end_if %>
-			}<% if not $Last %><% else %>]<% end_if %><% end_loop %>
+			}<% if not $Last %>,<% else %>]<% end_if %><% end_loop %>
 		}
 	</script>
 <% end_if %>
