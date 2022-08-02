@@ -16,7 +16,7 @@ use SilverStripe\Forms\GridField\GridFieldToolbarHeader;
 
 class GridFieldConfig_OrderableRecordEditor extends GridFieldConfig
 {
-    public function __construct($showAdd = null)
+    public function __construct($sortOrder = 'Sort', $showAdd = null)
     {
         parent::__construct();
 
@@ -30,7 +30,7 @@ class GridFieldConfig_OrderableRecordEditor extends GridFieldConfig
         $this->addComponent(new GridFieldDeleteAction());
         $this->addComponent(new GridField_ActionMenu());
         $this->addComponent(new GridFieldDetailForm(null, null, $showAdd));
-        $this->addComponent(new GridFieldVersionedOrderableRows());
+        $this->addComponent(new GridFieldVersionedOrderableRows($sortOrder));
 
         $sort->setThrowExceptionOnBadDataType(false);
         $filter->setThrowExceptionOnBadDataType(false);
