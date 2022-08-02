@@ -30,7 +30,7 @@ set('allow_anonymous_stats', false);
 
 // Hosts
 set('default_stage', 'staging');
-inventory('deploy/hosts.yml');
+inventory(__DIR__ . '/deploy/hosts.yml');
 
 desc('Deploy your project');
 task('deploy', function() {
