@@ -17,6 +17,8 @@ class Page extends SiteTree
 {
     private static $table_name = 'Page';
 
+    private static $icon_class = 'font-icon-p-alt-2';
+
     public function getCMSFields()
     {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
