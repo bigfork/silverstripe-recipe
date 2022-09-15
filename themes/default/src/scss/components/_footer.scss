@@ -2,11 +2,11 @@
 ---------------------------------------------------------------------------------- */
 
 .footer {
-	background: $color__black;
+	background: $black;
 }
 
 @include respond(960px) {
 	.footer {
-		background: $color__white;
+		background: $white;
 	}
 }

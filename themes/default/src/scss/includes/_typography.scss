@@ -10,7 +10,7 @@ html {
 }
 
 body {
-	font-family: $font__body;
+	font-family: $font-body;
 }
 
 /* Typography
@@ -37,29 +37,29 @@ body {
 		height: 0;
 		margin: 2em 0;
 		border: 0;
-		border-top: solid 1px $color__black;
+		border-top: solid 1px $black;
 		outline: none;
 	}
 
 	h1,
 	.h1 {
-		color: $color__black;
+		color: $black;
 		font-size: 200%;
-		font-family: $font__head;
+		font-family: $font-head;
 	}
 
 	h2,
 	.h2 {
-		color: $color__black;
+		color: $black;
 		font-size: 150%;
-		font-family: $font__head;
+		font-family: $font-head;
 	}
 
 	h3,
 	.h3 {
-		color: $color__black;
+		color: $black;
 		font-size: 120%;
-		font-family: $font__head;
+		font-family: $font-head;
 	}
 
 	ul {
@@ -100,7 +100,7 @@ body {
 	}
 
 	a {
-		color: $color__black;
+		color: $black;
 
 		&:link,
 		&:visited {
@@ -142,7 +142,7 @@ body {
 		th,
 		td {
 			padding: 0.5em 0.75em;
-			border: solid 1px $color__black--alt;
+			border: solid 1px $black-alt;
 			text-align: left;
 		}
 

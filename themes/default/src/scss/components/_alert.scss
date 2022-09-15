@@ -11,29 +11,29 @@
 }
 
 .alert--good {
-	border-color: mix($color__black, $color__form-good, 40%);
-	color: $color__white;
-	background-color: $color__form-good;
+	border-color: mix($black, $form-good, 40%);
+	color: $white;
+	background-color: $form-good;
 }
 
 .alert--bad,
 .alert--error,
 .alert--required,
 .alert--validation {
-	border-color: mix($color__black, $color__form-bad, 40%);
-	color: $color__white;
-	background-color: $color__form-bad;
+	border-color: mix($black, $form-bad, 40%);
+	color: $white;
+	background-color: $form-bad;
 }
 
 .alert--warning {
-	border-color: mix($color__black, $color__form-warning, 40%);
-	color: $color__black;
-	background-color: $color__form-warning;
+	border-color: mix($black, $form-warning, 40%);
+	color: $black;
+	background-color: $form-warning;
 }
 
 .alert--info,
 .alert--notice {
-	border-color: mix($color__black, $color__form-info, 40%);
-	color: $color__white;
-	background-color: $color__form-info;
+	border-color: mix($black, $form-info, 40%);
+	color: $white;
+	background-color: $form-info;
 }

@@ -25,13 +25,13 @@
 .form__field-label {
 	display: block;
 	margin-bottom: 0.25em;
-	color: $color__black;
+	color: $black;
 	font-weight: bold;
 	font-size: 1.7rem;
 	line-height: 1.3;
 
 	em {
-		color: $color__form-bad;
+		color: $form-bad;
 		font-weight: bold;
 		font-style: normal;
 	}
@@ -42,7 +42,7 @@
 ------------------------------------*/
 .form__field-description {
 	margin-top: 0.25em;
-	color: $color__form-description;
+	color: $form-description;
 	font-size: 1.7rem;
 	line-height: 1.3;
 }
@@ -57,9 +57,9 @@
 		width: 100%;
 		margin: 0;
 		padding: 0.5em 0.5em;
-		border: solid 1px $color__black;
+		border: solid 1px $black;
 		border-radius: 0;
-		color: $color__black;
+		color: $black;
 		background: transparent;
 		font-weight: normal;
 		font-size: 1.7rem;
@@ -71,7 +71,7 @@
 		&:focus {
 			outline: 3px solid transparent;
 			outline-offset: 0;
-			box-shadow: 0 0 0 3px $color__form-focus;
+			box-shadow: 0 0 0 3px $form-focus;
 		}
 	}
 }
@@ -85,9 +85,9 @@
 		width: 100%;
 		margin: 0;
 		padding: 0.5em calc(1.4em + 1.1ex) 0.5em 0.7em;
-		border: solid 1px $color__black;
+		border: solid 1px $black;
 		border-radius: 0;
-		color: $color__black;
+		color: $black;
 		background: transparent;
 		font-weight: normal;
 		font-size: 1.7rem;
@@ -107,7 +107,7 @@
 		&:focus {
 			outline: 3px solid transparent;
 			outline-offset: 0;
-			box-shadow: 0 0 0 3px $color__form-focus;
+			box-shadow: 0 0 0 3px $form-focus;
 		}
 	}
 
@@ -122,7 +122,7 @@
 			right: 1em;
 			width: 1ex; height: 1px;
 			content: '';
-			background: $color__black;
+			background: $black;
 			pointer-events: none;
 		}
 
@@ -166,7 +166,7 @@
 					position: absolute;
 					top: 0; left: 0;
 					width: 2.2rem; height: 2.2rem;
-					border: solid 1px $color__black;
+					border: solid 1px $black;
 					border-radius: 100%;
 					content: '';
 				}
@@ -176,7 +176,7 @@
 					top: 0.6rem; left: 0.6rem;
 					display: block;
 					width: 0; height: 0;
-					border: solid 0.5rem $color__black;
+					border: solid 0.5rem $black;
 					border-radius: 0.5rem;
 					opacity: 0;
 					content: '';
@@ -204,7 +204,7 @@
 			&:focus {
 				~ label {
 					&:before {
-						box-shadow: 0 0 0 3px $color__form-focus;
+						box-shadow: 0 0 0 3px $form-focus;
 					}
 				}
 			}
@@ -236,9 +236,9 @@
 					top: 0.6rem; left: 0.5rem;
 					width: 1.3rem; height: 0.7rem;
 					border-width: 0 0 0.3rem 0.3rem;
-					border-color: $color__black;
+					border-color: $black;
 					border-top-color: transparent;
-					color: $color__black;
+					color: $black;
 					background: transparent;
 					transform: rotate(-45deg);
 				}
@@ -269,7 +269,7 @@
 				position: absolute;
 				top: 0; left: 0;
 				width: 2.2rem; height: 2.2rem;
-				border: solid 1px $color__black;
+				border: solid 1px $black;
 				content: '';
 			}
 
@@ -280,7 +280,7 @@
 				width: 1.3rem; height: 0.7rem;
 				border-style: solid;
 				border-width: 0 0 0.3rem 0.3rem;
-				border-color: $color__black;
+				border-color: $black;
 				border-top-color: transparent;
 				opacity: 0;
 				content: '';
@@ -303,7 +303,7 @@
 			&:focus {
 				~ label {
 					&:before {
-						box-shadow: 0 0 0 3px $color__form-focus;
+						box-shadow: 0 0 0 3px $form-focus;
 					}
 				}
 			}

@@ -2,12 +2,12 @@
 ---------------------------------------------------------------------------------- */
 
 .header {
-	color: $color__white;
-	background: $color__black;
+	color: $white;
+	background: $black;
 }
 
 @include respond(960px) {
 	.header {
-		background: $color__white;
+		background: $white;
 	}
 }

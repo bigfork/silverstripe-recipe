@@ -31,13 +31,13 @@ li.breadcrumbs__item {
 			transform: rotate(45deg);
 			border-style: solid;
 			border-width: 1px 1px 0 0;
-			border-color: $color__black--alt;
+			border-color: $black-alt;
 		}
 	}
 }
 
 a.breadcrumbs__link {
-	color: $color__black;
+	color: $black;
 
 	&:link,
 	&:visited {
