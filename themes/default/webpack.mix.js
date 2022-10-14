@@ -1,12 +1,9 @@
 const mix = require('laravel-mix');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CSSMQPacker = require('css-mqpacker');
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
-const imageminMozjpeg = require('imagemin-mozjpeg');
-const imageminPngquant = require('imagemin-pngquant');
-const imageminSvgo = require('imagemin-svgo');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const path = require('path');
+const sortMediaQueries = require('postcss-sort-media-queries');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 
 // Options for existing plugins
@@ -17,7 +14,7 @@ mix.options({
     zindex: false
   },
   postCss: [
-    CSSMQPacker({ sort: true })
+    sortMediaQueries()
   ],
   processCssUrls: false
 });
@@ -105,26 +102,46 @@ mix.webpackConfig({
 // Setup task to copy + compress images
 mix.webpackConfig({
   plugins: [
-    new CopyWebpackPlugin([{
-      from: 'src/images',
-      to: 'dist/images',
-      ignore: ['*.DS_Store', 'icons/.gitkeep', 'icons/**/*.svg']
-    }]),
-    new ImageminPlugin({
-      test: (path) => {
-        // Don't re-compress sprite
-        if (path === 'dist/images/icons.svg') {
-          return false;
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'src/images',
+          to: 'dist/images',
+          noErrorOnMissing: true,
+          globOptions: {
+            dot: false,
+            ignore: ['**/icons/**/*.svg']
+          }
         }
-
-        const regex = new RegExp(/\.(jpe?g|png|gif|svg)$/i);
-        return regex.test(path);
-      },
-      plugins: [
-        imageminMozjpeg({ quality: 80 }),
-        imageminPngquant(),
-        imageminSvgo({ plugins: [{ removeViewBox: false }] })
       ]
+    }),
+    new ImageMinimizerPlugin({
+      exclude: 'dist/images/icons.svg',
+      minimizer: {
+        implementation: ImageMinimizerPlugin.imageminMinify,
+        options: {
+          plugins: [
+            ["gifsicle", { interlaced: true }],
+            ["jpegtran", { progressive: true }],
+            ["optipng", { optimizationLevel: 5 }],
+            [
+              "svgo",
+              {
+                plugins: [
+                  {
+                    name: "preset-default",
+                    params: {
+                      overrides: {
+                        removeViewBox: false
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      }
     })
   ]
 });
