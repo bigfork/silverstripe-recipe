@@ -7,4 +7,6 @@ App\Model\Page:
 DNADesign\Elemental\Controllers\ElementController:
   include_default_styles: false
 DNADesign\Elemental\Models\BaseElement:
+  extensions:
+    - App\Extensions\Elemental\BaseElementExtension
   inline_editable: false

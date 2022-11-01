@@ -50,3 +50,9 @@
 	white-space: nowrap;
 	text-indent: 150%;
 }
+
+.trim {
+	*:last-child {
+		margin-bottom: 0;
+	}
+}
