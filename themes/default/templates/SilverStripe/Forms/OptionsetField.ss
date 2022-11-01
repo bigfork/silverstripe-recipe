@@ -1,5 +1,5 @@
 <% loop $Options %>
-	<div class="$Class" role="radio">
+	<div class="$Class">
 		<input id="$ID" class="radio" name="$Name" type="radio" value="$Value"
 			<% if $isChecked %>checked<% end_if %>
 			<% if $isDisabled %>disabled<% end_if %>
