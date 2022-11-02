@@ -126,7 +126,7 @@ class ElementTwoColumn extends ElementContent
         }
 
         /** @var DBHTMLText $content */
-        $content = DBField::create_field('HTMLFragment', $this->LeftColumnContent ?? $this->RightColumnContent ?? 'No content');
+        $content = DBField::create_field('HTMLFragment', $this->LeftColumnContent ?? $this->RightColumnContent);
         $blockSchema['content'] = $content->summary();
 
         return $blockSchema;
