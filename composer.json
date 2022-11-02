@@ -9,6 +9,7 @@
 		"bigfork/silverstripe-fail-whale": "^0",
 		"bigfork/silverstripe-sentry-handler": "^1",
 		"bigfork/silverstripe-simpleseo": "^2",
+		"bummzack/sortablefile": "^2.1",
 		"dnadesign/silverstripe-elemental": "^4",
 		"firebrandhq/silverstripe-phonelink": "^2",
 		"heyday/silverstripe-responsive-images": "^2",
@@ -26,9 +27,9 @@
 		"silverstripe/redirectedurls": "^2",
 		"symbiote/silverstripe-gridfieldextensions": "^3",
 		"symbiote/silverstripe-grouped-cms-menu": "^4",
-		"wilr/silverstripe-googlesitemaps": "^2",
-		"unclecheese/display-logic": "^2.0"
-    },
+		"unclecheese/display-logic": "^2.0",
+		"wilr/silverstripe-googlesitemaps": "^2"
+	},
 	"require-dev": {
 		"phpunit/phpunit": "^9.5"
 	},
