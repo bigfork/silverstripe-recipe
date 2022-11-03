@@ -2,6 +2,7 @@
 
 namespace App\Model\Elements;
 
+use App\Extensions\Elemental\BeforeAfterContentExtension;
 use App\Forms\GridField\GridFieldConfig_OrderableRecordEditor;
 use App\Model\Elements\Components\FeatureBox;
 use DNADesign\Elemental\Models\ElementContent;
@@ -40,6 +41,10 @@ class ElementFeatureBoxes extends ElementContent
 
     private static string $icon = 'font-icon-block-layout-2';
 
+    private static array $extensions = [
+        BeforeAfterContentExtension::class
+    ];
+
     public function getCMSFields(): FieldList
     {
         $this->beforeUpdateCMSFields(
@@ -69,6 +74,6 @@ class ElementFeatureBoxes extends ElementContent
     public function getSummary(): string
     {
         $plural = $this->FeatureBoxes()->count() === 1 ? '' : 'es';
-        return "Will render {$this->FeatureBoxes()->count()} feature box{$plural}";
+        return "Currently shows {$this->FeatureBoxes()->count()} feature box{$plural}";
     }
 }

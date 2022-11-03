@@ -1,15 +1,7 @@
 <div class="element-feature-boxes">
+	<% include App\Model\Elements\Includes\Before %>
+
 	<div class="container">
-		<div class="typography">
-			<% if $ShowTitle %>
-				<h2>
-					{$Title}
-				</h2>
-			<% end_if %>
-
-			{$HTML}
-		</div>
-
 		<% if $FeatureBoxes %>
 			<ul class="element-feature-boxes__grid">
 				<% loop $FeatureBoxes %>
@@ -48,4 +40,6 @@
 			</ul>
 		<% end_if %>
 	</div>
+
+	<% include App\Model\Elements\Includes\After %>
 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Model\Elements;
 
+use App\Extensions\Elemental\BeforeAfterContentExtension;
 use Bummzack\SortableFile\Forms\SortableUploadField;
 use DNADesign\Elemental\Models\ElementContent;
 use SilverStripe\Assets\Image;
@@ -39,19 +40,16 @@ class ElementFullWidthImage extends ElementContent
 
     private static string $icon = 'font-icon-block-carousel';
 
+    private static array $extensions = [
+        BeforeAfterContentExtension::class
+    ];
+
     public function getCMSFields(): FieldList
     {
         $this->beforeUpdateCMSFields(
             function (FieldList $fields) {
-                $fields->removeByName(
-                    [
-                        'HTML',
-                        'Images',
-                    ]
-                );
-
                 $fields->addFieldsToTab(
-                    'Root.Main',
+                    'Root.Images',
                     [
                         SortableUploadField::create('Images', 'Images')
                             ->setAllowedFileCategories('image'),
@@ -84,7 +82,7 @@ class ElementFullWidthImage extends ElementContent
         $imagesCount = $this->Images()->count();
         $plural = $imagesCount === 1 ? '' : 's';
 
-        $blockSchema['content'] = "{$imagesCount} image{$plural} are selected";
+        $blockSchema['content'] = "Currently shows {$imagesCount} image{$plural}";
 
         return $blockSchema;
     }

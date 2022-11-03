@@ -1,17 +1,15 @@
 <div class="element-two-column">
+	<% include App\Model\Elements\Includes\Before %>
+
 	<div class="container typography">
-		<% if $ShowTitle %>
-			<h2>
-				{$Title}
-			</h2>
-		<% end_if %>
-
-		{$HTML}
-
 		<div class="element-two-column__row">
 			<div class="element-two-column__column trim">
 				<% if $LeftColumnType == 'Image' && $LeftColumnImage %>
-					{$LeftColumnImage.FocusFill(576, 324)}
+					<% if $LeftColumnImageCrop %>
+						{$LeftColumnImage.FocusFill(576, 324)}
+					<% else %>
+						{$LeftColumnImage.ScaleWidth(576)}
+					<% end_if %>
 				<% else %>
 					{$LeftColumnContent}
 				<% end_if %>
@@ -19,11 +17,17 @@
 
 			<div class="element-two-column__column trim">
 				<% if $RightColumnType == 'Image' && $RightColumnImage %>
-					{$RightColumnImage.FocusFill(576, 324)}
+					<% if $RightColumnImageCrop %>
+						{$RightColumnImage.FocusFill(576, 324)}
+					<% else %>
+						{$RightColumnImage.ScaleWidth(576)}
+					<% end_if %>
 				<% else %>
 					{$RightColumnContent}
 				<% end_if %>
 			</div>
 		</div>
 	</div>
+
+	<% include App\Model\Elements\Includes\After %>
 </div>
