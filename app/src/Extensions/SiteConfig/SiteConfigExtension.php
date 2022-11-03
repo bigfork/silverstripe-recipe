@@ -31,12 +31,10 @@ class SiteConfigExtension extends Extension
         );
 
         $fields->addFieldsToTab(
-            'Root.HeadAndFooterScripts',
+            'Root.Scripts',
             [
-                HeaderField::create('HeadHeader', 'Head'),
                 TextareaField::create('StartOfHead', 'Start of head'),
                 TextareaField::create('EndOfHead', 'End of head'),
-                HeaderField::create('BodyHeader', 'Body'),
                 TextareaField::create('StartOfBody', 'Start of body'),
                 TextareaField::create('EndOfBody', 'End of body'),
             ]
