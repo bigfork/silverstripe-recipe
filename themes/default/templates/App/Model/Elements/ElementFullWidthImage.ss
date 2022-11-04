@@ -2,7 +2,7 @@
 	<% include App\Model\Elements\Includes\Before %>
 
 	<div class="container">
-		<% if $Images.Count > 1 %>
+		<% if $SortedImages.Count > 1 %>
 			<div class="splide element-full-width-image__carousel" data-element-full-width-carousel>
 				<div class="splide__track">
 					<ul class="splide__list">
@@ -16,7 +16,7 @@
 					</ul>
 				</div>
 			</div>
-		<% else_if $Images.Count = 1 %>
+		<% else_if $SortedImages.Count = 1 %>
 			<div class="element-full-width-image__image">
 				{$Images.First.FocusFill(1128, 768)}
 			</div>

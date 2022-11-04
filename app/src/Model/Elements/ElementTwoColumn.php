@@ -3,7 +3,7 @@
 namespace App\Model\Elements;
 
 use App\Extensions\Elemental\BeforeAfterContentExtension;
-use DNADesign\Elemental\Models\ElementContent;
+use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\Forms\CheckboxField;
@@ -26,7 +26,7 @@ use UncleCheese\DisplayLogic\Forms\Wrapper;
  * @property string|null $RightColumnType
  * @property mixed|null $LeftColumnImageID
  */
-class ElementTwoColumn extends ElementContent
+class ElementTwoColumn extends BaseElement
 {
     private static string $table_name = 'ElementTwoColumn';
 
@@ -57,7 +57,6 @@ class ElementTwoColumn extends ElementContent
     private static array $extensions = [
         BeforeAfterContentExtension::class
     ];
-
 
     private static string $singular_name = 'two column block';
 
@@ -90,40 +89,42 @@ class ElementTwoColumn extends ElementContent
                 $rightColumnTypeField = $this->dbObject('RightColumnType');
 
                 $fields->addFieldsToTab(
-                    'Root.ColumnOne',
+                    'Root.Main',
                     [
-                        DropdownField::create('LeftColumnType', 'Type', $leftColumnTypeField->enumValues()),
-                        HTMLEditorField::create('LeftColumnContent', 'Content')
-                            ->displayIf('LeftColumnType')->isEqualTo('Text')->end(),
-                        UploadField::create('LeftColumnImage', 'Image')
-                            ->setAllowedFileCategories('image')
-                            ->displayIf('LeftColumnType')->isNotEqualTo('Text')->end(),
-                        Wrapper::create(
+                        HeaderField::create('LeftColumn', 'Left column'),
+                        DropdownField::create('LeftColumnType', 'Left column type', $leftColumnTypeField->enumValues()),
+                        $leftContent = HTMLEditorField::create('LeftColumnContent', 'Left column content'),
+                        $leftImage = Wrapper::create(
+                            UploadField::create('LeftColumnImage', 'Left column image')
+                                ->setAllowedFileCategories('image'),
                             FieldGroup::create(
                                 'Crop image',
                                 CheckboxField::create('LeftColumnImageCrop', 'Check to crop image to a fixed size')
                             )
-                        )->displayIf('LeftColumnType')->isNotEqualTo('Text')->end(),
+                        )
                     ]
                 );
+                $leftContent->displayIf('LeftColumnType')->isEqualTo('Text');
+                $leftImage->displayIf('LeftColumnType')->isNotEqualTo('Text');
 
-            $fields->addFieldsToTab(
-                'Root.ColumnTwo',
-                [
+                $fields->addFieldsToTab(
+                    'Root.Main',
+                    [
+                        HeaderField::create('RightColumn', 'Right column'),
                         DropdownField::create('RightColumnType', 'Type', $rightColumnTypeField->enumValues()),
-                        HTMLEditorField::create('RightColumnContent', 'Content')
-                            ->displayIf('RightColumnType')->isEqualTo('Text')->end(),
-                        UploadField::create('RightColumnImage', 'Image')
-                            ->setAllowedFileCategories('image')
-                            ->displayIf('RightColumnType')->isNotEqualTo('Text')->end(),
-                        Wrapper::create(
+                        $rightContent = HTMLEditorField::create('RightColumnContent', 'Right column content'),
+                        $rightImage = Wrapper::create(
+                            UploadField::create('RightColumnImage', 'Right column image')
+                                ->setAllowedFileCategories('image'),
                             FieldGroup::create(
                                 'Crop image',
                                 CheckboxField::create('RightColumnImageCrop', 'Check to crop image to a fixed size')
                             )
-                        )->displayIf('RightColumnType')->isNotEqualTo('Text')->end(),
+                        ),
                     ]
                 );
+                $rightContent->displayIf('RightColumnType')->isEqualTo('Text');
+                $rightImage->displayIf('RightColumnType')->isNotEqualTo('Text');
             }
         );
 

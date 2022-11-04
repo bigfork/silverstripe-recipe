@@ -5,7 +5,7 @@ namespace App\Model\Elements;
 use App\Extensions\Elemental\BeforeAfterContentExtension;
 use App\Forms\GridField\GridFieldConfig_OrderableRecordEditor;
 use App\Model\Elements\Components\FeatureBox;
-use DNADesign\Elemental\Models\ElementContent;
+use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\ORM\HasManyList;
@@ -13,7 +13,7 @@ use SilverStripe\ORM\HasManyList;
 /**
  * @method HasManyList FeatureBoxes()
  */
-class ElementFeatureBoxes extends ElementContent
+class ElementFeatureBoxes extends BaseElement
 {
     private static string $table_name = 'ElementFeatureBoxes';
 
@@ -49,16 +49,15 @@ class ElementFeatureBoxes extends ElementContent
     {
         $this->beforeUpdateCMSFields(
             function (FieldList $fields) {
-                $fields->addFieldsToTab(
-                    'Root.FeatureBoxes',
-                    [
-                        GridField::create(
-                            'FeatureBoxes',
-                            'Feature boxes',
-                            $this->FeatureBoxes(),
-                            GridFieldConfig_OrderableRecordEditor::create()
-                        ),
-                    ]
+                $fields->removeByName(['FeatureBoxes']);
+                $fields->addFieldToTab(
+                    'Root.Main',
+                    GridField::create(
+                        'FeatureBoxes',
+                        'Feature boxes',
+                        $this->FeatureBoxes(),
+                        GridFieldConfig_OrderableRecordEditor::create()
+                    )
                 );
             }
         );

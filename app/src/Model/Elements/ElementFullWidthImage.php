@@ -4,17 +4,15 @@ namespace App\Model\Elements;
 
 use App\Extensions\Elemental\BeforeAfterContentExtension;
 use Bummzack\SortableFile\Forms\SortableUploadField;
-use DNADesign\Elemental\Models\ElementContent;
+use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Assets\Image;
 use SilverStripe\Forms\FieldList;
-use SilverStripe\ORM\ArrayList;
-use SilverStripe\ORM\DataList;
-use SilverStripe\ORM\FieldType\DBField;
-use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\ORM\ManyManyList;
-use SilverStripe\ORM\UnsavedRelationList;
 
-class ElementFullWidthImage extends ElementContent
+/**
+ * @method ManyManyList Images()
+ */
+class ElementFullWidthImage extends BaseElement
 {
     private static string $table_name = 'ElementFullWidthImage';
 
@@ -48,8 +46,9 @@ class ElementFullWidthImage extends ElementContent
     {
         $this->beforeUpdateCMSFields(
             function (FieldList $fields) {
+                $fields->removeByName(['Images']);
                 $fields->addFieldsToTab(
-                    'Root.Images',
+                    'Root.Main',
                     [
                         SortableUploadField::create('Images', 'Images')
                             ->setAllowedFileCategories('image'),
@@ -70,16 +69,16 @@ class ElementFullWidthImage extends ElementContent
     {
         $blockSchema = parent::provideBlockSchema();
 
-        $images = $this->Images();
+        $images = $this->getSortedImages();
         /** @var Image $firstImage */
-        $firstImage = $this->Images()->first();
+        $firstImage = $images->first();
 
         if ($firstImage && $firstImage->exists() && $firstImage->getIsImage()) {
             $blockSchema['fileURL'] = $firstImage->CMSThumbnail()->getURL();
             $blockSchema['fileTitle'] = $firstImage->getTitle();
         }
 
-        $imagesCount = $this->Images()->count();
+        $imagesCount = $images->count();
         $plural = $imagesCount === 1 ? '' : 's';
 
         $blockSchema['content'] = "Currently shows {$imagesCount} image{$plural}";
@@ -87,8 +86,8 @@ class ElementFullWidthImage extends ElementContent
         return $blockSchema;
     }
 
-    public function Images(): UnsavedRelationList|ManyManyList|ArrayList|DataList
+    public function getSortedImages()
     {
-        return $this->getManyManyComponents('Images')->sort('SortOrder ASC');
+        return $this->Images()->sort('SortOrder ASC');
     }
 }

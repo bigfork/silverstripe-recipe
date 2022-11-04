@@ -5,26 +5,45 @@ namespace App\Extensions\Elemental;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\Tab;
+use SilverStripe\Forms\ToggleCompositeField;
 use SilverStripe\ORM\DataExtension;
 
 class BeforeAfterContentExtension extends DataExtension
 {
     private static array $db = [
-        'AfterHTML' => 'HTMLText',
+        'BeforeHTML' => 'HTMLText',
+        'AfterHTML'  => 'HTMLText',
     ];
 
     public function updateCMSFields(FieldList $fields): void
     {
-        if ($tab = $fields->fieldByName('Root.Main')) {
-            $tab->setTitle('Before');
+        /** @var Tab $main */
+        $main = $fields->fieldByName('Root.Main');
+        if (!$main) {
+            return;
         }
 
-        $fields->insertBefore('History', Tab::create('After'));
-        $fields->addFieldsToTab(
-            'Root.After',
-            [
-                HTMLEditorField::create('AfterHTML', 'Content'),
-            ]
+        $fields->removeByName(['BeforeHTML', 'AfterHTML']);
+
+        $main->insertAfter(
+            'TitleAndHeadingLevel',
+            ToggleCompositeField::create(
+                'ContentBefore',
+                'Content before',
+                [
+                    HTMLEditorField::create('BeforeHTML', 'Content')
+                ]
+            )
+        );
+
+        $main->push(
+            ToggleCompositeField::create(
+                'ContentAfter',
+                'Content after',
+                [
+                    HTMLEditorField::create('AfterHTML', 'Content')
+                ]
+            )
         );
     }
 }
