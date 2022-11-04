@@ -23,12 +23,20 @@ SilverStripe\Core\Injector\Injector:
 App\Model\Page:
   extensions:
     - App\Extensions\Pages\PageExtension
-SilverStripe\Blog\Model\BlogPost:
-  extensions:
-    - App\Extensions\Blog\BlogPostExtension
 SilverStripe\ORM\FieldType\DBString:
   extensions:
     - App\Extensions\ORM\DBStringExtension
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
     - App\Extensions\SiteConfig\SiteConfigExtension
+---
+After: '#blogconfig'
+Only:
+  moduleexists: 'silverstripe/blog'
+---
+SilverStripe\Blog\Model\BlogPost:
+  extensions:
+    - App\Extensions\Blog\BlogPostExtension
+SilverStripe\Security\Member:
+  extensions:
+    - App\Extensions\Blog\BlogMemberExtension
