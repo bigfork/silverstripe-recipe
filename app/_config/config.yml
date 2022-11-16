@@ -23,6 +23,9 @@ SilverStripe\Core\Injector\Injector:
 App\Model\Page:
   extensions:
     - App\Extensions\Pages\PageExtension
+SilverStripe\Assets\Storage\DBFile:
+  extensions:
+    - App\Extensions\Assets\DBFileExtension
 SilverStripe\ORM\FieldType\DBString:
   extensions:
     - App\Extensions\ORM\DBStringExtension
