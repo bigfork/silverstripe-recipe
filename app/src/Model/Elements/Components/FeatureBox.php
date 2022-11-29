@@ -165,6 +165,15 @@ class FeatureBox extends DataObject
         return parent::getCMSFields();
     }
 
+    protected function onBeforeWrite()
+    {
+        if (!$this->Sort) {
+            $this->Sort = self::get()->max('Sort') + 1;
+        }
+
+        parent::onBeforeWrite();
+    }
+
     public function Link(): string
     {
         switch ($this->LinkType) {
