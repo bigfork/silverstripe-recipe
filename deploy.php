@@ -55,3 +55,36 @@ task('deploy', function() {
 
 // [Optional] If deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
+
+task('clear_cloudflare_cache', function () {
+    $config = Context::get()->getHost()->getConfig();
+    $zone_id_key = 'zone_id';
+    $api_key_key = 'api_key';
+    $zone_id_value = $config->has($zone_id_key) ? $config->get($zone_id_key) : null;
+    $api_key_value = $config->has($api_key_key) ? $config->get($api_key_key) : null;
+
+    if (!empty($zone_id_value) && !empty($api_key_value)) {
+        try {
+            ob_start();
+            $head = [];
+            $head[] = 'Content-Type: application/json';
+            $head[] = "Authorization: Bearer {$api_key_value}";
+            $head[] = 'cache-control: no-cache';
+
+            $url = "https://api.cloudflare.com/client/v4/zones/{$zone_id_value}/purge_cache";
+            $purge = ['purge_everything' => true];
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $head);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($purge));
+            curl_exec($ch);
+            curl_close($ch);
+            ob_clean();
+        } catch (Exception $e) {
+            print($e);
+        }
+    }
+});
+before('success', 'clear_cloudflare_cache');
