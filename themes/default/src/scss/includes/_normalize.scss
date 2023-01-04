@@ -37,7 +37,7 @@ ul {
 
 /* Remove sanitize VoiceOver workaround */
 nav li::before {
-	content: '';
+	content: unset;
 }
 
 button {
