@@ -2,6 +2,8 @@
 
 namespace Deployer;
 
+use Deployer\Task\Context;
+
 require 'recipe/common.php';
 require 'deploy/recipe/silverstripe.php';
 
