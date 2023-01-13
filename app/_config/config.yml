@@ -32,6 +32,9 @@ SilverStripe\ORM\FieldType\DBString:
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
     - App\Extensions\SiteConfig\SiteConfigExtension
+SilverStripe\CMS\Model\RedirectorPage:
+  extensions:
+    - App\Extensions\CMS\RedirectorPageExtension
 ---
 After: '#blogconfig'
 Only:
