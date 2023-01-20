@@ -81,14 +81,7 @@ Options -Indexes
 
     RewriteBase '/'
 
-    # Force trailing slash
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_METHOD} =GET
-    RewriteCond %{REQUEST_URI} !^/admin/
-    RewriteCond %{REQUEST_URI} !^/sitemap\.xml
-    RewriteRule ^(.*)([^/])$ $1$2/ [R=301,NE,L]
-
-    # SilverStripe rewrites - includes optional maintenance rule for the above
+    # SilverStripe rewrites
     RewriteCond %{REQUEST_URI} ^(.*)$
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule .* index.php
