@@ -32,7 +32,8 @@
 		"wilr/silverstripe-googlesitemaps": "^2"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^9.5"
+		"phpunit/phpunit": "^9.5",
+		"symfony/var-dumper": "^5.4"
 	},
 	"extra": {
 		"expose": [
