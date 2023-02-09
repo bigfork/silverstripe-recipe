@@ -25,12 +25,6 @@ Or on a per-project basis with Composer:
 composer --dev require deployer/deployer
 ```
 
-In order to upload/download assets and databases, you’ll also need to install `sspak`:
-
-```bash
-curl -sS https://silverstripe.github.io/sspak/install | php -- /usr/local/bin
-```
-
 ### Configuration
 
 Edit `deploy/config.php` and set the application name and git repository URL. Everything else is optional.
