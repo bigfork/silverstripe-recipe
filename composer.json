@@ -26,6 +26,7 @@
 		"silverstripe/mimevalidator": "^2",
 		"silverstripe/recipe-plugin": "^1",
 		"silverstripe/redirectedurls": "^2",
+		"silverstripe/sharedraftcontent": "^2",
 		"symbiote/silverstripe-gridfieldextensions": "^3",
 		"symbiote/silverstripe-grouped-cms-menu": "^4",
 		"unclecheese/display-logic": "^2",
@@ -59,11 +60,12 @@
 	"config": {
 		"allow-plugins": {
 			"composer/installers": true,
+			"php-http/discovery": true,
 			"silverstripe/recipe-plugin": true,
 			"silverstripe/vendor-plugin": true
 		},
 		"platform": {
-			"php": "8"
+			"php": "8.1"
 		}
 	}
 }
