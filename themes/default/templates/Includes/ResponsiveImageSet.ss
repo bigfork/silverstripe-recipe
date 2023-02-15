@@ -5,8 +5,8 @@
 	<source media="{$Query}" srcset="{$Image.URL}" width="{$Image.Width}" height="{$Image.Height}">
 	<% end_loop %>
 	<!--[if IE 9]></video><![endif]-->
-	<img src="{$DefaultImage.URL}"<% if $ExtraClasses %> class="{$ExtraClasses}"<% end_if %> alt="{$Title}" width="{$DefaultImage.Width}" height="{$DefaultImage.Height}" loading="lazy" decoding="async">
+	<img src="{$DefaultImage.URL}"<% if $ExtraClasses %> class="{$ExtraClasses}"<% end_if %> alt="{$Title}" width="{$DefaultImage.Width}" height="{$DefaultImage.Height}"<% if $DefaultImage.IsLazyLoaded %> loading="lazy"<% end_if %> decoding="async">
 </picture>
 <noscript>
-	<img src="{$DefaultImage.URL}"<% if $ExtraClasses %> class="{$ExtraClasses}"<% end_if %> alt="{$Title}" width="{$DefaultImage.Width}" height="{$DefaultImage.Height}" loading="lazy" decoding="async">
+	<img src="{$DefaultImage.URL}"<% if $ExtraClasses %> class="{$ExtraClasses}"<% end_if %> alt="{$Title}" width="{$DefaultImage.Width}" height="{$DefaultImage.Height}"<% if $DefaultImage.IsLazyLoaded %> loading="lazy"<% end_if %> decoding="async">
 </noscript>
