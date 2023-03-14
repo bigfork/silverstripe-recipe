@@ -30,7 +30,7 @@
     "style-loader": "^0.23.1",
     "svg-spritemap-webpack-plugin": "^4.5.0",
     "vue-template-compiler": "^2.6.14",
-    "webpack": "^5.66.0",
+    "webpack": "^5.76.0",
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
