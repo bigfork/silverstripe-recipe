@@ -1,0 +1,16 @@
+---
+Name: app-picture
+---
+Kinglozzer\SilverstripePicture\Picture:
+  styles:
+    ExampleImageSet:
+      default:
+        - { method: 'FocusFill', arguments: [ 125, 50 ] }
+        - { method: 'FocusFill', arguments: [ 250, 100 ], descriptor: 2x }
+      sources:
+        "(min-width: 960px)":
+          - { method: 'FocusFill', arguments: [ 400, 200 ] }
+          - { method: 'FocusFill', arguments: [ 800, 400 ], descriptor: 2x }
+        "(min-width: 650px)":
+          - { method: 'FocusFill', arguments: [ 300, 150 ] }
+          - { method: 'FocusFill', arguments: [ 600, 300 ], descriptor: 2x }
