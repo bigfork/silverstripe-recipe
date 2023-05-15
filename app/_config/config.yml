@@ -35,6 +35,8 @@ SilverStripe\SiteConfig\SiteConfig:
 SilverStripe\CMS\Model\RedirectorPage:
   extensions:
     - App\Extensions\CMS\RedirectorPageExtension
+SilverStripe\CMS\Model\SiteTree:
+  create_default_pages: false
 ---
 After: '#blogconfig'
 Only:
