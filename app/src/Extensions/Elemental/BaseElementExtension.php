@@ -53,7 +53,7 @@ class BaseElementExtension extends DataExtension
 
     public function TitleTag(string $extraClass = ''): string
     {
-        if ($this->owner->HeadingLevel === 'hidden') {
+        if ($this->owner->HeadingLevel === 'hidden' || empty($this->getOwner()->Title)) {
             return '';
         }
 
