@@ -1,6 +1,6 @@
 # SilverStripe Recipe
 
-Bigfork’s quickstart recipe for simple SilverStripe 4 projects. Contains frequently used modules, templates, config settings, JavaScript and CSS.
+Bigfork’s quickstart recipe for simple SilverStripe 5 projects. Contains frequently used modules, templates, config settings, JavaScript and CSS.
 
 ## Project setup
 
