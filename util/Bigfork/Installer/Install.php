@@ -46,8 +46,8 @@ class Install
         ];
 
         self::applyConfiguration($config);
-        self::installNpm();
         self::removeReadme();
+//        self::installNpm();
 
         exit;
     }
