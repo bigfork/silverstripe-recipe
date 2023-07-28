@@ -10,7 +10,7 @@ i18n::set_locale('en_GB');
 $config = TinyMCEConfig::get('cms');
 $config->disablePlugins(['importcss', 'contextmenu']);
 $config->enablePlugins(['anchor', 'hr']);
-$config->setButtonsForLine(1, 'formatselect styleselect | bullist numlist | bold italic subscript superscript |
+$config->setButtonsForLine(1, 'blocks styles | bullist numlist | bold italic subscript superscript |
     sslink unlink anchor ssmedia ssembed hr');
 $config->setButtonsForLine(2, 'table | pastetext undo redo | code');
 $config->setOptions([
