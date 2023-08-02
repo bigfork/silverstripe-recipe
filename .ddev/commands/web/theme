@@ -1,0 +1,18 @@
+#!/bin/bash
+
+## Description: Run yarn inside the default theme directory
+## Usage: theme [flags] [args]
+## Example: "ddev theme install" or "ddev theme watch" or "ddev theme build"
+## ExecRaw: true
+## HostWorkingDir: true
+
+if [ $1 = "watch" ]; then
+    npm --prefix themes/default run watch
+elif [ $1 = "prod" ]; then
+    npm --prefix themes/default run prod
+elif [ $1 = "build" ]; then
+    npm --prefix themes/default run prod
+else
+    npm --prefix themes/default "$@"
+fi
+
