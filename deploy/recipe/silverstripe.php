@@ -109,7 +109,7 @@ task('silverstripe:upload_database', function () {
     $localPath = sys_get_temp_dir() . '/' . $filename;
 
     // Export database
-    runLocally(getExportDatabaseCommand('.env', $localPath));
+    runLocally("ddev export-db > {$localPath}");
 
     // Upload database
     upload($localPath, "{{deploy_path}}/dumps/");
@@ -154,7 +154,7 @@ task('silverstripe:download_database', function () {
     download("{{deploy_path}}/dumps/{$filename}", $localPath);
 
     // Import database
-    runLocally(getImportDatabaseCommand('.env', $localPath));
+    runLocally("gunzip < {$localPath} | ddev import-db");
 
     // Tidy up
     runLocally("rm {$localPath}");
