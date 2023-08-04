@@ -1,70 +1,70 @@
 {
-	"name": "bigfork/silverstripe-recipe",
-	"type": "silverstripe-recipe",
-	"description": "Bigfork’s SilverStripe CMS recipe",
-	"homepage": "https://www.bigfork.co.uk",
-	"license": "BSD-3-Clause",
-	"require": {
-		"adrhumphreys/silverstripe-textdropdownfield": "^0",
-		"bigfork/htmleditorsrcset": "^2",
-		"bigfork/silverstripe-fail-whale": "^2",
-		"bigfork/silverstripe-image-recipe": "^1",
-		"bigfork/silverstripe-sentry-handler": "^2",
-		"bigfork/silverstripe-simpleseo": "^3",
-		"bummzack/sortablefile": "^2.1",
-		"dnadesign/silverstripe-elemental": "^5",
-		"firebrandhq/silverstripe-phonelink": "^3",
-		"kinglozzer/metatitle": "^3",
-		"silverstripe/asset-admin": "^2",
-		"silverstripe/assets": "^2",
-		"silverstripe/cms": "^5",
-		"silverstripe/config": "^2",
-		"silverstripe/framework": "^5",
-		"silverstripe/graphql": "^5",
-		"silverstripe/login-forms": "^5",
-		"silverstripe/mimevalidator": "^3",
-		"silverstripe/recipe-plugin": "^2",
-		"silverstripe/redirectedurls": "^3",
-		"silverstripe/sharedraftcontent": "^3",
-		"symbiote/silverstripe-gridfieldextensions": "^4",
-		"symbiote/silverstripe-grouped-cms-menu": "^4",
-		"unclecheese/display-logic": "^3",
-		"wilr/silverstripe-googlesitemaps": "^3"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "^9.5",
-		"symfony/var-dumper": "^5.4"
-	},
-	"extra": {
-		"expose": [
-			"app/css",
-			"themes/default/dist"
-		],
-		"resources-dir": "_resources"
-	},
-	"autoload": {
-		"files": [
-			"app/src/bootstrap.php"
-		],
-		"psr-4": {
-			"App\\": "app/src",
-			"Bigfork\\": "util/Bigfork"
-		}
-	},
-	"scripts": {
-		"post-create-project-cmd": "Bigfork\\Installer\\Install::postCreateProject"
-	},
-	"minimum-stability": "dev",
-	"prefer-stable": true,
-	"config": {
-		"allow-plugins": {
-			"composer/installers": true,
-			"php-http/discovery": true,
-			"silverstripe/recipe-plugin": true,
-			"silverstripe/vendor-plugin": true
-		},
-		"platform": {
-			"php": "8.1"
-		}
-	}
+    "name": "bigfork/silverstripe-recipe",
+    "type": "silverstripe-recipe",
+    "description": "Bigfork’s SilverStripe CMS recipe",
+    "homepage": "https://www.bigfork.co.uk",
+    "license": "BSD-3-Clause",
+    "require": {
+        "adrhumphreys/silverstripe-textdropdownfield": "^0",
+        "bigfork/htmleditorsrcset": "^2",
+        "bigfork/silverstripe-fail-whale": "^2",
+        "bigfork/silverstripe-image-recipe": "^1",
+        "bigfork/silverstripe-sentry-handler": "^2",
+        "bigfork/silverstripe-simpleseo": "^3",
+        "bummzack/sortablefile": "^2.1",
+        "dnadesign/silverstripe-elemental": "^5",
+        "firebrandhq/silverstripe-phonelink": "^3",
+        "kinglozzer/metatitle": "^3",
+        "silverstripe/asset-admin": "^2",
+        "silverstripe/assets": "^2",
+        "silverstripe/cms": "^5",
+        "silverstripe/config": "^2",
+        "silverstripe/framework": "^5",
+        "silverstripe/graphql": "^5",
+        "silverstripe/login-forms": "^5",
+        "silverstripe/mimevalidator": "^3",
+        "silverstripe/recipe-plugin": "^2",
+        "silverstripe/redirectedurls": "^3",
+        "silverstripe/sharedraftcontent": "^3",
+        "symbiote/silverstripe-gridfieldextensions": "^4",
+        "symbiote/silverstripe-grouped-cms-menu": "^4",
+        "unclecheese/display-logic": "^3",
+        "wilr/silverstripe-googlesitemaps": "^3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "symfony/var-dumper": "^5.4"
+    },
+    "extra": {
+        "expose": [
+            "app/css",
+            "themes/default/dist"
+        ],
+        "resources-dir": "_resources"
+    },
+    "autoload": {
+        "files": [
+            "app/src/bootstrap.php"
+        ],
+        "psr-4": {
+            "App\\": "app/src",
+            "Bigfork\\": "util/Bigfork"
+        }
+    },
+    "scripts": {
+        "post-create-project-cmd": "Bigfork\\Installer\\Install::postCreateProject"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "php-http/discovery": true,
+            "silverstripe/recipe-plugin": true,
+            "silverstripe/vendor-plugin": true
+        },
+        "platform": {
+            "php": "8.1"
+        }
+    }
 }
