@@ -40,70 +40,80 @@ class Install
     {
         $io = $event->getIO();
         $config = [
-            'sql-host' => $io->ask('Please specify the database host [localhost]: ', 'localhost'),
-            'sql-name' => $io->ask('Please specify the database name: '),
-            'sentry-dsn' => $io->ask('Please enter the Sentry DSN (if applicable): '),
+            'ddevShouldStart' => $io->askConfirmation('Would you like DDEV to start after the installation is complete?: [y/n] ', true),
         ];
 
-        self::applyConfiguration($config);
+        self::updateDDevName();
+        self::copyEnv();
         self::removeReadme();
-//        self::installNpm();
+        self::installNpm();
+
+        if ($config['ddevShouldStart']) {
+            self::startDDEV();
+        }
 
         exit;
     }
 
     /**
-     * Replaces placeholders in .env.example and renames it to .env
-     *
-     * @param array $config
+     * Update the sitename placeholder in .ddev/config.yaml with the directory name
      */
-    protected static function applyConfiguration(array $config)
+    protected static function updateDDevName(): void
+    {
+        $base = self::getBasepath();
+        $directories = explode('/', $base);
+        $directoryName = array_pop($directories);
+        $ddevConfigPath = $base . '/.ddev/config.yaml';
+
+        if (file_exists($ddevConfigPath)) {
+            $ddevConfig = file_get_contents($ddevConfigPath);
+            $ddevConfig = str_replace('{sitename}', $directoryName, $ddevConfig);
+
+            file_put_contents($ddevConfigPath, $ddevConfig);
+        }
+    }
+
+    /**
+     * Copies the .env.example to .env if it doesn't exist
+     */
+    protected static function copyEnv(): void
     {
         $base = self::getBasepath();
 
         $envPath = $base . '/.env';
-        $templatePath = $base . '/.env.example';
-        if (file_exists($templatePath) && !file_exists($envPath)) {
-            $env = file_get_contents($templatePath);
-            $env = str_replace(
-                ['{sql-host}', '{sql-name}'],
-                [$config['sql-host'], $config['sql-name']],
-                $env
-            );
-
-            if (isset($config['sentry-dsn']) && $config['sentry-dsn']) {
-                $env .= "\nSENTRY_DSN='{$config['sentry-dsn']}'\n";
-            }
-
-            file_put_contents($envPath, $env);
+        $examplePath = $base . '/.env.example';
+        if (file_exists($examplePath) && !file_exists($envPath)) {
+            copy($examplePath, $envPath);
         }
     }
 
     /**
      * Runs "npm install" if a package.json file is present in the project.
      */
-    protected static function installNpm()
+    protected static function installNpm(): void
     {
         $basePath = self::getBasepath();
         $themePath = $basePath . '/themes/default/';
 
         if (file_exists($themePath . '/package.json')) {
-            $current = __DIR__;
-            chdir($themePath);
-            echo shell_exec('nvm use && npm install');
-            chdir($current);
+            echo shell_exec('ddev theme install');
         }
     }
 
     /**
      * Removes README.md from the project.
      */
-    protected static function removeReadme()
+    protected static function removeReadme(): void
     {
         $basePath = self::getBasepath();
 
         if (file_exists($basePath . '/README.md')) {
             unlink($basePath . '/README.md');
         }
+    }
+
+    protected static function startDDEV(): void
+    {
+        echo shell_exec('ddev start');
     }
 }
