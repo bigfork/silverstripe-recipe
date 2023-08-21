@@ -2,7 +2,6 @@ const mix = require('laravel-mix');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-const path = require('path');
 const sortMediaQueries = require('postcss-sort-media-queries');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 
@@ -67,21 +66,21 @@ mix.webpackConfig({
 });
 
 // Configure browsersync
-const sitepath = path.join(__dirname, '/../../');
-const parent = path.basename(path.join(sitepath, '../'));
-if (parent === 'Devsites') {
-  mix.browserSync({
-    files: [
-      'dist/**/*',
-      'templates/**/*',
-    ],
-    ignore: [
-      'dist/images/.gitkeep',
-      'dist/webfonts/.gitkeep'
-    ],
-    proxy: `${path.basename(sitepath)}.test`
-  });
-}
+const url = process.env.DDEV_HOSTNAME;
+mix.browserSync({
+  files: [
+    'dist/**/*',
+    'templates/**/*',
+  ],
+  ignore: [
+    'dist/images/.gitkeep',
+    'dist/webfonts/.gitkeep'
+  ],
+  proxy: 'localhost',
+  host: url,
+  open: false,
+  ui: false
+});
 
 // Remove stale assets from folders which are blindly copied
 mix.webpackConfig({
