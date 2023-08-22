@@ -20,9 +20,6 @@ SilverStripe\Core\Injector\Injector:
   Intervention\Image\ImageManager:
     constructor:
       - { driver: imagick }
-App\Model\Page:
-  extensions:
-    - App\Extensions\Pages\PageExtension
 SilverStripe\Assets\Storage\DBFile:
   extensions:
     - App\Extensions\Assets\DBFileExtension
