@@ -74,13 +74,14 @@ ServerSignature Off
 # Rewrite www.example.com → example.com
 
 <IfModule mod_rewrite.c>
-#    RewriteCond %{HTTPS} =on
-#    RewriteRule ^ - [E=PROTO:https]
-#    RewriteCond %{HTTPS} !=on
+#    RewriteCond %{HTTPS} !=on [OR]
+#    RewriteCond %{HTTP:X-Forwarded-Proto} =http
 #    RewriteRule ^ - [E=PROTO:http]
+#    RewriteCond %{HTTPS} =on [OR]
+#    RewriteCond %{HTTP:X-Forwarded-Proto} =https
+#    RewriteRule ^ - [E=PROTO:https]
 #
 #    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-#    RewriteCond %{SERVER_ADDR} !=127.0.0.1
 #    RewriteCond %{SERVER_ADDR} !=::1
 #    RewriteCond %{HTTP_HOST} !\.ddev\.site$ [NC]
 #    RewriteRule ^ %{ENV:PROTO}://%1%{REQUEST_URI} [R=301,L]
@@ -93,16 +94,17 @@ ServerSignature Off
 # Rewrite example.com → www.example.com
 
 <IfModule mod_rewrite.c>
-#     RewriteCond %{HTTPS} =on
-#     RewriteRule ^ - [E=PROTO:https]
-#     RewriteCond %{HTTPS} !=on
-#     RewriteRule ^ - [E=PROTO:http]
+#    RewriteCond %{HTTPS} !=on [OR]
+#    RewriteCond %{HTTP:X-Forwarded-Proto} =http
+#    RewriteRule ^ - [E=PROTO:http]
+#    RewriteCond %{HTTPS} =on [OR]
+#    RewriteCond %{HTTP:X-Forwarded-Proto} =https
+#    RewriteRule ^ - [E=PROTO:https]
 #
-#     RewriteCond %{HTTP_HOST} !^www\. [NC]
-#     RewriteCond %{SERVER_ADDR} !=127.0.0.1
-#     RewriteCond %{SERVER_ADDR} !=::1
-#     RewriteCond %{HTTP_HOST} !\.ddev\.site$ [NC]
-#     RewriteRule ^ %{ENV:PROTO}://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#    RewriteCond %{HTTP_HOST} !^www\. [NC]
+#    RewriteCond %{SERVER_ADDR} !=::1
+#    RewriteCond %{HTTP_HOST} !\.ddev\.site$ [NC]
+#    RewriteRule ^ %{ENV:PROTO}://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 </IfModule>
 
 # ----------------------------------------------------------------------
