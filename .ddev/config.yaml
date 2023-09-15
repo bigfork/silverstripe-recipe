@@ -1,4 +1,4 @@
-name: {sitename}
+name: recipe
 type: php
 docroot: public
 php_version: "8.2"
