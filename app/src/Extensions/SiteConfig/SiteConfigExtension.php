@@ -5,19 +5,13 @@ namespace App\Extensions\SiteConfig;
 use SilverStripe\Core\Extension;
 use SilverStripe\Forms\EmailField;
 use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\HeaderField;
-use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\TextField;
 
 class SiteConfigExtension extends Extension
 {
     private static $db = [
-        'EmailAddress' => 'Varchar',
-        'Telephone'    => 'Varchar',
-        'StartOfHead'  => 'Text',
-        'EndOfHead'    => 'Text',
-        'StartOfBody'  => 'Text',
-        'EndOfBody'    => 'Text',
+        'EmailAddress' => 'Varchar(255)',
+        'Telephone' => 'Varchar(50)',
     ];
 
     public function updateCMSFields(FieldList $fields): void
@@ -29,16 +23,6 @@ class SiteConfigExtension extends Extension
             [
                 EmailField::create('EmailAddress', 'Email address'),
                 TextField::create('Telephone', 'Telephone number'),
-            ]
-        );
-
-        $fields->addFieldsToTab(
-            'Root.Scripts',
-            [
-                TextareaField::create('StartOfHead', 'Start of head'),
-                TextareaField::create('EndOfHead', 'End of head'),
-                TextareaField::create('StartOfBody', 'Start of body'),
-                TextareaField::create('EndOfBody', 'End of body'),
             ]
         );
     }
