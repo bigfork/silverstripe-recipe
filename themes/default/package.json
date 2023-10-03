@@ -20,7 +20,7 @@
     "imagemin": "^8.0.1",
     "imagemin-svgo": "^10.0.1",
     "laravel-mix": "^6.0.49",
-    "postcss": "^8.4.5",
+    "postcss": "^8.4.31",
     "postcss-sort-media-queries": "^4.3.0",
     "sass": "^1.48.0",
     "sass-loader": "^10.2.0",
