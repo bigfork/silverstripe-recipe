@@ -6,9 +6,8 @@
     "license": "BSD-3-Clause",
     "require": {
         "adrhumphreys/silverstripe-textdropdownfield": "^0",
-        "bigfork/htmleditorsrcset": "^2",
         "bigfork/silverstripe-fail-whale": "^2",
-        "bigfork/silverstripe-image-recipe": "^1",
+        "bigfork/silverstripe-image-recipe": "^2",
         "bigfork/silverstripe-sentry-handler": "^2",
         "bigfork/silverstripe-simpleseo": "^3",
         "bummzack/sortablefile": "^2.1",
