@@ -39,6 +39,9 @@ After: '#blogconfig'
 Only:
   moduleexists: 'silverstripe/blog'
 ---
+SilverStripe\Blog\Model\Blog:
+  extensions:
+    - App\Extensions\Blog\BlogExtension
 SilverStripe\Blog\Model\BlogController:
   extensions:
     - App\Extensions\Blog\BlogControllerExtension
