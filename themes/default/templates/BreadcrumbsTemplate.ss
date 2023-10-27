@@ -3,7 +3,7 @@
 		<ol class="breadcrumbs__list">
 			<% loop $Pages %>
 				<li class="breadcrumbs__item">
-					<a href="{$Link}" class="breadcrumbs__link<% if $Last %> breadcrumbs__link--current<% end_if %>"<% if $Last %> aria-current="page"<% end_if %>>
+					<a href="{$Link}" class="breadcrumbs__link<% if $IsLast %> breadcrumbs__link--current<% end_if %>"<% if $IsLast %> aria-current="page"<% end_if %>>
 						{$MenuTitle.XML}
 					</a>
 				</li>
@@ -22,7 +22,7 @@
 				"position": {$Pos},
 				"name": "{$Title}"<% if $AbsoluteLink %>,<% end_if %>
 				<% if $AbsoluteLink %>"item": "{$AbsoluteLink}"<% end_if %>
-			}<% if not $Last %>,<% else %>]<% end_if %><% end_loop %>
+			}<% if not $IsLast %>,<% else %>]<% end_if %><% end_loop %>
 		}
 	</script>
 <% end_if %>
