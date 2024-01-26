@@ -64,8 +64,6 @@
             "silverstripe/recipe-plugin": true,
             "silverstripe/vendor-plugin": true
         },
-        "platform": {
-            "php": "8.1"
-        }
-    }
+		"sort-packages": true
+	}
 }
