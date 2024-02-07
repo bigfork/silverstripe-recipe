@@ -4,3 +4,7 @@ Name: app-forms
 SilverStripe\Forms\HTMLEditor\HTMLEditorField:
   default_classes:
     - 'stacked'
+App\Forms\GridField\GridFieldConfig_OrderableRecordEditor:
+  extensions:
+    - SilverStripe\Versioned\VersionedGridFieldStateExtension
+    - SilverStripe\Versioned\VersionedGridFieldArchiveExtension
