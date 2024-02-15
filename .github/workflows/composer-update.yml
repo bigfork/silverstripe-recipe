@@ -1,0 +1,14 @@
+name: composer update
+
+on: workflow_dispatch
+
+jobs:
+  composer:
+    uses: bigfork/composer-workflow/.github/workflows/update.yml@v1
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      auth: ${{ secrets.COMPOSER_AUTH }}
+    with:
+      php: 8.2
+      title: composer update
+      commit-message: composer update
