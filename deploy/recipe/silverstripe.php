@@ -18,7 +18,6 @@ task('silverstripe:create_dotenv', function () {
     $dbPass = str_replace("'", "\\'", ask('Please enter the database password'));
     $sentryDSN = ask('Please enter the Sentry DSN (if applicable)');
     $stage = Context::get()->getHost()->getConfig()->get('stage');
-    $dbPrefix = $stage === 'production' ? '' : '_stage_';
     $type = $stage === 'production' ? 'live' : 'test';
 
     $contents = <<<ENV
@@ -27,7 +26,6 @@ SS_DATABASE_USERNAME='{$dbUser}'
 SS_DATABASE_PASSWORD='{$dbPass}'
 SS_DATABASE_SERVER='{$dbServer}'
 SS_DATABASE_NAME='{$dbName}'
-SS_DATABASE_PREFIX='{$dbPrefix}'
 SS_ENVIRONMENT_TYPE='{$type}'
 ENV;
 
