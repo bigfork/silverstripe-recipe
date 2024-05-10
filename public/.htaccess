@@ -83,6 +83,7 @@ ServerSignature Off
 #
 #    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 #    RewriteCond %{SERVER_ADDR} !=::1
+#    RewriteCond %{HTTP_HOST} !^localhost$ [NC]
 #    RewriteCond %{HTTP_HOST} !\.ddev\.site$ [NC]
 #    RewriteRule ^ %{ENV:PROTO}://%1%{REQUEST_URI} [R=301,L]
 </IfModule>
@@ -103,6 +104,7 @@ ServerSignature Off
 #
 #    RewriteCond %{HTTP_HOST} !^www\. [NC]
 #    RewriteCond %{SERVER_ADDR} !=::1
+#    RewriteCond %{HTTP_HOST} !^localhost$ [NC]
 #    RewriteCond %{HTTP_HOST} !\.ddev\.site$ [NC]
 #    RewriteRule ^ %{ENV:PROTO}://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 </IfModule>
