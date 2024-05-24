@@ -22,6 +22,23 @@ class BlogExtension extends Extension
             return;
         }
 
+        // Filtered views are noindexed, as they're just duplicating content from the main blog
+        if (
+            $controller->getCurrentCategory()
+            || $controller->getCurrentTag()
+            || $controller->getCurrentProfile()
+            || $controller->getArchiveDate()
+        ) {
+            $tags['noindex'] = [
+                'tag' => 'meta',
+                'attributes' => [
+                    'name' => 'robots',
+                    'content' => 'noindex',
+                ],
+            ];
+            return;
+        }
+
         $getVar = $pages->getPaginationGetVar();
         $canonicalURL = $this->owner->Link();
         if ($start = $pages->getPageStart()) {
