@@ -35,6 +35,12 @@ SilverStripe\CMS\Model\RedirectorPage:
 SilverStripe\CMS\Model\SiteTree:
   create_default_pages: false
 ---
+After: '#linkfield'
+---
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_i18n:
+    - app/lang
+---
 After: '#blogconfig'
 Only:
   moduleexists: 'silverstripe/blog'

@@ -38,7 +38,8 @@
     },
     "extra": {
         "expose": [
-            "app/css",
+			"app/css",
+			"app/lang",
             "themes/default/dist"
         ],
         "resources-dir": "_resources"
