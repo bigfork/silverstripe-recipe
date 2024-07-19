@@ -2,6 +2,7 @@
 
 namespace App\View;
 
+use SilverStripe\Control\Director;
 use SilverStripe\Core\Manifest\ModuleResourceLoader;
 use SilverStripe\View\TemplateGlobalProvider;
 use SilverStripe\View\ThemeResourceLoader;
@@ -23,11 +24,22 @@ class ThemeResourceHelper implements TemplateGlobalProvider
         return ModuleResourceLoader::singleton()->resolveURL($path);
     }
 
+    public static function absoluteThemeResourceURL(string $resource): ?string
+    {
+        $url = static::themeResourceURL($resource);
+        if (!$url) {
+            return '';
+        }
+
+        return Director::absoluteURL($url);
+    }
+
     public static function get_template_global_variables(): array
     {
         return [
             'themeResourcePath',
-            'themeResourceURL'
+            'themeResourceURL',
+            'absoluteThemeResourceURL',
         ];
     }
 }
