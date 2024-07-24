@@ -98,3 +98,8 @@
 fieldset.grid.grid-field.ss-gridfield.field {
 	margin-bottom: 2em !important;
 }
+
+.element-editor .element-editor__element--expandable[draggable="false"] {
+	transition: 300ms ease-in-out background-color;
+	background-color: #d8e4eb !important;
+}
