@@ -35,6 +35,13 @@ SilverStripe\CMS\Model\RedirectorPage:
 SilverStripe\CMS\Model\SiteTree:
   create_default_pages: false
 ---
+Only:
+  moduleexists: 'bigfork/silverstripe-simpleseo'
+---
+App\Model\Page:
+  extensions:
+    - App\Extensions\SimpleSEO\SimpleSEOExtension
+---
 After: '#linkfield'
 ---
 SilverStripe\Admin\LeftAndMain:
