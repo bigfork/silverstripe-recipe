@@ -47,6 +47,14 @@
 </IfModule>
 
 # ----------------------------------------------------------------------
+# | HTTP Strict Transport Security (HSTS)                              |
+# ----------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" "expr=%{HTTPS} == 'on' || %{HTTP:X-Forwarded-Proto} == 'https'"
+</IfModule>
+
+# ----------------------------------------------------------------------
 # | Server software information                                        |
 # ----------------------------------------------------------------------
 
