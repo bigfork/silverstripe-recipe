@@ -142,7 +142,7 @@ task('silverstripe:download_database', function () {
         exit;
     }
 
-    $filename = 'db-' . date('Y-m-d-H-i-s') . '.gz';
+    $filename = 'db-' . date('Y-m-d-H-i-s') . '.sql.gz';
     $localPath = sys_get_temp_dir() . '/' . $filename;
 
     // Export database
@@ -152,7 +152,7 @@ task('silverstripe:download_database', function () {
     download("{{deploy_path}}/dumps/{$filename}", $localPath);
 
     // Import database
-    runLocally("gunzip < {$localPath} | ddev import-db");
+    runLocally("ddev import-db --file {$localPath}");
 
     // Tidy up
     runLocally("rm {$localPath}");
