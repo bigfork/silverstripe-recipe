@@ -127,7 +127,7 @@ class Page extends SiteTree
                 'tag'        => 'meta',
                 'attributes' => [
                     'property' => 'og:title',
-                    'content'  => $this->MetaTitle ?: "{$this->Title} | {$config->Title}",
+                    'content'  => $this->MetaTitle ?: "{$this->Title}",
                 ],
             ];
         }
@@ -187,7 +187,7 @@ class Page extends SiteTree
                 'tag'        => 'meta',
                 'attributes' => [
                     'name'    => 'twitter:title',
-                    'content' => $this->MetaTitle ?: "{$this->Title} | {$config->Title}",
+                    'content' => $this->MetaTitle ?: "{$this->Title}",
                 ],
             ];
         }
