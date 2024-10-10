@@ -3,7 +3,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<% base_tag %>
-	<title><% if $MetaTitle %>{$MetaTitle.XML}<% else %>{$Title.XML} | {$SiteConfig.Title}<% end_if %></title>
+	<title><% if $MetaTitle %>{$MetaTitle.XML}<% else %>{$Title.XML}<% end_if %></title>
 
 	<%-- Synchronous scripts --%>
 
