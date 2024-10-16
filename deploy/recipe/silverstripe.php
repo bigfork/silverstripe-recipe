@@ -17,20 +17,16 @@ task('silverstripe:create_dotenv', function () {
     $dbUser = ask('Please enter the database username', !empty($dbName) ? $dbName : null);
     $dbPass = str_replace("'", "\\'", ask('Please enter the database password'));
     $sentryDSN = ask('Please enter the Sentry DSN (if applicable)');
-    $domain = ask('Please enter the full domain name including protocol, please exclude trailing /');
     $stage = Context::get()->getHost()->getConfig()->get('stage');
-    $type = $stage === 'production' ? 'production' : 'staging';
+    $type = $stage === 'production' ? 'live' : 'test';
 
     $contents = <<<ENV
-DB_NAME='{$dbName}'
-DB_USER='{$dbUser}'
-DB_PASSWORD='{$dbPass}'
-DB_HOST='{$dbServer}'
-DB_PREFIX='wp_'
-WP_ENV='{$stage}'
-WP_HOME="{$domain}"
-WP_SITEURL="{$domain}/wp"
-
+SS_DATABASE_CLASS='MySQLDatabase'
+SS_DATABASE_USERNAME='{$dbUser}'
+SS_DATABASE_PASSWORD='{$dbPass}'
+SS_DATABASE_SERVER='{$dbServer}'
+SS_DATABASE_NAME='{$dbName}'
+SS_ENVIRONMENT_TYPE='{$type}'
 ENV;
 
     if ($sentryDSN) {
@@ -50,6 +46,27 @@ desc('Run composer vendor-expose');
 task('silverstripe:vendor_expose', function () {
     run('cd {{release_path}} && {{bin/composer}} vendor-expose');
 });
+
+desc('Create silverstripe-cache directory');
+task('silverstripe:create_cache_dir', function () {
+    run("cd {{release_path}} && if [ ! -d silverstripe-cache ]; then mkdir silverstripe-cache; fi");
+})->setPrivate();
+
+desc('Run dev/build');
+task('silverstripe:dev_build', function () {
+    // If we have permission to run commands as the http_user, do so, otherwise run as the current user
+    $httpUser = get('http_user') ?: 'www-data';
+    if (test("[ `sudo -u {$httpUser} whoami` ]")) {
+        run("sudo -u {$httpUser} {{release_path}}/vendor/bin/sake dev/build flush");
+    } else {
+        run("{{release_path}}/vendor/bin/sake dev/build flush");
+    }
+});
+
+desc('Create directory for sspak dumps');
+task('silverstripe:create_dump_dir', function () {
+    run("cd {{deploy_path}} && if [ ! -d dumps ]; then mkdir dumps; fi");
+})->setPrivate();
 
 desc('Upload assets');
 task('silverstripe:upload_assets', function () {
