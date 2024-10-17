@@ -15,6 +15,7 @@ web_environment: []
 nodejs_version: "18"
 upload_dirs:
     - "assets"
+timezone: Europe/London
 
 # Key features of ddev's config.yaml:
 
