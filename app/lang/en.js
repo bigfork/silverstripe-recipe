@@ -3,6 +3,7 @@ if (typeof(ss) === 'undefined' || typeof(ss.i18n) === 'undefined') {
 } else {
   ss.i18n.addDictionary('en', {
     "LinkField.ARCHIVE": "Clear",
-    "LinkField.DELETE": "Clear"
+    "LinkField.DELETE": "Clear",
+    "LinkField.SAVE_RECORD_FIRST": "You can create a link after you save this item for the first time"
   });
 }
