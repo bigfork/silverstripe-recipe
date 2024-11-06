@@ -9,6 +9,6 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       auth: ${{ secrets.COMPOSER_AUTH }}
     with:
-      php: 8.2
+      php: 8.3
       title: composer update
       commit-message: composer update
