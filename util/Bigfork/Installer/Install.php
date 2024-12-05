@@ -45,7 +45,7 @@ class Install
 
         self::updateDDevName();
         self::copyEnv();
-        self::removeReadme();
+        self::removeReadmeAndLicense();
         self::installNpm();
 
         if ($config['ddevShouldStart']) {
@@ -101,14 +101,17 @@ class Install
     }
 
     /**
-     * Removes README.md from the project.
+     * Removes README.md & LICENSE from the project.
      */
-    protected static function removeReadme(): void
+    protected static function removeReadmeAndLicense(): void
     {
         $basePath = self::getBasepath();
 
         if (file_exists($basePath . '/README.md')) {
             unlink($basePath . '/README.md');
+        }
+        if (file_exists($basePath . '/LICENSE')) {
+            unlink($basePath . '/LICENSE');
         }
     }
 
