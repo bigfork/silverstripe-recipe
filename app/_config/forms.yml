@@ -9,4 +9,4 @@ App\Forms\GridField\GridFieldConfig_OrderableRecordEditor:
     - SilverStripe\Versioned\VersionedGridFieldStateExtension
     - SilverStripe\Versioned\VersionedGridFieldArchiveExtension
 SilverStripe\Assets\Upload:
-  uploads_folder: 'Media'
+  uploads_folder: 'media'
