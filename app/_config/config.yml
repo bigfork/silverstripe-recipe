@@ -61,6 +61,7 @@ SilverStripe\Blog\Model\BlogController:
 SilverStripe\Blog\Model\BlogPost:
   extensions:
     - App\Extensions\Blog\BlogPostExtension
+  featured_images_directory: 'Media'
 SilverStripe\Security\Member:
   extensions:
     - App\Extensions\Blog\BlogMemberExtension

@@ -15,9 +15,5 @@ class BlogPostExtension extends Extension
         $summaryHTMLEditor->setTitle('Post summary');
         $fields->insertBefore('CustomSummary', $summaryHTMLEditor);
         $fields->removeByName(['CustomSummary']);
-
-        /** @var UploadField $image */
-        $image = $fields->dataFieldByName('FeaturedImage');
-        $image->setFolderName('blog');
     }
 }
