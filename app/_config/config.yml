@@ -5,17 +5,17 @@ SilverStripe\Core\Manifest\ModuleManifest:
   project: app
 SilverStripe\View\SSViewer:
   themes:
-    - '$public'
-    - 'default'
-    - '$default'
+    - "$public"
+    - "default"
+    - "$default"
 SilverStripe\Admin\LeftAndMain:
   extra_requirements_css:
     - app/css/cms.css
 SilverStripe\Forms\HTMLEditor\TinyMCEConfig:
   editor_css:
-    - 'themes/default/dist/css/editor.css'
+    - "themes/default/dist/css/editor.css"
 SilverStripe\Control\Email\Email:
-  admin_email: ''
+  admin_email: ""
 SilverStripe\Core\Injector\Injector:
   Intervention\Image\ImageManager:
     constructor:
@@ -34,23 +34,25 @@ SilverStripe\CMS\Model\RedirectorPage:
     - App\Extensions\CMS\RedirectorPageExtension
 SilverStripe\CMS\Model\SiteTree:
   create_default_pages: false
+  hide_pagetypes:
+    - App\Model\Page
 ---
 Only:
-  moduleexists: 'bigfork/silverstripe-simpleseo'
+  moduleexists: "bigfork/silverstripe-simpleseo"
 ---
 App\Model\Page:
   extensions:
     - App\Extensions\SimpleSEO\SimpleSEOExtension
 ---
-After: '#linkfield'
+After: "#linkfield"
 ---
 SilverStripe\Admin\LeftAndMain:
   extra_requirements_i18n:
     - app/lang
 ---
-After: '#blogconfig'
+After: "#blogconfig"
 Only:
-  moduleexists: 'silverstripe/blog'
+  moduleexists: "silverstripe/blog"
 ---
 SilverStripe\Blog\Model\Blog:
   extensions:
@@ -61,7 +63,7 @@ SilverStripe\Blog\Model\BlogController:
 SilverStripe\Blog\Model\BlogPost:
   extensions:
     - App\Extensions\Blog\BlogPostExtension
-  featured_images_directory: 'media'
+  featured_images_directory: "media"
 SilverStripe\Security\Member:
   extensions:
     - App\Extensions\Blog\BlogMemberExtension
