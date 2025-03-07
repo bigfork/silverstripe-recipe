@@ -1,3 +1,5 @@
 en:
+  JonoM\ShareCare\ShareCareFields:
+    ShareImageRatio: '{Link}Optimum image ratio</a> is 1.91:1. (1200px wide by 630px tall)'
   SilverStripe\SiteConfig\SiteConfigLeftAndMain:
     MENUTITLE: Configuration

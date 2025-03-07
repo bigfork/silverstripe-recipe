@@ -1,0 +1,15 @@
+---
+Name: app-opengraph
+After: '#opengraphsettings'
+---
+TractorCow\OpenGraph\OpenGraph:
+  default_locale: 'en_GB'
+App\Model\Page:
+  extensions:
+    opengraph: TractorCow\OpenGraph\Extensions\OpenGraphObjectExtension
+    sharecare: JonoM\ShareCare\ShareCare
+    sharecarefields: JonoM\ShareCare\ShareCareFields
+    appopengraph: App\Extensions\CMS\PageOpenGraphExtension
+JonoM\ShareCare\ShareCare:
+  enable_facebook_cache_clear: false
+  pinterest: false
