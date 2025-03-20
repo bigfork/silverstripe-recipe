@@ -26,9 +26,6 @@ SilverStripe\Assets\Storage\DBFile:
 SilverStripe\ORM\FieldType\DBString:
   extensions:
     - App\Extensions\ORM\DBStringExtension
-SilverStripe\SiteConfig\SiteConfig:
-  extensions:
-    - App\Extensions\SiteConfig\SiteConfigExtension
 SilverStripe\CMS\Model\RedirectorPage:
   extensions:
     - App\Extensions\CMS\RedirectorPageExtension
@@ -36,6 +33,12 @@ SilverStripe\CMS\Model\SiteTree:
   create_default_pages: false
   hide_pagetypes:
     - App\Model\Page
+---
+After: '#opengraphextensions'
+---
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - App\Extensions\SiteConfig\SiteConfigExtension
 ---
 Only:
   moduleexists: "bigfork/silverstripe-simpleseo"
