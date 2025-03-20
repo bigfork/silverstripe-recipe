@@ -16,7 +16,7 @@ class SiteConfigExtension extends Extension
 
     public function updateCMSFields(FieldList $fields): void
     {
-        $fields->removeByName(['Tagline']);
+        $fields->removeByName(['Tagline', 'Facebook']);
 
         $fields->addFieldsToTab(
             'Root.SiteSettings',
