@@ -1,6 +1,13 @@
 /* Component: alert styles
 ---------------------------------------------------------------------------------- */
 
+:root {
+	--alert-good: #00703C;
+	--alert-bad: #D4351C;
+	--alert-warning: #FFDD00;
+	--alert-info: #1D70B8;
+}
+
 .alert {
 	margin: 1rem 0 !important;
 	padding: 0.5em 1em;
@@ -11,29 +18,29 @@
 }
 
 .alert--good {
-	border-color: mix($black, $form-good, 40%);
-	color: $white;
-	background-color: $form-good;
+	border-color: color-mix(in srgb, var(--alert-good) 40%, var(--black));
+	color: var(--white);
+	background-color: var(--alert-good);
 }
 
 .alert--bad,
 .alert--error,
 .alert--required,
 .alert--validation {
-	border-color: mix($black, $form-bad, 40%);
-	color: $white;
-	background-color: $form-bad;
+	border-color: color-mix(in srgb, var(--alert-bad) 40%, var(--black));
+	color: var(--white);
+	background-color: var(--alert-bad);
 }
 
 .alert--warning {
-	border-color: mix($black, $form-warning, 40%);
-	color: $black;
-	background-color: $form-warning;
+	border-color: color-mix(in srgb, var(--alert-warning) 40%, var(--black));
+	color: var(--black);
+	background-color: var(--alert-warning);
 }
 
 .alert--info,
 .alert--notice {
-	border-color: mix($black, $form-info, 40%);
-	color: $white;
-	background-color: $form-info;
+	border-color: color-mix(in srgb, var(--alert-info) 40%, var(--black));
+	color: var(--white);
+	background-color: var(--alert-info);
 }

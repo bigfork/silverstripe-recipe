@@ -1,0 +1,9 @@
+---
+Name: app-vite
+---
+SilverStripe\Core\Injector\Injector:
+  Bigfork\Vitesse\Vite:
+    class: 'Bigfork\Vitesse\Vite'
+    calls:
+      publicPath: [ 'usePublicPath', ['../default'] ]
+      buildDirectory: [ 'useBuildDirectory', ['dist'] ]

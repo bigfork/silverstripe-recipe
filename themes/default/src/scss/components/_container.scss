@@ -1,7 +1,22 @@
-/* Component: container
+/* Max-width container
 ---------------------------------------------------------------------------------- */
+
+:root {
+	--container-width: 1168px;
+	--container-inset: 20px;
+}
+
+@media (min-width: 960px) {
+	:root {
+		--container-inset: 40px;
+	}
+}
+
 .container {
-	max-width: $container-width;
-	padding: 0 $container-padding;
-	margin: 0 auto;
+	width: 100%;
+	max-width: calc(var(--container-width) + (var(--container-inset) * 2));
+	padding-right: var(--container-inset);
+	padding-left: var(--container-inset);
+	margin-right: auto;
+	margin-left: auto;
 }

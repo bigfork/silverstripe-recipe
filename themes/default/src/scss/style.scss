@@ -1,17 +1,18 @@
-@import 'includes/normalize';
-@import 'includes/variables';
-@import 'includes/typography';
-@import 'includes/mixins';
-@import 'includes/utils';
+// Setup
+@use 'includes/normalize';
+@use 'includes/variables';
+@use 'includes/typography';
+@use 'includes/mixins';
+@use 'includes/utils';
 
-/* Layout
----------------------------------------------------------------------------------- */
+// Global components
+@use 'components/alert';
+@use 'components/breadcrumbs';
+@use 'components/container';
+@use 'components/footer';
+@use 'components/form';
+@use 'components/header';
 
-* {
-	box-sizing: border-box;
-}
+// Content blocks
+@use 'elements/element';
 
-// Many styles
-@import '~@splidejs/splide/dist/css/splide.min.css';
-@import 'components/**/*.scss';
-@import 'elements/**/*.scss';

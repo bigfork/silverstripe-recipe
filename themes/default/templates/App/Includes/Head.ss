@@ -5,13 +5,11 @@
 	<% base_tag %>
 	<title><% if $MetaTitle %>{$MetaTitle.XML}<% else %>{$Title.XML}<% end_if %></title>
 
-	<%-- Synchronous scripts --%>
-
-	<%-- Stylesheets --%>
-	<link rel="stylesheet" href="{$themedResourceURL('dist/css/style.css')}">
-
-	<%-- Asynchronous/deferred scripts --%>
-	<script type="text/javascript" src="{$themedResourceURL('dist/js/app.js')}" defer></script>
+	<%-- Vite assets --%>
+	<% vite 'src/scss/style.scss', 'src/js/app.js' %>
+	<% if $viteIsRunningHot %>
+		<% vite '@vite-plugin-svg-spritemap/client__spritemap' %>
+	<% end_if %>
 
 	<%-- Metadata --%>
 	{$MetaTags(false)}

@@ -1,0 +1,22 @@
+{
+  "spritemap.svg": {
+    "file": "assets/spritemap.6d4fa4e4.svg",
+    "src": "spritemap.svg"
+  },
+  "src/js/app.js": {
+    "file": "assets/app-l0sNRNKZ.js",
+    "name": "app",
+    "src": "src/js/app.js",
+    "isEntry": true
+  },
+  "src/scss/editor.scss": {
+    "file": "assets/editor-DH_B_0ee.css",
+    "src": "src/scss/editor.scss",
+    "isEntry": true
+  },
+  "src/scss/style.scss": {
+    "file": "assets/style-DvfkZiWz.css",
+    "src": "src/scss/style.scss",
+    "isEntry": true
+  }
+}

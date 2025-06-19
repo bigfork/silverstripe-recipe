@@ -1,15 +1,14 @@
-/* element: element
+/* Base element styles
 ---------------------------------------------------------------------------------- */
+
 .element {
-	&:not(:first-child) {
-		margin-top: 36px;
+	padding-top: 24px;
+	padding-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+	.element {
+		padding-top: 48px;
+		padding-bottom: 48px;
 	}
-}
-
-.element__before {
-	margin-bottom: 24px;
-}
-
-.element__after {
-	margin-top: 24px;
 }

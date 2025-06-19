@@ -1,7 +1,7 @@
 /* Styles for HtmlEditorFields
 ---------------------------------------------------------------------------------- */
 
-@import 'mixins';
+@use 'mixins';
 
 /* Set base font size / family
 ---------------------------------------------------------------------------------- */
@@ -10,7 +10,7 @@ html {
 }
 
 body {
-	font-family: $font-body;
+	font-family: var(--font-family);
 }
 
 /* Typography
@@ -37,29 +37,26 @@ body {
 		height: 0;
 		margin: 2em 0;
 		border: 0;
-		border-top: solid 1px $black;
+		border-top: solid 1px var(--black);
 		outline: none;
 	}
 
 	h1,
 	.h1 {
-		color: $black;
+		color: var(--black);
 		font-size: 200%;
-		font-family: $font-head;
 	}
 
 	h2,
 	.h2 {
-		color: $black;
+		color: var(--black);
 		font-size: 150%;
-		font-family: $font-head;
 	}
 
 	h3,
 	.h3 {
-		color: $black;
+		color: var(--black);
 		font-size: 120%;
-		font-family: $font-head;
 	}
 
 	ul {
@@ -100,7 +97,7 @@ body {
 	}
 
 	a {
-		color: $black;
+		color: var(--black);
 
 		&:link,
 		&:visited {
@@ -142,7 +139,7 @@ body {
 		th,
 		td {
 			padding: 0.5em 0.75em;
-			border: solid 1px $black-alt;
+			border: solid 1px var(--black);
 			text-align: left;
 		}
 
@@ -188,7 +185,7 @@ body {
 	}
 }
 
-@include respond(480px) {
+@media (min-width: 480px) {
 	.typography {
 		img {
 			&.left,

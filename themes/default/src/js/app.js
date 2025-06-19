@@ -1,9 +1,5 @@
-/*!
- * Javascript
- * ---------------------------------------------------------------------------------
- */
-
-
-import {ElementFullWidthCarousel} from './components/ElementFullWidthCarousel';
-
-window.addEventListener('load', ElementFullWidthCarousel);
+import.meta.glob([
+  '../images/**',
+  '!../images/icons/**',
+  '../fonts/**',
+]);

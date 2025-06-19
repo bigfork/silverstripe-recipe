@@ -11,6 +11,8 @@
         "bigfork/silverstripe-sentry-handler": "^2",
         "bigfork/silverstripe-simpleseo": "^3",
         "bigfork/silverstripe-textdropdownfield-fork": "^1",
+		"bigfork/silverstripe-vitesse": "^0",
+		"bigfork/silverstripe-vitesse-spritemap": "^0",
         "bummzack/sortablefile": "^2.1",
         "dnadesign/silverstripe-elemental": "^5",
         "firebrandhq/silverstripe-phonelink": "^3",

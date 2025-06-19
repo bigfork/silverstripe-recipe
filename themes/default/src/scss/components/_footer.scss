@@ -2,11 +2,11 @@
 ---------------------------------------------------------------------------------- */
 
 .footer {
-	background: $black;
+	background: var(--black);
 }
 
-@include respond(960px) {
+@media (min-width: 960px) {
 	.footer {
-		background: $white;
+		background: var(--white);
 	}
 }

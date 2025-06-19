@@ -67,7 +67,7 @@ class Install
 
         if (file_exists($ddevConfigPath)) {
             $ddevConfig = file_get_contents($ddevConfigPath);
-            $ddevConfig = str_replace('{sitename}', $directoryName, $ddevConfig);
+            $ddevConfig = str_replace('recipe', $directoryName, $ddevConfig);
 
             file_put_contents($ddevConfigPath, $ddevConfig);
         }

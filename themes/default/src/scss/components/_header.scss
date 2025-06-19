@@ -2,12 +2,12 @@
 ---------------------------------------------------------------------------------- */
 
 .header {
-	color: $white;
-	background: $black;
+	color: var(--white);
+	background: var(--black);
 }
 
-@include respond(960px) {
+@media (min-width: 960px) {
 	.header {
-		background: $white;
+		background: var(--white);
 	}
 }

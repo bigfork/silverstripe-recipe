@@ -1,6 +1,7 @@
 /* Mixins
 ---------------------------------------------------------------------------------- */
 
+@use 'sass:list';
 @use 'sass:math';
 
 /* Media queries
@@ -15,55 +16,31 @@
 	}
 }
 
-/* High-DPI displays
----------------------------------------------------------------------------------- */
-@mixin retina($density: 1.5) {
-	// Otherwise, all the pixels
-	@media
-		only screen and (-webkit-min-device-pixel-ratio: #{$density}),
-		only screen and (   min--moz-device-pixel-ratio: #{$density}),
-		only screen and (     -o-min-device-pixel-ratio: #{($density * 10)}/10),
-		only screen and (        min-device-pixel-ratio: #{$density}),
-		only screen and (                min-resolution: ($density * 96dpi)),
-		only screen and (                min-resolution: #{$density}dppx) {
-			@content;
-	}
-}
 
 /* Fluid font-size mixin
  *
- * Usage example: @include fluid-font-size( (1.2rem, 320px), (3rem, 960px) );
+ * Usage example:
+ * font-size: #{fluidFontSize((1.2rem, 320px), (3rem, 960px))};
  *
  * Will result in font size of 1.2rem @ 320px, which will grow in sync with the
- * viewport width. It will reach 3rem @ 960px.
- *
- * Also dds a media query to stop the font size growing once it hits the max
- * size. This can be disabled - sometimes the media query merging logic gets
- * messed up, so it may be necessary to cap it manually
+ * viewport width. It will reach 3rem @ 960px
 ---------------------------------------------------------------------------------- */
-@mixin fluid-font-size($min, $max, $autocap: true) {
-	$minFontSize: nth($min, 1);
-	$minWidth: nth($min, 2);
-	$maxFontSize: nth($max, 1);
-	$maxWidth: nth($max, 2);
+@function fluidFontSize($min, $max, $useContainerWidth: false) {
+	$minFontSize: list.nth($min, 1);
+	$minWidth: list.nth($min, 2);
+	$maxFontSize: list.nth($max, 1);
+	$maxWidth: list.nth($max, 2);
 
-	// Difference between min+max font sizes in pixels
-	$dFontSize: (strip-units($maxFontSize) * 10) - (strip-units($minFontSize) * 10);
-	// Difference between min+max viewport widths in pixels
-	$dViewport: strip-units($maxWidth) - strip-units($minWidth);
+	$slope: math.div((stripUnits($maxFontSize * 10) - stripUnits($minFontSize * 10)), (stripUnits($maxWidth) - stripUnits($minWidth)));
+	$slopeVw: #{$slope * 100}#{if($useContainerWidth, 'cqi', 'vi')};
+	$intercept: math.div((stripUnits($minFontSize * 10) - ($slope * stripUnits($minWidth))), 10);
 
-	// Inject rule
-	font-size: calc(#{$minFontSize} + #{$dFontSize} * ((100vw - #{$minWidth}) / #{$dViewport}));
-
-	@if($autocap) {
-		@media screen and (min-width: $maxWidth) {
-			font-size: #{$maxFontSize};
-		}
-	}
+	$preferred: "#{$slopeVw} + #{$intercept}rem";
+	@return clamp(#{$minFontSize}, #{$preferred}, #{$maxFontSize});
 }
 
 /* Strip 'px', 'rem' etc units from a number
 ---------------------------------------------------------------------------------- */
-@function strip-units($number) {
+@function stripUnits($number) {
 	@return math.div($number, $number * 0 + 1);
 }

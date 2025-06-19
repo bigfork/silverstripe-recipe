@@ -1,37 +1,65 @@
-@import '~sanitize.css';
-@import '~sanitize.css/assets.css';
-@import '~sanitize.css/forms.css';
-@import '~sanitize.css/reduce-motion.css';
+@import 'sanitize.css';
+@import 'sanitize.css/assets.css';
+@import 'sanitize.css/forms.css';
+@import 'sanitize.css/reduce-motion.css';
 
 /* Don't mess with cursor */
 html {
 	cursor: auto;
 }
 
+/* Normal word-break behaviour */
+html {
+	word-break: normal;
+}
+
 /* Remove default margin/padding */
 body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-li,
-figure,
-figcaption,
-blockquote,
-dl,
-dd {
+:where(h1),
+:where(h2),
+:where(h3),
+:where(h4),
+:where(h5),
+:where(h6),
+:where(p),
+:where(ul),
+:where(ol),
+:where(li),
+:where(figure),
+:where(figcaption),
+:where(blockquote),
+:where(dl),
+:where(dd) {
 	padding: 0;
 	margin: 0;
 }
 
+/* Reset font sizes */
+:where(h1),
+:where(h2),
+:where(h3),
+:where(h4),
+:where(h5),
+:where(h6) {
+	font: inherit;
+}
+
+/* Sub/sup */
+:where(sup),
+:where(sub) {
+	position: relative;
+	top: -0.3em;
+	font-size: 80%;
+	vertical-align: baseline;
+}
+
+:where(sub) {
+	top: 0.4em;
+}
+
 /* Reset list styles */
-ol,
-ul {
+:where(ol),
+:where(ul) {
 	list-style: none;
 }
 

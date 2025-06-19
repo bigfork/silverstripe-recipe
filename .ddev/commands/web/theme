@@ -7,12 +7,12 @@
 ## HostWorkingDir: true
 
 if [ $1 = "watch" ]; then
-    npm --prefix themes/default run watch
+    yarn --cwd themes/default run dev
 elif [ $1 = "prod" ]; then
-    npm --prefix themes/default run prod
+    yarn --cwd themes/default run build
 elif [ $1 = "build" ]; then
-    npm --prefix themes/default run prod
+    yarn --cwd themes/default run build
 else
-    npm --prefix themes/default "$@"
+    yarn --cwd themes/default "$@"
 fi
 
