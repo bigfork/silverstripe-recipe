@@ -1,5 +1,7 @@
 <?php
 
+use Bigfork\Vitesse\Vite;
+use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\HTMLEditor\TinyMCEConfig;
 use SilverStripe\i18n\i18n;
 
@@ -23,3 +25,7 @@ $config->setOptions([
     ],
     'table_row_advtab' => false
 ]);
+
+$editorCSS = Config::inst()->get(TinyMCEConfig::class, 'editor_css');
+$editorCSS[] = Vite::inst()->asset('src/scss/editor.scss');
+Config::modify()->set(TinyMCEConfig::class, 'editor_css', $editorCSS);
