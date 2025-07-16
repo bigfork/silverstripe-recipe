@@ -11,9 +11,6 @@ SilverStripe\View\SSViewer:
 SilverStripe\Admin\LeftAndMain:
   extra_requirements_css:
     - app/css/cms.css
-SilverStripe\Forms\HTMLEditor\TinyMCEConfig:
-  editor_css:
-    - "themes/default/dist/css/editor.css"
 SilverStripe\Control\Email\Email:
   admin_email: ""
 SilverStripe\Core\Injector\Injector:
