@@ -27,6 +27,7 @@ SS_DATABASE_PASSWORD='{$dbPass}'
 SS_DATABASE_SERVER='{$dbServer}'
 SS_DATABASE_NAME='{$dbName}'
 SS_ENVIRONMENT_TYPE='{$type}'
+SS_ALLOWED_HOSTS='*'
 ENV;
 
     if ($sentryDSN) {
