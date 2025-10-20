@@ -9,21 +9,16 @@ use SilverStripe\Control\Controller;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
-use SilverStripe\ORM\ArrayList;
+use SilverStripe\Model\List\ArrayList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Permission;
 use SilverStripe\SiteConfig\SiteConfig;
 
 class Page extends SiteTree
 {
-    private static $table_name = 'Page';
+    private static string $table_name = 'Page';
 
-    private static $icon_class = 'font-icon-p-alt-2';
-
-    public static function get_one_cached()
-    {
-        return DataObject::get_one(static::class);
-    }
+    private static string $icon_class = 'font-icon-p-alt-2';
 
     public function getCMSFields()
     {
@@ -95,10 +90,7 @@ class Page extends SiteTree
             }
         }
 
-        if (Controller::has_curr()) {
-            $controller = Controller::curr();
-            $controller->invokeWithExtensions('updateBreadcrumbItems', $items);
-        }
+        Controller::curr()?->invokeWithExtensions('updateBreadcrumbItems', $items);
 
         return $items;
     }
@@ -203,5 +195,10 @@ class Page extends SiteTree
         }
 
         return $tags;
+    }
+
+    public static function get_one_cached(): ?DataObject
+    {
+        return DataObject::get_one(static::class);
     }
 }

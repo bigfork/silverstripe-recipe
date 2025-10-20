@@ -4,22 +4,22 @@ namespace App\Extensions\Elemental;
 
 use AdrHumphreys\TextDropdownField\TextDropdownField;
 use SilverStripe\Core\Convert;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Tab;
-use SilverStripe\ORM\DataExtension;
 use SilverStripe\View\HTML;
 
-class BaseElementExtension extends DataExtension
+class BaseElementExtension extends Extension
 {
     private static array $db = [
         'HeadingLevel' => 'Enum(array("h1", "h2", "h3", "h4", "h5", "h6", "hidden"), "h2")',
     ];
 
     private static array $casting = [
-        'TitleTag' => 'HTMLFragment'
+        'TitleTag' => 'HTMLFragment',
     ];
 
-    private array $HeadingLevels = [
+    protected array $headingLevels = [
         'h1' => 'Heading 1',
         'h2' => 'Heading 2',
         'h3' => 'Heading 3',
@@ -43,7 +43,7 @@ class BaseElementExtension extends DataExtension
         /** @var Tab $tab */
         $tab = $fields->fieldByName('Root.Main');
         $tab->getChildren()->unshift(
-            TextDropdownField::create('TitleAndHeadingLevel', 'Title', 'Title', 'HeadingLevel', $this->HeadingLevels)
+            TextDropdownField::create('TitleAndHeadingLevel', 'Title', 'Title', 'HeadingLevel', $this->headingLevels)
                 ->setName('TitleAndHeadingLevel')
         );
 

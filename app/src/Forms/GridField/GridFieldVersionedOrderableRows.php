@@ -8,31 +8,20 @@ use SilverStripe\ORM\DB;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\ManyManyList;
 use SilverStripe\ORM\ManyManyThroughList;
-use SilverStripe\ORM\SS_List;
 use SilverStripe\Versioned\Versioned;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 
 class GridFieldVersionedOrderableRows extends GridFieldOrderableRows
 {
-    /**
-     * @var bool
-     */
-    protected $updateLiveTableImmediately = true;
+    protected bool $updateLiveTableImmediately = true;
 
-    /**
-     * @param $update
-     * @return $this
-     */
-    public function setUpdateLiveTableImmediately($update)
+    public function setUpdateLiveTableImmediately(bool $update): static
     {
         $this->updateLiveTableImmediately = $update;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function getUpdateLiveTableImmediately()
+    public function getUpdateLiveTableImmediately(): bool
     {
         return $this->updateLiveTableImmediately;
     }
@@ -45,7 +34,7 @@ class GridFieldVersionedOrderableRows extends GridFieldOrderableRows
      * @param array $sortedIDs
      * @throws Exception
      */
-    protected function reorderItems($list, array $values, array $sortedIDs)
+    protected function reorderItems($list, array $values, array $sortedIDs): void
     {
         // setup
         $sortField = $this->getSortField();

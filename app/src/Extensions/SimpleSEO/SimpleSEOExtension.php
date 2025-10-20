@@ -2,21 +2,13 @@
 
 namespace App\Extensions\SimpleSEO;
 
-use Page;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\Control\Director;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
-use SilverStripe\ORM\DataExtension;
 
-/**
- * Class \App\SilverStripeSimpleSEO\Extensions\SimpleSEOExtension
- *
- * @property int $ShareImageID
- * @method Page getOwner()
- * @method Image ShareImage()
- */
-class SimpleSEOExtension extends DataExtension
+class SimpleSEOExtension extends Extension
 {
     const SHARE_IMAGE_DIMENSIONS = [
         'w' => 1600,
@@ -68,41 +60,41 @@ class SimpleSEOExtension extends DataExtension
             : 'image/png';
 
         $tags['image_src'] = [
-            'tag'        => 'link',
+            'tag' => 'link',
             'attributes' => [
-                'rel'  => 'image_src',
+                'rel' => 'image_src',
                 'href' => $image_src,
             ],
         ];
 
         $tags['og:image'] = [
-            'tag'        => 'meta',
+            'tag' => 'meta',
             'attributes' => [
                 'property' => 'og:image',
-                'content'  => $image_src,
+                'content' => $image_src,
             ],
         ];
 
         $tags['og:image:type'] = [
-            'tag'        => 'meta',
+            'tag' => 'meta',
             'attributes' => [
                 'property' => 'og:image:type',
-                'content'  => $image_type,
+                'content' => $image_type,
             ],
         ];
 
         $tags['twitter:image'] = [
-            'tag'        => 'meta',
+            'tag' => 'meta',
             'attributes' => [
-                'name'    => 'twitter:image',
+                'name' => 'twitter:image',
                 'content' => $image_src,
             ],
         ];
 
         $tags['twitter:card'] = [
-            'tag'        => 'meta',
+            'tag' => 'meta',
             'attributes' => [
-                'name'    => 'twitter:card',
+                'name' => 'twitter:card',
                 'content' => 'summary_large_image',
             ],
         ];

@@ -7,17 +7,17 @@ use SilverStripe\View\TemplateGlobalProvider;
 
 class SitemapPage extends Page implements TemplateGlobalProvider
 {
-    private static $table_name = 'SitemapPage';
+    private static string $table_name = 'SitemapPage';
 
-    private static $description = 'Page containing a sitemap';
+    private static string $description = 'Page containing a sitemap';
 
-    private static $icon_class = 'font-icon-p-list';
+    private static string $icon_class = 'font-icon-p-list';
 
-    private static $defaults = [
+    private static array $defaults = [
         'ShowInMenus' => false,
     ];
 
-    public function canCreate($member = null, $context = [])
+    public function canCreate($member = null, $context = []): bool
     {
         if (static::get()->count()) {
             return false;
@@ -26,7 +26,7 @@ class SitemapPage extends Page implements TemplateGlobalProvider
         return parent::canCreate($member, $context);
     }
 
-    public static function get_template_global_variables()
+    public static function get_template_global_variables(): array
     {
         return [
             'SitemapPage' => 'get_one_cached',

@@ -5,9 +5,9 @@ namespace App\Extensions\CMS;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\FieldList;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 
-class RedirectorPageExtension extends DataExtension
+class RedirectorPageExtension extends Extension
 {
     private static array $db = [
         'NewWindow' => 'Boolean',

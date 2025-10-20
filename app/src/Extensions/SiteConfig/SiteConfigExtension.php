@@ -9,7 +9,7 @@ use SilverStripe\Forms\TextField;
 
 class SiteConfigExtension extends Extension
 {
-    private static $db = [
+    private static array $db = [
         'EmailAddress' => 'Varchar(255)',
         'Telephone' => 'Varchar(50)',
     ];

@@ -23,17 +23,14 @@ class GridFieldConfig_OrderableRecordEditor extends GridFieldConfig
         $this->addComponent(new GridFieldButtonRow('before'));
         $this->addComponent(new GridFieldAddNewButton('buttons-before-left'));
         $this->addComponent(new GridFieldToolbarHeader());
-        $this->addComponent($sort = new GridFieldSortableHeader());
-        $this->addComponent($filter = new GridFieldFilterHeader());
+        $this->addComponent(new GridFieldSortableHeader());
+        $this->addComponent(new GridFieldFilterHeader());
         $this->addComponent(new GridFieldDataColumns());
         $this->addComponent(new GridFieldEditButton());
         $this->addComponent(new GridFieldDeleteAction());
         $this->addComponent(new GridField_ActionMenu());
         $this->addComponent(new GridFieldDetailForm(null, null, $showAdd));
         $this->addComponent(new GridFieldVersionedOrderableRows($sortOrder));
-
-        $sort->setThrowExceptionOnBadDataType(false);
-        $filter->setThrowExceptionOnBadDataType(false);
 
         $this->extend('updateConfig');
     }

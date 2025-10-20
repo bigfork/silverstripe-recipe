@@ -7,7 +7,7 @@ use SilverStripe\Core\Extension;
 
 class DBFileExtension extends Extension
 {
-    public function updateURL(&$url)
+    public function updateURL(&$url): void
     {
         $visibility = $this->owner->getVisibility();
         if ($visibility === AssetStore::VISIBILITY_PROTECTED) {
