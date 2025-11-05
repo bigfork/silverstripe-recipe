@@ -14,9 +14,8 @@ SilverStripe\Admin\LeftAndMain:
 SilverStripe\Control\Email\Email:
   admin_email: ""
 SilverStripe\Core\Injector\Injector:
-  Intervention\Image\ImageManager:
-    constructor:
-      - { driver: imagick }
+  InterventionImageDriver:
+    class: 'Intervention\Image\Drivers\Imagick\Driver'
 SilverStripe\Assets\Storage\DBFile:
   extensions:
     - App\Extensions\Assets\DBFileExtension
