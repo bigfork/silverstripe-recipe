@@ -47,7 +47,7 @@ task('deploy', function() {
     invoke('deploy:writable');
     invoke('deploy:vendors');
     invoke('silverstripe:vendor_expose');
-    invoke('silverstripe:dev_build');
+    invoke('silverstripe:db_build');
     invoke('deploy:clear_paths');
     invoke('deploy:symlink');
     invoke('deploy:unlock');

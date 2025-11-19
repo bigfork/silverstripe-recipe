@@ -53,14 +53,14 @@ task('silverstripe:create_cache_dir', function () {
     run("cd {{release_path}} && if [ ! -d silverstripe-cache ]; then mkdir silverstripe-cache; fi");
 })->setPrivate();
 
-desc('Run dev/build');
-task('silverstripe:dev_build', function () {
+desc('Run db:build');
+task('silverstripe:db_build', function () {
     // If we have permission to run commands as the http_user, do so, otherwise run as the current user
     $httpUser = get('http_user') ?: 'www-data';
     if (test("[ `sudo -u {$httpUser} whoami` ]")) {
-        run("sudo -u {$httpUser} {{release_path}}/vendor/bin/sake dev/build flush");
+        run("sudo -u {$httpUser} {{release_path}}/vendor/bin/sake db:build");
     } else {
-        run("{{release_path}}/vendor/bin/sake dev/build flush");
+        run("{{release_path}}/vendor/bin/sake db:build");
     }
 });
 
