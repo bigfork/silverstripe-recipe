@@ -1,0 +1,69 @@
+import:
+    - recipe/common.php
+    - deploy/cloudflare.php
+    - deploy/silverstripe.php
+
+config:
+    repository: '__REPOSITORY__'
+    shared_files:
+        - '.env'
+        - 'debug.log'
+    shared_dirs:
+        - 'public/assets'
+        - 'public/.well-known'
+    writable_dirs:
+        - 'public/assets'
+        - 'silverstripe-cache'
+
+.live: &live
+    hostname: '__HOSTNAME__'
+    remote_user: '__USER__'
+    deploy_path: '~/public_html'
+    cloudflare:
+        api_token: ''
+        zone_id: ''
+
+.staging: &staging
+    hostname: '__HOSTNAME__'
+    remote_user: '__USER__'
+    deploy_path: '~/public_html'
+
+hosts:
+    production:
+        <<: *live
+        stage: production
+    prod:
+        <<: *live
+        stage: production
+    live:
+        <<: *live
+        stage: production
+    staging:
+        <<: *staging
+        stage: staging
+    stage:
+        <<: *staging
+        stage: staging
+    test:
+        <<: *staging
+        stage: staging
+
+tasks:
+    deploy:
+        - deploy:prepare
+        - silverstripe:create_dotenv
+        - silverstripe:create_cache_dir
+        - deploy:vendors
+        - silverstripe:vendor_expose
+        - silverstripe:db_build
+        - deploy:clear_paths
+        - deploy:publish
+
+    deploy:env:
+        - run: 'true'
+
+before:
+    deploy:cleanup: cloudflare:purge
+
+after:
+    deploy:failed: deploy:unlock

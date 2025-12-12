@@ -17,6 +17,7 @@
         "bigfork/silverstripe-vitesse": "^2",
         "bigfork/silverstripe-vitesse-spritemap": "^0",
         "bummzack/sortablefile": "^3",
+		"deployer/deployer": "^7",
         "dnadesign/silverstripe-elemental": "^6",
         "kinglozzer/metatitle": "^4",
         "silverstripe/asset-admin": "^3",

@@ -41,7 +41,7 @@ EOL
 BASH;
 
     run("$command");
-})->setPrivate();
+})->hidden();
 
 desc('Run composer vendor-expose');
 task('silverstripe:vendor_expose', function () {
@@ -51,7 +51,7 @@ task('silverstripe:vendor_expose', function () {
 desc('Create silverstripe-cache directory');
 task('silverstripe:create_cache_dir', function () {
     run("cd {{release_path}} && if [ ! -d silverstripe-cache ]; then mkdir silverstripe-cache; fi");
-})->setPrivate();
+})->hidden();
 
 desc('Run db:build');
 task('silverstripe:db_build', function () {
@@ -67,7 +67,7 @@ task('silverstripe:db_build', function () {
 desc('Create directory for sspak dumps');
 task('silverstripe:create_dump_dir', function () {
     run("cd {{deploy_path}} && if [ ! -d dumps ]; then mkdir dumps; fi");
-})->setPrivate();
+})->hidden();
 
 desc('Upload assets');
 task('silverstripe:upload_assets', function () {
