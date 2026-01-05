@@ -15,7 +15,7 @@ class RedirectorPageExtension extends Extension
 
     public function updateCMSFields(FieldList $fields): void
     {
-        $fields->removeByName(['NewWindow']);
+        $fields->removeByName(['NewWindow', 'Share', 'ShareImage', 'CanonicalLink', 'MetaTitle']);
         $fields->addFieldsToTab(
             'Root.Main',
             [
