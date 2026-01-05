@@ -6,9 +6,16 @@ use SilverStripe\Assets\Image;
 use SilverStripe\Assets\Storage\DBFile;
 use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Core\Extension;
+use SilverStripe\Forms\FieldList;
 
 class PageOpenGraphExtension extends Extension
 {
+    
+    public function updateCMSFields(FieldList $fields): void
+    {
+        $fields->removeByName(['PinterestImageCustom']);
+    }
+
     public function getOGTitle(): string
     {
         return $this->owner->OGTitleCustom
