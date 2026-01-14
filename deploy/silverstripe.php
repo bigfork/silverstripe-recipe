@@ -68,7 +68,7 @@ task('silverstripe:create_dump_dir', function () {
 
 desc('Upload assets');
 task('silverstripe:upload_assets', function () {
-    $stage = Context::get()->getHost()->getConfig()->get('stage') === 'production' ? 'live' : 'staging';
+    $stage = Context::get()->getHost()->get('stage') === 'production' ? 'live' : 'staging';
     if (!askConfirmation("Are you sure you want to overwrite the {$stage} assets?")) {
         echo "🐔\n";
         exit;
@@ -85,7 +85,7 @@ after('silverstripe:upload_assets', 'deploy:writable');
 
 desc('Upload database');
 task('silverstripe:upload_database', function () {
-    $stage = Context::get()->getHost()->getConfig()->get('stage') === 'production' ? 'live' : 'staging';
+    $stage = Context::get()->getHost()->get('stage') === 'production' ? 'live' : 'staging';
     if (!askConfirmation("Are you sure you want to overwrite the {$stage} database?")) {
         echo "🐔\n";
         exit;
