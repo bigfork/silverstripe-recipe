@@ -8,7 +8,7 @@ use Deployer\Task\Context;
 desc('Populate .env file');
 task('silverstripe:create_dotenv', function () {
     $envPath = "{{deploy_path}}/shared/.env";
-    if (test("[ -f {$envPath} ]")) {
+    if (test("[ -s {$envPath} ]")) {
         return;
     }
 
@@ -17,7 +17,7 @@ task('silverstripe:create_dotenv', function () {
     $dbUser = ask('Please enter the database username', !empty($dbName) ? $dbName : null);
     $dbPass = str_replace("'", "\\'", ask('Please enter the database password'));
     $sentryDSN = ask('Please enter the Sentry DSN (if applicable)');
-    $stage = Context::get()->getHost()->getConfig()->get('stage');
+    $stage = Context::get()->getHost()->get('stage');
     $type = $stage === 'production' ? 'live' : 'test';
 
     $contents = <<<ENV
@@ -34,13 +34,10 @@ ENV;
         $contents .= "\nSENTRY_DSN='{$sentryDSN}'";
     }
 
-    $command = <<<BASH
-cat >{$envPath} <<EOL
-$contents
-EOL
-BASH;
-
-    run("$command");
+    run("cat <<'EOF' > {$envPath}
+{$contents}
+EOF
+");
 })->hidden();
 
 desc('Run composer vendor-expose');
