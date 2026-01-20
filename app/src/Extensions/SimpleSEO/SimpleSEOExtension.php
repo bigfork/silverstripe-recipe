@@ -37,7 +37,7 @@ class SimpleSEOExtension extends Extension
         );
     }
 
-    public function MetaComponents(array &$tags): void
+    public function updateMetaComponents(array &$tags): void
     {
         $owner = $this->getOwner();
         $image = $owner->ShareImage();

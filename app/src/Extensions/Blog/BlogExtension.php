@@ -9,7 +9,7 @@ use SilverStripe\Core\Extension;
 
 class BlogExtension extends Extension
 {
-    public function MetaComponents(array &$tags): void
+    public function updateMetaComponents(array &$tags): void
     {
         if (!Controller::has_curr()) {
             return;
