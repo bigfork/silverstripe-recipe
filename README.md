@@ -7,6 +7,8 @@ Bigfork’s quickstart recipe for simple SilverStripe 5 projects. Contains frequ
 - Run `composer create-project bigfork/silverstripe-recipe ./project dev-master`
 - Answer yes to “Do you want to remove the existing VCS (.git, .svn..) history?”
 - Run `ddev start`
+- Run `ddev composer install`
+- Run `cp .env.example .env`
 - Draw the rest of the owl
 
 ## Deployments
