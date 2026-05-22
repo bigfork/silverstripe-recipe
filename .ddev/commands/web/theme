@@ -1,4 +1,5 @@
 #!/bin/bash
+#ddev-silent-no-warn
 
 ## Description: Run yarn inside the default theme directory
 ## Usage: theme [flags] [args]
