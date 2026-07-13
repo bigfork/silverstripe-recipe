@@ -4,6 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<% base_tag %>
 	<title><% if $MetaTitle %>{$MetaTitle.XML}<% else %>{$Title.XML}<% end_if %></title>
+	<link rel="icon" href="/favicon.ico" sizes="32x32">
 
 	<%-- Vite assets --%>
 	<% vite 'src/scss/style.scss', 'src/js/app.js' %>
