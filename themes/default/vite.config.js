@@ -18,6 +18,11 @@ export default defineConfig({
       refresh: [
         'templates/**/*.ss',
       ],
+      assets: [
+          'src/images/**',
+          '!src/images/icons/**',
+          'src/fonts/**',
+      ],
     }),
 
     VitePluginSvgSpritemap('src/images/icons/*.svg', {

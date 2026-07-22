@@ -32,7 +32,7 @@
 	$maxWidth: list.nth($max, 2);
 
 	$slope: math.div((stripUnits($maxFontSize * 10) - stripUnits($minFontSize * 10)), (stripUnits($maxWidth) - stripUnits($minWidth)));
-	$slopeVw: #{$slope * 100}#{if($useContainerWidth, 'cqi', 'vi')};
+	$slopeVw: #{$slope * 100}#{if(sass($useContainerWidth): "cqi"; else: "vi")};
 	$intercept: math.div((stripUnits($minFontSize * 10) - ($slope * stripUnits($minWidth))), 10);
 
 	$preferred: "#{$slopeVw} + #{$intercept}rem";

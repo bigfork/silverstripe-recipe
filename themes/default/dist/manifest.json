@@ -4,18 +4,26 @@
     "src": "spritemap.svg"
   },
   "src/js/app.js": {
-    "file": "assets/app-l0sNRNKZ.js",
+    "file": "assets/app-BvRk9kiK.js",
     "name": "app",
     "src": "src/js/app.js",
     "isEntry": true
   },
   "src/scss/editor.scss": {
-    "file": "assets/editor-DQ8gnlXp.css",
+    "file": "assets/editor-bg1fN-8f.css",
+    "name": "editor",
+    "names": [
+      "editor.css"
+    ],
     "src": "src/scss/editor.scss",
     "isEntry": true
   },
   "src/scss/style.scss": {
-    "file": "assets/style-DBZkaHPM.css",
+    "file": "assets/style-4kw9WuPp.css",
+    "name": "style",
+    "names": [
+      "style.css"
+    ],
     "src": "src/scss/style.scss",
     "isEntry": true
   }

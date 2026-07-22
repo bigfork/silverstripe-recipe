@@ -15,7 +15,7 @@ use_dns_when_possible: true
 timezone: Europe/London
 composer_version: "2"
 web_environment: []
-corepack_enable: false
+nodejs_version: "26"
 web_extra_exposed_ports:
     - name: vite
       container_port: 5173
