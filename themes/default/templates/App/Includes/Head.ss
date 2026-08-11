@@ -9,7 +9,7 @@
 	<%-- Vite assets --%>
 	<% vite 'src/scss/style.scss', 'src/js/app.js' %>
 	<% if $viteIsRunningHot %>
-		<% vite '@vite-plugin-svg-spritemap/client__spritemap' %>
+		<% vite '@vite-plugin-svg-spritemap/client' %>
 	<% end_if %>
 
 	<%-- Metadata --%>
