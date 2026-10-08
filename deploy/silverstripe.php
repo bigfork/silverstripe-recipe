@@ -4,6 +4,11 @@ namespace Deployer;
 
 use Deployer\Task\Context;
 
+// Allow Cloudways to override PHP version... yuck
+set('bin/php', function () {
+    return test('[ -x ~/.cw/bin/php ]') ? '~/.cw/bin/php' : which('php');
+});
+
 // Tasks
 desc('Populate .env file');
 task('silverstripe:create_dotenv', function () {
@@ -55,9 +60,9 @@ task('silverstripe:db_build', function () {
     // If we have permission to run commands as the http_user, do so, otherwise run as the current user
     $httpUser = get('http_user') ?: 'www-data';
     if (test("[ `sudo -u {$httpUser} whoami` ]")) {
-        run("sudo -u {$httpUser} {{release_path}}/vendor/bin/sake db:build");
+        run("sudo -u {$httpUser} {{bin/php}} {{release_path}}/vendor/bin/sake db:build");
     } else {
-        run("{{release_path}}/vendor/bin/sake db:build");
+        run("{{bin/php}} {{release_path}}/vendor/bin/sake db:build");
     }
 });
 
